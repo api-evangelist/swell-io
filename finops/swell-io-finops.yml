@@ -1,0 +1,70 @@
+finopsFramework:
+  spec: FOCUS-1.0
+  provider: swell-io
+  description: FinOps mapping of Swell's commerce platform pricing surface — subscription tiers, revenue ceilings, API/storage overages.
+
+billingAccount:
+  scope: organization
+  identifierField: store_id
+
+charges:
+  - id: platform-subscription
+    name: Platform Subscription Fee
+    chargeCategory: Usage
+    chargeSubcategory: Committed
+    billingPeriod: month
+    pricingModel: Tiered
+    pricingUnit: subscription-plan
+    description: Recurring monthly fee for the selected Swell plan (Starter, Basic, Standard, Unlimited, or Custom).
+
+  - id: revenue-overage
+    name: Annual Revenue Overage
+    chargeCategory: Usage
+    chargeSubcategory: Variable
+    pricingModel: Tiered
+    pricingUnit: percent-of-overage-revenue
+    description: When annual GMV exceeds the plan ceiling, additional sales are charged at 0.4%-2.0% depending on plan.
+
+  - id: api-overage
+    name: API Request Overage
+    chargeCategory: Usage
+    chargeSubcategory: Variable
+    pricingModel: PerUnit
+    pricingUnit: 100k-requests
+    pricingUnitCost: 5.00
+    pricingCurrency: USD
+    description: $5 per additional 100,000 API requests beyond the plan's monthly quota.
+
+  - id: storage-overage
+    name: Storage Overage
+    chargeCategory: Usage
+    chargeSubcategory: Variable
+    pricingModel: PerUnit
+    pricingUnit: GB-month
+    pricingUnitCost: 5.00
+    pricingCurrency: USD
+    description: $5 per additional gigabyte of stored data per month beyond the plan's storage quota.
+
+  - id: payment-gateway-fees
+    name: Payment Gateway Fees (pass-through)
+    chargeCategory: Usage
+    chargeSubcategory: PassThrough
+    description: Card and alternative payment fees are charged by the underlying gateway (Stripe, Braintree, PayPal, etc.), not by Swell.
+
+dimensions:
+  - name: Plan
+    values: [Starter, Basic, Standard, Unlimited, Custom]
+  - name: Region
+    values: [Global]
+  - name: Currency
+    description: 230+ currencies supported; default to store base currency.
+
+allocations:
+  recommended:
+    - Allocate platform subscription as a fixed cost per brand/store.
+    - Allocate API and storage overages by store_id and apply to the consuming team or storefront.
+    - Track GMV vs. plan ceiling monthly to forecast revenue-overage exposure.
+
+notes:
+  - "Swell does not impose its own per-transaction fee beyond the revenue-overage model."
+  - "Custom (enterprise) plans negotiate ceilings, SLAs, and overage rates directly."

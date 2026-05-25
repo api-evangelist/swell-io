@@ -1,0 +1,97 @@
+aid: swell-io
+name: Swell
+reviewer: Kin Lane
+reviewed_on: '2026-05-25'
+tier: 1
+overall: A-
+summary: >-
+  Swell delivers a tightly scoped, well-documented headless commerce platform with an explicitly
+  bifurcated developer surface — a server-side Backend API for the full data model, a public-key
+  Frontend API for storefronts, an experimental GraphQL endpoint, a webhooks system, and a
+  serious Apps platform with edge functions. The querying surface (MongoDB-style `where`,
+  `expand`, `include`) is unusually rich for commerce, and the SDK + headless-starter coverage
+  (Node, PHP, Swell.js, Horizon, verswell, Origin) is strong. The custom wire protocol on
+  port 8443 is a notable design choice that buys performance at the cost of firewall friction.
+scores:
+  documentation:
+    grade: A
+    notes: >-
+      Clean information architecture (Quickstart, Core Concepts, Backend API, Frontend API, Apps,
+      Storefronts). Every resource page has consistent shape — fields, query params, request
+      examples, response examples. Error and querying pages cover operators, error codes, and
+      pagination clearly.
+  api_design:
+    grade: A-
+    notes: >-
+      REST-shaped with predictable resource URLs, standard verbs, and a strong querying model.
+      The merge-on-PUT semantics (with `$set` to override) and `model`/`type` webhook shape are
+      consistent. The split between Backend and Frontend APIs is a clean separation. Minor:
+      `/orders` uses PATCH for update, while most other resources use PUT.
+  spec_coverage:
+    grade: B
+    notes: >-
+      No first-party OpenAPI or GraphQL SDL is published. This profile reconstructs OpenAPI 3.0
+      from the documented HTTP surface. A canonical spec would be high-leverage for SDK generation
+      and ecosystem tooling.
+  sdks:
+    grade: A
+    notes: >-
+      Official Node (TypeScript), PHP, and universal JS (Swell.js) libraries, plus a community
+      Python library. The Swell.js SDK explicitly mirrors a curated subset of the Backend API for
+      client-safe use, with public-key + session-token auth.
+  storefront_kits:
+    grade: A
+    notes: >-
+      Multiple production-grade headless starters: Horizon (Next.js), verswell-commerce (Next.js
+      Commerce fork), nextjs-commerce, nextjs-builder, Origin (Nuxt 2). Plus EasyBlocks visual
+      builder and a Storefront React AI template.
+  webhooks:
+    grade: A-
+    notes: >-
+      Solid event model with retries (hourly for two days, then continued), auto-disable after
+      three days of failures, and a published source-IP allowlist. Could be strengthened with
+      cryptographic payload signing (HMAC) documented as default.
+  pricing_transparency:
+    grade: A
+    notes: >-
+      Clear plan tiers with annual-revenue ceilings, per-tier API quotas, storage quotas, and
+      precise overage formulas ($5 per 100K requests, $5 per GB-month). No hidden transaction fees.
+  ai_readiness:
+    grade: A
+    notes: >-
+      Ships official Claude Code plugins and AI coding-agent skills repositories — rare for a
+      commerce platform. The Frontend API surface is naturally agent-friendly (public-key auth,
+      session token, JSON), and the Backend API's `where`/`expand`/`include` querying maps well
+      to LLM tool-use patterns.
+  governance:
+    grade: B+
+    notes: >-
+      Status page, changelog, terms, privacy, security pages all present. SLA only at the
+      Unlimited tier (100%). Trust center URL not surfaced from the public site.
+strengths:
+  - Cleanly bifurcated Backend (secret-key) vs Frontend (public-key + session) APIs
+  - Rich MongoDB-style query semantics with `expand`/`include` for joinful reads
+  - Native subscriptions, B2B, and marketplaces as first-class primitives
+  - 230 currencies and 170 languages built-in
+  - Excellent SDK and headless-starter coverage
+  - Webhooks with retries, auto-disable, and published source IPs
+  - Apps platform with edge functions in 200+ locations
+  - Official AI coding-agent skills and Claude Code plugins
+weaknesses:
+  - No published canonical OpenAPI or GraphQL SDL
+  - GraphQL endpoint still experimental alpha with notable gaps
+  - Custom wire protocol on port 8443 can hit firewall friction
+  - HMAC webhook signing not documented as default
+  - 100% uptime SLA only at Unlimited tier
+recommendations:
+  - Publish a canonical OpenAPI spec and GraphQL SDL to enable downstream SDK and Naftiko Sandbox generation.
+  - Move GraphQL out of experimental alpha with parity to the Frontend REST API.
+  - Document HMAC webhook signing alongside IP allowlist for defense in depth.
+  - Extend the AI coding-agent skills with Naftiko Sandbox capabilities for safe agent-driven commerce flows.
+tier_assignment:
+  tier: 1
+  rationale: >-
+    Production-grade headless commerce platform with comprehensive REST + GraphQL APIs, multiple
+    official SDKs, multiple production-quality headless storefront starters, a public Apps
+    platform with edge functions, well-documented webhooks and rate limits, and emerging
+    first-party AI coding-agent tooling.

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-structure/swell-subscription-structure.json",
+  "title": "Swell Subscription",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "account_id": { "type": "string" },
+    "product_id": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "status": { "type": "string" },
+    "interval": { "type": "string" },
+    "interval_count": { "type": "int32" },
+    "trial_days": { "type": "int32" },
+    "price": { "type": "decimal" },
+    "recurring_total": { "type": "decimal" },
+    "date_period_start": { "type": "string" },
+    "date_period_end": { "type": "string" },
+    "date_created": { "type": "string" }
+  }
+}

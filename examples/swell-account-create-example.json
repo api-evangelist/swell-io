@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.swell.store/accounts",
+    "headers": {
+      "Authorization": "Basic <base64(store-id:secret-key)>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "email": "avery.chen@example.com",
+      "first_name": "Avery",
+      "last_name": "Chen",
+      "phone": "+1 415 555 0188",
+      "type": "individual"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "65d0a000f7d9d80012a10001",
+      "email": "avery.chen@example.com",
+      "name": "Avery Chen",
+      "first_name": "Avery",
+      "last_name": "Chen",
+      "phone": "+1 415 555 0188",
+      "type": "individual",
+      "currency": "USD",
+      "order_count": 0,
+      "balance": 0,
+      "date_created": "2026-05-25T14:55:01.000Z"
+    }
+  }
+}

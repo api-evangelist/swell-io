@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-structure/swell-order-structure.json",
+  "title": "Swell Order",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "number": { "type": "string" },
+    "account_id": { "type": "string" },
+    "status": { "type": "string" },
+    "items": { "type": "array", "items": { "type": "object" } },
+    "billing": { "type": "object" },
+    "shipping": { "type": "object" },
+    "sub_total": { "type": "decimal" },
+    "discount_total": { "type": "decimal" },
+    "tax_total": { "type": "decimal" },
+    "shipment_total": { "type": "decimal" },
+    "grand_total": { "type": "decimal" },
+    "payment_balance": { "type": "decimal" },
+    "paid": { "type": "boolean" },
+    "delivered": { "type": "boolean" },
+    "refunded": { "type": "boolean" },
+    "canceled": { "type": "boolean" },
+    "currency": { "type": "string" },
+    "date_created": { "type": "string" }
+  }
+}

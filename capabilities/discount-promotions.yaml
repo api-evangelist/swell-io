@@ -1,0 +1,19 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: discount-promotions
+  description: Build, distribute, and track coupons, automatic promotions, and gift cards.
+spec:
+  steps:
+    - id: create-coupon
+      operation: createCoupon
+      api: swell-backend-api
+    - id: create-promotion
+      operation: createPromotion
+      api: swell-backend-api
+    - id: issue-giftcard
+      operation: createGiftcard
+      api: swell-backend-api
+    - id: validate-coupon
+      operation: frontendGetCoupon
+      api: swell-frontend-api

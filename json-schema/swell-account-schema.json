@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-schema/swell-account-schema.json",
+  "title": "Swell Account",
+  "type": "object",
+  "required": ["email"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{24}$" },
+    "email": { "type": "string", "format": "email" },
+    "name": { "type": "string" },
+    "first_name": { "type": "string" },
+    "last_name": { "type": "string" },
+    "phone": { "type": "string" },
+    "type": { "type": "string", "enum": ["individual", "business"] },
+    "currency": { "type": "string" },
+    "group": { "type": "string" },
+    "balance": { "type": "number" },
+    "billing": { "type": "object" },
+    "shipping": { "type": "object" },
+    "order_count": { "type": "integer" },
+    "order_value": { "type": "number" },
+    "cart_abandoned_count": { "type": "integer" },
+    "email_optin": { "type": "boolean" },
+    "date_first_order": { "type": "string", "format": "date-time" },
+    "date_last_order": { "type": "string", "format": "date-time" },
+    "date_last_login": { "type": "string", "format": "date-time" },
+    "date_created": { "type": "string", "format": "date-time" },
+    "date_updated": { "type": "string", "format": "date-time" }
+  }
+}

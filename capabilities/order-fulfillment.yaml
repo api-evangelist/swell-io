@@ -1,0 +1,22 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: order-fulfillment
+  description: Drive an order through payment, shipment, delivery, and any returns.
+spec:
+  steps:
+    - id: get-order
+      operation: getOrder
+      api: swell-backend-api
+    - id: capture-payment
+      operation: createPayment
+      api: swell-backend-api
+    - id: create-shipment
+      operation: createShipment
+      api: swell-backend-api
+    - id: update-order
+      operation: updateOrder
+      api: swell-backend-api
+    - id: open-return
+      operation: createReturn
+      api: swell-backend-api

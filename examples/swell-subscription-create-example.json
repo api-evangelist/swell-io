@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.swell.store/subscriptions",
+    "headers": {
+      "Authorization": "Basic <base64(store-id:secret-key)>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "account_id": "65d0a000f7d9d80012a10001",
+      "product_id": "65d0c200f7d9d80012a1d222",
+      "plan_id": "65d0c200f7d9d80012a1d300",
+      "billing": { "method": "card" },
+      "shipping": {
+        "name": "Avery Chen",
+        "address1": "100 Market Street",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94103",
+        "country": "US"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "65d0c2c5f7d9d80012a1d401",
+      "account_id": "65d0a000f7d9d80012a10001",
+      "product_id": "65d0c200f7d9d80012a1d222",
+      "plan_id": "65d0c200f7d9d80012a1d300",
+      "status": "active",
+      "interval": "monthly",
+      "interval_count": 1,
+      "trial_days": 0,
+      "price": 39.0,
+      "recurring_total": 39.0,
+      "date_period_start": "2026-05-25T00:00:00.000Z",
+      "date_period_end": "2026-06-25T00:00:00.000Z",
+      "date_created": "2026-05-25T15:15:01.219Z"
+    }
+  }
+}

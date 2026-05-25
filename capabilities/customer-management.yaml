@@ -1,0 +1,19 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: customer-management
+  description: Manage customer accounts, addresses, saved cards, and store credits.
+spec:
+  steps:
+    - id: create-account
+      operation: createAccount
+      api: swell-backend-api
+    - id: update-account
+      operation: updateAccount
+      api: swell-backend-api
+    - id: list-orders
+      operation: listOrders
+      api: swell-backend-api
+    - id: adjust-credit
+      operation: createAccountCredit
+      api: swell-backend-api

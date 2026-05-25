@@ -1,0 +1,430 @@
+aid: swell-io
+name: Swell
+description: >-
+  Swell is a customizable, API-first headless commerce platform powering modern B2C, B2B, subscription, and
+  marketplace experiences. It exposes a server-side Backend API for managing the full commerce data model
+  (products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts,
+  invoices, coupons, promotions, gift cards, content, files, events, webhooks) plus a public-key
+  client-side Frontend API for storefronts and an experimental GraphQL endpoint. The platform ships
+  official Node and PHP libraries, a universal JavaScript SDK (Swell.js), headless storefront starters
+  for Next.js (Horizon, verswell-commerce, nextjs-commerce) and Nuxt (Origin), a Swell Apps platform
+  with CLI and Apps SDK for extending the data and logic layers via custom data models, events,
+  notifications, webhooks, and edge functions running in 200+ locations, plus AI coding-agent skills
+  and Claude Code plugins.
+url: https://raw.githubusercontent.com/api-evangelist/swell-io/refs/heads/main/apis.yml
+created: '2026-05-25'
+modified: '2026-05-25'
+specificationVersion: '0.20'
+tags:
+- Commerce
+- Headless Commerce
+- API-First
+- B2C
+- B2B
+- Subscriptions
+- Marketplaces
+- Wholesale
+- Storefront
+- Checkout
+- Payments
+- Carts
+- Orders
+- Catalog
+- Internationalization
+apis:
+- aid: swell-io:swell-backend-api
+  name: Swell Backend API
+  tags:
+  - Commerce
+  - Backend
+  - REST
+  - Catalog
+  - Orders
+  - Payments
+  - Subscriptions
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  properties:
+  - url: https://developers.swell.is/backend-api/introduction
+    type: Documentation
+  - url: https://developers.swell.is/backend-api/authentication
+    type: Authentication
+  - url: https://developers.swell.is/backend-api/querying
+    type: APIReference
+  - url: https://developers.swell.is/backend-api/errors
+    type: APIReference
+    name: Errors and Error Codes
+  - url: openapi/swell-backend-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/swell-product-schema.json
+    type: JSONSchema
+  - url: json-schema/swell-order-schema.json
+    type: JSONSchema
+  - url: json-schema/swell-cart-schema.json
+    type: JSONSchema
+  - url: json-schema/swell-subscription-schema.json
+    type: JSONSchema
+  - url: json-schema/swell-account-schema.json
+    type: JSONSchema
+  - url: json-schema/swell-payment-schema.json
+    type: JSONSchema
+  - url: json-schema/swell-webhook-schema.json
+    type: JSONSchema
+  - url: json-structure/swell-product-structure.json
+    type: JSONStructure
+  - url: json-structure/swell-order-structure.json
+    type: JSONStructure
+  - url: json-structure/swell-subscription-structure.json
+    type: JSONStructure
+  - url: json-structure/swell-account-structure.json
+    type: JSONStructure
+  - url: examples/swell-product-create-example.json
+    type: Example
+  - url: examples/swell-order-create-example.json
+    type: Example
+  - url: examples/swell-subscription-create-example.json
+    type: Example
+  - url: examples/swell-account-create-example.json
+    type: Example
+  - url: examples/swell-webhook-event-example.json
+    type: Example
+  - url: capabilities/catalog-management.yaml
+    type: NaftikoCapability
+  - url: capabilities/order-fulfillment.yaml
+    type: NaftikoCapability
+  - url: capabilities/subscription-lifecycle.yaml
+    type: NaftikoCapability
+  - url: capabilities/customer-management.yaml
+    type: NaftikoCapability
+  - url: capabilities/discount-promotions.yaml
+    type: NaftikoCapability
+  - url: capabilities/webhooks.yaml
+    type: NaftikoCapability
+  description: >-
+    Server-side REST API authorized with a secret API key and store ID. Covers products, variants,
+    stock, categories, attributes, purchase links, carts, orders, payments, refunds, shipments,
+    returns, subscriptions, subscription plans, accounts, addresses, cards, credits, invoices,
+    coupons, promotions, gift cards, content pages, files, events, and webhooks. Supports MongoDB-style
+    `where` filters with operators ($eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists,
+    $and, $or, $nor, $all, $elemMatch, $size), `sort`, `limit` (1-1000, default 15), `page`, `search`,
+    `expand`, `fields`, and `include`. Official libraries connect over a custom wire protocol on port
+    8443 for improved performance and caching; HTTPS REST is available at api.swell.store.
+- aid: swell-io:swell-frontend-api
+  name: Swell Frontend API
+  tags:
+  - Commerce
+  - Frontend
+  - Storefront
+  - REST
+  - JAMstack
+  humanURL: https://developers.swell.is/frontend-api/introduction
+  baseURL: https://{store-id}.swell.store
+  properties:
+  - url: https://developers.swell.is/frontend-api/introduction
+    type: Documentation
+  - url: openapi/swell-frontend-api-openapi.yml
+    type: OpenAPI
+  - url: examples/swell-cart-add-item-example.json
+    type: Example
+  - url: capabilities/cart-checkout.yaml
+    type: NaftikoCapability
+  - url: capabilities/storefront-content.yaml
+    type: NaftikoCapability
+  description: >-
+    Public-key-authorized REST API designed for storefronts, JAMstack apps, and SSR frameworks.
+    Powers Swell.js and the official Next.js (Horizon, verswell-commerce, nextjs-commerce, nextjs-builder)
+    and Nuxt (Origin) headless starters. Exposes products, categories, attributes, carts (with
+    coupon and gift-card application, recovery, and order submission), authenticated customer accounts
+    (login, recovery, addresses, cards, orders, subscriptions), store settings, payment settings,
+    currencies, menus, and content models. Authenticated with a public key (pk_...) and a session
+    token making it safe to use from any client context.
+- aid: swell-io:swell-graphql-api
+  name: Swell GraphQL API
+  tags:
+  - Commerce
+  - GraphQL
+  - Storefront
+  - Experimental
+  humanURL: https://developers.swell.is/frontend-api/frontend-libraries/graphql
+  baseURL: https://{store-id}.swell.store/graphql/v2
+  properties:
+  - url: https://developers.swell.is/frontend-api/frontend-libraries/graphql
+    type: Documentation
+  - url: https://{store-id}.swell.store/playground
+    type: APIReference
+    name: GraphQL Playground
+  description: >-
+    Experimental (alpha) GraphQL endpoint that exposes a curated subset of the storefront commerce
+    model — products, attributes, categories, accounts, sessions, carts, orders, payments, payment
+    settings, subscriptions, store settings, currencies, and navigation menus. Authorized with a
+    public storefront key passed in the Authorization header. Notable limits: no nested queries,
+    no payment tokenization, no abandoned-cart recovery, no guest cart email updates. A GraphQL
+    playground is available at /playground when logged into the dashboard.
+- aid: swell-io:swell-webhooks-api
+  name: Swell Webhooks
+  tags:
+  - Commerce
+  - Eventing
+  - Webhooks
+  humanURL: https://developers.swell.is/backend-api/webhooks
+  properties:
+  - url: https://developers.swell.is/backend-api/webhooks
+    type: Documentation
+  - url: examples/swell-webhook-event-example.json
+    type: Example
+  description: >-
+    Event-driven HTTP callbacks for cart, order, subscription, payment, account, and product
+    lifecycle events. Configurable via the dashboard (Developer → Webhooks) or programmatically
+    through the Backend API and Swell Apps. Payloads are JSON POSTs with `id`, `date_created`,
+    `model`, `type`, and `data`. Endpoints must return 2xx; failed deliveries retry hourly for
+    two days, continue hourly after, and auto-disable after three days. Webhooks originate from
+    the documented Swell IP allowlist (52.52.111.237, 54.219.85.17, 54.241.235.166, plus
+    216.218.185.0/27, 216.218.244.192/27, 74.80.234.0/24).
+- aid: swell-io:swell-apps-platform
+  name: Swell Apps Platform
+  tags:
+  - Apps
+  - Extensions
+  - Functions
+  - Edge
+  humanURL: https://developers.swell.is/apps/overview
+  properties:
+  - url: https://developers.swell.is/apps/overview
+    type: Documentation
+  - url: https://github.com/swellstores/apps-sdk
+    type: SDK
+    name: Swell Apps SDK
+  - url: https://github.com/swellstores/app-types
+    type: SDK
+    name: Swell Apps TypeScript Bindings
+  description: >-
+    Swell Apps extend the platform with custom data models (added fields or new entities),
+    events (triggering functions, webhooks, and notifications), edge functions deployed to 200+
+    locations with no cold start, and admin UI surfaces (settings, content views). Apps are
+    distributed via a swell.json manifest and built with the Swell CLI and Apps SDK; TypeScript
+    bindings are published in the app-types package. Used for first-party integrations
+    (Contentful, Builder.io, honest reviews) and third-party merchant extensions.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://kinlane.com
+common:
+- url: https://www.swell.is/
+  type: Homepage
+- url: https://www.swell.is/
+  type: DeveloperPortal
+- url: https://developers.swell.is
+  type: Documentation
+- url: https://developers.swell.is/guides/quickstart-guide
+  type: Quickstart
+- url: https://developers.swell.is/guides/core-concepts/platform-overview
+  type: GettingStarted
+- url: https://www.swell.is/features
+  type: Features
+  name: Features Overview
+- url: https://www.swell.is/pricing
+  type: Pricing
+- url: https://swell.store/signup
+  type: SignUp
+- url: https://swell.store/admin/login
+  type: Login
+- url: https://swell.store/admin
+  type: Console
+- url: https://status.swell.store/
+  type: StatusPage
+- url: https://www.swell.is/changelog
+  type: ChangeLog
+- url: https://www.swell.is/blog
+  type: Blog
+- url: https://www.swell.is/help
+  type: Support
+- url: https://www.swell.is/contact
+  type: Contact
+- url: https://www.swell.is/legal/terms-of-service
+  type: TermsOfService
+- url: https://www.swell.is/legal/privacy-policy
+  type: PrivacyPolicy
+- url: https://github.com/swellstores
+  type: GitHubOrganization
+- url: https://github.com/orgs/swellstores/discussions
+  type: Forum
+  name: Swell Community Discussions
+- url: https://x.com/swellcommerce
+  type: X
+- url: https://www.linkedin.com/company/swellcommerce/
+  type: LinkedIn
+- url: https://github.com/swellstores/swell-node
+  type: SDK
+  name: Swell Node.js SDK
+- url: https://github.com/swellstores/swell-php
+  type: SDK
+  name: Swell PHP SDK
+- url: https://github.com/swellstores/swell-js
+  type: SDK
+  name: Swell.js Universal Storefront SDK
+- url: https://github.com/swellstores/swellpy
+  type: SDK
+  name: Swellpy (community Python SDK)
+- url: https://github.com/swellstores/apps-sdk
+  type: SDK
+  name: Swell Apps SDK
+- url: https://github.com/swellstores/app-types
+  type: SDK
+  name: Swell Apps TypeScript Bindings
+- url: https://github.com/swellstores/horizon
+  type: Resources
+  name: Horizon — Headless Next.js Storefront Starter
+- url: https://github.com/swellstores/origin-theme
+  type: Resources
+  name: Origin — Headless Nuxt 2 Storefront Starter
+- url: https://github.com/swellstores/verswell-commerce
+  type: Resources
+  name: verswell-commerce — Next.js Commerce Fork
+- url: https://github.com/swellstores/nextjs-commerce
+  type: Resources
+  name: Swell Next.js Commerce
+- url: https://github.com/swellstores/nextjs-builder
+  type: Resources
+  name: Swell Next.js Builder.io Starter
+- url: https://github.com/swellstores/storefront-react-ai-template
+  type: Resources
+  name: Swell Storefront React AI Template
+- url: https://github.com/swellstores/swell-claude-plugins
+  type: Resources
+  name: Official Claude Code Plugins for Swell
+- url: https://github.com/swellstores/skills
+  type: Resources
+  name: Swell AI Coding-Agent Skills
+- url: https://github.com/swellstores/easyblocks
+  type: Resources
+  name: EasyBlocks — Visual Builder Framework
+- url: https://github.com/swellstores/proxima-app
+  type: Resources
+  name: Proxima — Liquid Storefront App
+- url: https://github.com/swellstores/contentful-app
+  type: Resources
+  name: Swell Contentful CMS App
+- url: https://github.com/swellstores/honest-reviews-app
+  type: Resources
+  name: Honest Reviews Example App
+- url: https://github.com/swellstores/community
+  type: Resources
+  name: Swell Community Discussion Hub
+- url: rules/swell-rules.yml
+  type: SpectralRules
+- url: vocabulary/swell-io-vocabulary.yml
+  type: Vocabulary
+- url: json-ld/swell-io-context.jsonld
+  type: JSONLD
+- url: plans/swell-io-plans-pricing.yml
+  type: Plans
+- url: rate-limits/swell-io-rate-limits.yml
+  type: RateLimits
+- url: finops/swell-io-finops.yml
+  type: FinOps
+- name: Features
+  type: Features
+  data:
+  - name: Customizable, API-first core
+    description: Every commerce primitive — products, carts, orders, subscriptions — is exposed as a REST resource with full CRUD and rich querying.
+  - name: Headless storefront
+    description: Build any storefront — Next.js, Nuxt, Astro, mobile, native — against the public-key Frontend API and Swell.js SDK.
+  - name: Native subscriptions
+    description: First-class recurring billing with plans, trials, intervals, billing limits, and dunning baked into products and orders.
+  - name: B2B and wholesale
+    description: Account groups, volume pricing, invoicing, and price lists for B2B and wholesale alongside D2C flows.
+  - name: Marketplaces
+    description: Multi-vendor selling with split fulfillment, vendor accounts, and per-vendor reporting.
+  - name: 230 currencies, 170 languages
+    description: Built-in internationalization for global stores including priced currencies on higher plans.
+  - name: Apps platform with edge functions
+    description: Extend the data model, events, notifications, and admin UI via the Swell Apps platform; functions run in 200+ locations with no cold start.
+  - name: Custom wire protocol
+    description: Official Node and PHP libraries use a custom protocol on port 8443 for improved performance and caching versus plain HTTPS.
+  - name: MongoDB-style querying
+    description: Powerful `where` filters with comparison, logical, and array operators, plus `expand`, `include`, `sort`, `search`, and field projection.
+  - name: Webhooks with retries and IP allowlist
+    description: Reliable event delivery with documented retry schedule, auto-disable, and a published source-IP allowlist for inbound verification.
+  - name: AI coding-agent skills
+    description: Official Claude Code plugins and AI coding-agent skills for Swell-aware development workflows.
+- name: UseCases
+  type: UseCases
+  data:
+  - name: Direct-to-consumer brands
+    description: Power D2C storefronts with full control over product, cart, checkout, and payment UX.
+  - name: Subscription commerce
+    description: Box-of-the-month, SaaS-style, replenishment, and membership models with native subscription billing.
+  - name: B2B and wholesale
+    description: Account-group pricing, invoicing, net terms, and bulk ordering for wholesale channels.
+  - name: Multi-vendor marketplaces
+    description: Operate marketplaces with vendor onboarding, split fulfillment, and per-vendor payouts.
+  - name: Headless omnichannel
+    description: Serve web, native mobile, in-store, and AI-agent surfaces from a single commerce backend.
+  - name: AI-driven commerce
+    description: Back conversational commerce agents and AI shopping assistants with a clean, query-rich API.
+  - name: Composable enterprise commerce
+    description: Combine Swell with best-of-breed CMS, search, payments, ERP, and analytics for enterprise stacks.
+- name: Integrations
+  type: Integrations
+  data:
+  - name: Stripe
+    description: Default card processing and tokenization for most Swell stores.
+  - name: PayPal
+    description: PayPal Express, billing agreements, and subscription processing.
+  - name: Braintree
+    description: Multi-currency card processing.
+  - name: Authorize.net
+    description: Card processing gateway.
+  - name: Amazon Pay
+    description: Fast, account-based checkout via Amazon.
+  - name: Apple Pay
+    description: Mobile wallet payments.
+  - name: Google Pay
+    description: Digital wallet payments.
+  - name: Klarna
+    description: Buy-now-pay-later installments.
+  - name: Affirm
+    description: Buy-now-pay-later financing.
+  - name: Paysafecard
+    description: Prepaid voucher payments.
+  - name: QuickPay
+    description: Payment service provider integration.
+  - name: 99Minds.io
+    description: Omnichannel gift card and loyalty programs.
+  - name: Klaviyo
+    description: Email, SMS, mobile push, and web marketing automation.
+  - name: Mailchimp
+    description: Email marketing and automation.
+  - name: Omnisend
+    description: Email and SMS marketing platform.
+  - name: Churn Buster
+    description: Subscription retention and dunning.
+  - name: Oppizi
+    description: Offline marketing campaign attribution.
+  - name: Algolia
+    description: Hosted product search and discovery.
+  - name: Avalara
+    description: Sales-tax calculation and filing.
+  - name: Contentful
+    description: Headless CMS via the official Swell Contentful app.
+  - name: Builder.io
+    description: Visual page-building CMS.
+  - name: Vercel
+    description: Frontend deployment and edge hosting for Swell storefronts.
+  - name: Anthropic Claude
+    description: Official Claude Code plugins and AI coding-agent skills for Swell development workflows.
+- name: Solutions
+  type: Solutions
+  data:
+  - name: D2C Commerce
+    description: Headless storefronts for direct-to-consumer brands.
+  - name: B2B Commerce
+    description: Wholesale catalogs, account groups, invoicing, and net-terms billing.
+  - name: Subscriptions
+    description: Native recurring billing with flexible plans, trials, and limits.
+  - name: Marketplaces
+    description: Multi-vendor selling with split fulfillment and per-vendor reporting.
+  - name: Omnichannel
+    description: Serve web, native, in-store, and agent surfaces from a single commerce backend.
+  - name: Enterprise
+    description: Custom-priced plans for merchants exceeding $10M annual sales with negotiated SLAs.

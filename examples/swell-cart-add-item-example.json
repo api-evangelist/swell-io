@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://my-store.swell.store/api/cart/items",
+    "headers": {
+      "Authorization": "pk_test_abcd1234"
+    },
+    "body": {
+      "product_id": "65d0b1a5f7d9d80012a1b2c3",
+      "quantity": 2,
+      "options": [
+        { "name": "Size", "value": "M" },
+        { "name": "Color", "value": "Indigo" }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "65d0b211f7d9d80012a1b3aa",
+      "status": "active",
+      "items": [
+        {
+          "id": "65d0b212f7d9d80012a1b3ab",
+          "product_id": "65d0b1a5f7d9d80012a1b2c3",
+          "quantity": 2,
+          "price": 49.0,
+          "price_total": 98.0
+        }
+      ],
+      "sub_total": 98.0,
+      "tax_total": 0,
+      "grand_total": 98.0,
+      "currency": "USD"
+    }
+  }
+}

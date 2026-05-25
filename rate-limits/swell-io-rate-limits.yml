@@ -1,0 +1,64 @@
+apiCommonsRateLimits: "0.1"
+provider:
+  id: swell-io
+  name: Swell
+  url: https://www.swell.is/pricing
+
+policies:
+  - id: api-requests-per-month
+    description: Monthly quota of Backend + Frontend API requests, varying by plan.
+    type: quota
+    window: month
+    perPlan:
+      starter: 100000
+      basic: 500000
+      standard: 2000000
+      unlimited: -1
+    overage:
+      currency: USD
+      amount: 5
+      per: 100000
+      description: $5 per additional 100,000 requests (or part thereof).
+
+  - id: storage
+    description: Stored database + asset bytes.
+    type: quota
+    window: rolling
+    perPlan:
+      starter: 1GB
+      basic: 3GB
+      standard: 10GB
+      unlimited: unlimited
+    overage:
+      currency: USD
+      amount: 5
+      per: 1GB-month
+      description: $5 per additional gigabyte (or part thereof) per month.
+
+  - id: pagination-cap
+    description: Maximum records returned per page on list endpoints.
+    type: per-request
+    limit: 1000
+    default: 15
+
+  - id: webhook-retries
+    description: Failed webhooks retry hourly for two days, then continue hourly; auto-disable after 3 days of failures.
+    type: retry
+    schedule: every-1-hour
+    maxDays: 3
+    autoDisableAfterDays: 7
+
+ipAllowlist:
+  description: Source IPs Swell webhooks originate from.
+  ips:
+    - 52.52.111.237
+    - 54.219.85.17
+    - 54.241.235.166
+  cidrs:
+    - 216.218.185.0/27
+    - 216.218.244.192/27
+    - 74.80.234.0/24
+
+notes:
+  - "List endpoints accept limit 1-1000; default 15."
+  - "Validation errors return a per-field errors object with code, message, params."

@@ -1,0 +1,60 @@
+extends: spectral:oas
+rules:
+  swell-operation-tag-required:
+    description: Every operation MUST have at least one tag.
+    given: $.paths.*[get,post,put,patch,delete]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+
+  swell-operation-id-camel:
+    description: operationId MUST be lowerCamelCase.
+    given: $.paths.*[get,post,put,patch,delete].operationId
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  swell-summary-title-case:
+    description: Operation summaries MUST be in Title Case.
+    given: $.paths.*[get,post,put,patch,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][A-Za-z0-9-]*)(\\s([A-Z][A-Za-z0-9-]*|[a-z]{1,3}))*$"
+
+  swell-resource-id-pattern:
+    description: Path parameter ids should be 24-char hex ObjectIds.
+    given: $.paths..parameters[?(@.name=='id' && @.in=='path')].schema.pattern
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "[a-f0-9]"
+
+  swell-money-fields-number:
+    description: Money fields MUST be type number.
+    given: $.components.schemas.*.properties[grand_total,sub_total,tax_total,shipment_total,discount_total,price,sale_price,amount,balance,recurring_total].type
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^number$"
+
+  swell-list-responses-pagination:
+    description: List responses SHOULD include count, page, results.
+    given: $.components.schemas[?(@property.match(/List$/))].properties
+    severity: info
+    then:
+      function: truthy
+
+  swell-security-required:
+    description: Every operation MUST require security.
+    given: $.paths.*[get,post,put,patch,delete]
+    severity: error
+    then:
+      field: security
+      function: defined

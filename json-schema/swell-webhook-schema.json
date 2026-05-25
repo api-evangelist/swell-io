@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-schema/swell-webhook-schema.json",
+  "title": "Swell Webhook Subscription",
+  "type": "object",
+  "required": ["url", "events"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{24}$" },
+    "url": { "type": "string", "format": "uri" },
+    "events": { "type": "array", "items": { "type": "string" } },
+    "enabled": { "type": "boolean" },
+    "auto_disabled": { "type": "boolean", "description": "Becomes true after 7 days of failures." },
+    "schedule": { "type": "object" },
+    "date_created": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,601 @@
+openapi: 3.0.3
+info:
+  title: Swell Frontend API
+  version: "2025-01"
+  description: >-
+    Swell Frontend API — the client-safe, public-key-authenticated REST surface
+    used from storefronts, single-page apps, and headless commerce experiences.
+    Exposes a curated subset of the Backend API authorized with a public key
+    plus a session token. Powers Swell.js, the React/Vue/Next storefront kits
+    (Origin, Horizon, Verswell), and any custom JAMstack or SSR storefront.
+    Resources include products, categories, carts, accounts, orders,
+    subscriptions, payments, coupons, gift cards, store settings, currencies,
+    localization, menus, and content pages.
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is/frontend-api/introduction
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+  - url: https://{storeId}.swell.store
+    description: Per-store Frontend API endpoint
+    variables:
+      storeId:
+        default: my-store
+        description: Your Swell store ID (subdomain).
+security:
+  - SwellPublicKey: []
+tags:
+  - name: Products
+    description: Public product catalog browsing.
+  - name: Categories
+    description: Category tree for storefront navigation.
+  - name: Attributes
+    description: Attributes used for faceted product filtering.
+  - name: Cart
+    description: Session-scoped shopping cart for the current visitor.
+  - name: Checkout
+    description: Cart conversion and order placement.
+  - name: Account
+    description: Authenticated customer account operations.
+  - name: Account Session
+    description: Login, logout, and session recovery.
+  - name: Orders
+    description: Customer order history.
+  - name: Subscriptions
+    description: Customer-facing subscription management.
+  - name: Coupons
+    description: Public coupon validation.
+  - name: Gift Cards
+    description: Gift card balance lookups.
+  - name: Store
+    description: Public store settings, currencies, payment settings, and menus.
+  - name: Content
+    description: Content pages, custom content models, and navigation menus.
+paths:
+  /api/products:
+    get:
+      tags: [Products]
+      summary: List Products
+      operationId: frontendListProducts
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Category'
+        - $ref: '#/components/parameters/Sort'
+        - $ref: '#/components/parameters/Expand'
+      responses:
+        '200':
+          description: Page of public products.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProductList' }
+  /api/products/{slug}:
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema: { type: string }
+        description: Product slug or ID.
+    get:
+      tags: [Products]
+      summary: Retrieve Product
+      operationId: frontendGetProduct
+      responses:
+        '200':
+          description: Public product.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Product' }
+  /api/categories:
+    get:
+      tags: [Categories]
+      summary: List Categories
+      operationId: frontendListCategories
+      responses: { '200': { description: Categories. } }
+  /api/categories/{slug}:
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Categories]
+      summary: Retrieve Category
+      operationId: frontendGetCategory
+      responses: { '200': { description: Category. } }
+  /api/attributes:
+    get:
+      tags: [Attributes]
+      summary: List Attributes
+      operationId: frontendListAttributes
+      responses: { '200': { description: Attributes. } }
+  /api/cart:
+    get:
+      tags: [Cart]
+      summary: Retrieve Current Cart
+      operationId: frontendGetCart
+      responses:
+        '200':
+          description: Current cart for the session.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cart' }
+    put:
+      tags: [Cart]
+      summary: Update Current Cart
+      operationId: frontendUpdateCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Cart' }
+      responses:
+        '200':
+          description: Updated cart.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cart' }
+  /api/cart/items:
+    post:
+      tags: [Cart]
+      summary: Add Item To Cart
+      operationId: frontendAddCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id: { type: string }
+                quantity: { type: integer }
+                variant_id: { type: string }
+                options: { type: array, items: { type: object } }
+      responses:
+        '200':
+          description: Updated cart.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cart' }
+  /api/cart/items/{itemId}:
+    parameters:
+      - name: itemId
+        in: path
+        required: true
+        schema: { type: string }
+    put:
+      tags: [Cart]
+      summary: Update Cart Item
+      operationId: frontendUpdateCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity: { type: integer }
+      responses: { '200': { description: Updated. } }
+    delete:
+      tags: [Cart]
+      summary: Remove Cart Item
+      operationId: frontendRemoveCartItem
+      responses: { '200': { description: Removed. } }
+  /api/cart/apply-coupon:
+    put:
+      tags: [Cart]
+      summary: Apply Coupon To Cart
+      operationId: frontendApplyCoupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code: { type: string }
+      responses: { '200': { description: Coupon applied. } }
+  /api/cart/apply-giftcard:
+    put:
+      tags: [Cart]
+      summary: Apply Gift Card To Cart
+      operationId: frontendApplyGiftcard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code: { type: string }
+      responses: { '200': { description: Gift card applied. } }
+  /api/cart/recover/{token}:
+    parameters:
+      - name: token
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Cart]
+      summary: Recover Cart
+      operationId: frontendRecoverCart
+      responses: { '200': { description: Recovered cart. } }
+  /api/cart/submit-order:
+    post:
+      tags: [Checkout]
+      summary: Submit Order
+      operationId: frontendSubmitOrder
+      description: Converts the current cart into an order. Requires billing.method and shipping.
+      responses:
+        '201':
+          description: Order created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+  /api/account:
+    get:
+      tags: [Account]
+      summary: Retrieve Current Account
+      operationId: frontendGetAccount
+      responses:
+        '200':
+          description: Current authenticated account.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Account' }
+    put:
+      tags: [Account]
+      summary: Update Current Account
+      operationId: frontendUpdateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Account' }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Account' }
+    post:
+      tags: [Account]
+      summary: Create Account
+      operationId: frontendCreateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Account' }
+      responses:
+        '201':
+          description: Account created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Account' }
+  /api/account/login:
+    post:
+      tags: [Account Session]
+      summary: Log In
+      operationId: frontendAccountLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+      responses:
+        '200':
+          description: Logged in.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Account' }
+  /api/account/logout:
+    post:
+      tags: [Account Session]
+      summary: Log Out
+      operationId: frontendAccountLogout
+      responses: { '200': { description: Logged out. } }
+  /api/account/recover:
+    post:
+      tags: [Account Session]
+      summary: Send Account Recovery Email
+      operationId: frontendAccountRecover
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, format: email }
+      responses: { '200': { description: Recovery email sent. } }
+  /api/account/recover/{key}:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        schema: { type: string }
+    put:
+      tags: [Account Session]
+      summary: Reset Account Password
+      operationId: frontendAccountResetPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password: { type: string }
+      responses: { '200': { description: Password reset. } }
+  /api/account/addresses:
+    get:
+      tags: [Account]
+      summary: List Account Addresses
+      operationId: frontendListAccountAddresses
+      responses: { '200': { description: Addresses. } }
+    post:
+      tags: [Account]
+      summary: Add Account Address
+      operationId: frontendCreateAccountAddress
+      requestBody: { required: true, content: { application/json: { schema: { type: object } } } }
+      responses: { '201': { description: Created. } }
+  /api/account/addresses/{id}:
+    parameters: [ { name: id, in: path, required: true, schema: { type: string } } ]
+    put:
+      tags: [Account]
+      summary: Update Account Address
+      operationId: frontendUpdateAccountAddress
+      requestBody: { required: true, content: { application/json: { schema: { type: object } } } }
+      responses: { '200': { description: Updated. } }
+    delete:
+      tags: [Account]
+      summary: Delete Account Address
+      operationId: frontendDeleteAccountAddress
+      responses: { '200': { description: Deleted. } }
+  /api/account/cards:
+    get:
+      tags: [Account]
+      summary: List Saved Cards
+      operationId: frontendListAccountCards
+      responses: { '200': { description: Saved cards. } }
+    post:
+      tags: [Account]
+      summary: Tokenize Saved Card
+      operationId: frontendCreateAccountCard
+      requestBody: { required: true, content: { application/json: { schema: { type: object } } } }
+      responses: { '201': { description: Created. } }
+  /api/account/cards/{id}:
+    parameters: [ { name: id, in: path, required: true, schema: { type: string } } ]
+    delete:
+      tags: [Account]
+      summary: Remove Saved Card
+      operationId: frontendDeleteAccountCard
+      responses: { '200': { description: Removed. } }
+  /api/account/orders:
+    get:
+      tags: [Orders]
+      summary: List Account Orders
+      operationId: frontendListAccountOrders
+      responses:
+        '200':
+          description: Customer order history.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OrderList' }
+  /api/account/orders/{id}:
+    parameters: [ { name: id, in: path, required: true, schema: { type: string } } ]
+    get:
+      tags: [Orders]
+      summary: Retrieve Account Order
+      operationId: frontendGetAccountOrder
+      responses:
+        '200':
+          description: Order.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+  /api/account/subscriptions:
+    get:
+      tags: [Subscriptions]
+      summary: List Account Subscriptions
+      operationId: frontendListAccountSubscriptions
+      responses: { '200': { description: Account subscriptions. } }
+  /api/account/subscriptions/{id}:
+    parameters: [ { name: id, in: path, required: true, schema: { type: string } } ]
+    get:
+      tags: [Subscriptions]
+      summary: Retrieve Account Subscription
+      operationId: frontendGetAccountSubscription
+      responses: { '200': { description: Subscription. } }
+    put:
+      tags: [Subscriptions]
+      summary: Update Account Subscription
+      operationId: frontendUpdateAccountSubscription
+      requestBody: { required: true, content: { application/json: { schema: { type: object } } } }
+      responses: { '200': { description: Updated. } }
+  /api/coupons/{code}:
+    parameters:
+      - name: code
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Coupons]
+      summary: Validate Coupon Code
+      operationId: frontendGetCoupon
+      responses: { '200': { description: Coupon validity. } }
+  /api/giftcards/{code}:
+    parameters:
+      - name: code
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Gift Cards]
+      summary: Retrieve Gift Card Balance
+      operationId: frontendGetGiftcard
+      responses: { '200': { description: Gift card balance and status. } }
+  /api/settings:
+    get:
+      tags: [Store]
+      summary: Retrieve Store Settings
+      operationId: frontendGetSettings
+      responses: { '200': { description: Public store settings (currency, locale, store name). } }
+  /api/settings/payments:
+    get:
+      tags: [Store]
+      summary: Retrieve Payment Settings
+      operationId: frontendGetPaymentSettings
+      responses: { '200': { description: Public payment gateway configuration. } }
+  /api/settings/currencies:
+    get:
+      tags: [Store]
+      summary: List Supported Currencies
+      operationId: frontendListCurrencies
+      responses: { '200': { description: Currencies and exchange rates. } }
+  /api/settings/menus:
+    get:
+      tags: [Content]
+      summary: List Navigation Menus
+      operationId: frontendListMenus
+      responses: { '200': { description: Menus. } }
+  /api/content/{model}:
+    parameters:
+      - name: model
+        in: path
+        required: true
+        schema: { type: string }
+        description: Custom content model slug.
+    get:
+      tags: [Content]
+      summary: List Content Records
+      operationId: frontendListContent
+      responses: { '200': { description: Records. } }
+  /api/content/{model}/{slug}:
+    parameters:
+      - name: model
+        in: path
+        required: true
+        schema: { type: string }
+      - name: slug
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Content]
+      summary: Retrieve Content Record
+      operationId: frontendGetContent
+      responses: { '200': { description: Record. } }
+components:
+  securitySchemes:
+    SwellPublicKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Public storefront key, prefixed with `pk_`. Pass as `Authorization: pk_...`.
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 100, default: 15 }
+    Page:
+      name: page
+      in: query
+      schema: { type: integer, minimum: 1, default: 1 }
+    Search:
+      name: search
+      in: query
+      schema: { type: string }
+    Category:
+      name: category
+      in: query
+      description: Filter by category ID or slug.
+      schema: { type: string }
+    Sort:
+      name: sort
+      in: query
+      schema: { type: string }
+    Expand:
+      name: expand
+      in: query
+      schema: { type: string }
+  schemas:
+    Money:
+      type: number
+      format: float
+    Product:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        slug: { type: string }
+        active: { type: boolean }
+        price: { $ref: '#/components/schemas/Money' }
+        sale_price: { $ref: '#/components/schemas/Money' }
+        currency: { type: string }
+        type: { type: string }
+        description: { type: string }
+        images: { type: array, items: { type: object } }
+        options: { type: array, items: { type: object } }
+        variants: { type: array, items: { type: object } }
+        purchase_options: { type: object }
+        meta_title: { type: string }
+        meta_description: { type: string }
+    ProductList:
+      type: object
+      properties:
+        count: { type: integer }
+        page: { type: integer }
+        results: { type: array, items: { $ref: '#/components/schemas/Product' } }
+    Cart:
+      type: object
+      properties:
+        id: { type: string }
+        status: { type: string }
+        account_id: { type: string }
+        items: { type: array, items: { type: object } }
+        billing: { type: object }
+        shipping: { type: object }
+        sub_total: { $ref: '#/components/schemas/Money' }
+        tax_total: { $ref: '#/components/schemas/Money' }
+        discount_total: { $ref: '#/components/schemas/Money' }
+        shipment_total: { $ref: '#/components/schemas/Money' }
+        grand_total: { $ref: '#/components/schemas/Money' }
+        coupon_code: { type: string }
+        currency: { type: string }
+    Order:
+      type: object
+      properties:
+        id: { type: string }
+        number: { type: string }
+        status: { type: string }
+        items: { type: array, items: { type: object } }
+        grand_total: { $ref: '#/components/schemas/Money' }
+        paid: { type: boolean }
+        delivered: { type: boolean }
+        date_created: { type: string, format: date-time }
+    OrderList:
+      type: object
+      properties:
+        count: { type: integer }
+        page: { type: integer }
+        results: { type: array, items: { $ref: '#/components/schemas/Order' } }
+    Account:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        first_name: { type: string }
+        last_name: { type: string }
+        phone: { type: string }
+        currency: { type: string }
+        balance: { $ref: '#/components/schemas/Money' }

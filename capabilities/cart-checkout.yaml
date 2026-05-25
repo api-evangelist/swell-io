@@ -1,0 +1,25 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: cart-checkout
+  description: End-to-end cart and checkout flow — create cart, add items, apply coupon, submit order.
+spec:
+  inputs:
+    - name: store_id
+      required: true
+    - name: public_key
+      description: Swell public storefront key.
+      required: true
+  steps:
+    - id: create-cart
+      operation: createCart
+      api: swell-backend-api
+    - id: add-item
+      operation: frontendAddCartItem
+      api: swell-frontend-api
+    - id: apply-coupon
+      operation: frontendApplyCoupon
+      api: swell-frontend-api
+    - id: submit-order
+      operation: frontendSubmitOrder
+      api: swell-frontend-api

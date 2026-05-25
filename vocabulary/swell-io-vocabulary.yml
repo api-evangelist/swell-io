@@ -1,0 +1,113 @@
+vocabulary:
+  name: Swell Commerce Vocabulary
+  version: "1.0"
+  description: Controlled vocabulary mapping Swell's headless commerce surface to API Evangelist operational and capability dimensions.
+  source: https://developers.swell.is
+
+domains:
+  - name: Commerce
+    description: B2C, B2B, subscriptions, marketplaces.
+  - name: Headless Commerce
+    description: API-first commerce decoupled from a fixed storefront.
+  - name: Subscriptions
+    description: Recurring billing and lifecycle management.
+  - name: Wholesale
+    description: B2B catalogs, account groups, and invoicing.
+  - name: Marketplaces
+    description: Multi-vendor selling and split fulfillment.
+
+resources:
+  - name: Product
+    description: A sellable item including standard, subscription, bundle, and gift card types.
+  - name: Variant
+    description: A unique combination of product options.
+  - name: Category
+    description: Hierarchical product taxonomy.
+  - name: Attribute
+    description: Filterable product metadata.
+  - name: Cart
+    description: A pending purchase request scoped to a session or account.
+  - name: Order
+    description: A confirmed purchase with line items, billing, shipping, and totals.
+  - name: Payment
+    description: A money movement against an order or invoice.
+  - name: Refund
+    description: A reversal of a payment.
+  - name: Shipment
+    description: A fulfillment unit for one or more line items.
+  - name: Return
+    description: A customer return merchandise authorization.
+  - name: Subscription
+    description: A recurring billing relationship between an account and a product/plan.
+  - name: Invoice
+    description: A billing document for a subscription cycle or B2B order.
+  - name: Account
+    description: A customer record — individual or business.
+  - name: Coupon
+    description: A code-based discount with usage rules.
+  - name: Promotion
+    description: An automatic, condition-based discount.
+  - name: Giftcard
+    description: A prepaid balance redeemable at checkout.
+  - name: Page
+    description: A static content page.
+  - name: Webhook
+    description: A subscription that POSTs events to an external URL.
+
+operations:
+  - name: List
+    description: Paginated retrieval with `where`, `sort`, `limit`, `page`, `expand`, `fields`.
+  - name: Retrieve
+    description: Fetch a single record by ID or slug.
+  - name: Create
+    description: POST a new record.
+  - name: Update
+    description: PUT (merge) or PATCH a record.
+  - name: Delete
+    description: Remove a record.
+  - name: Convert
+    description: Convert a cart into an order.
+  - name: Refund
+    description: Issue a refund against a payment.
+  - name: Cancel
+    description: Cancel a subscription or order.
+
+capabilities:
+  - name: Catalog Management
+  - name: Cart and Checkout
+  - name: Order Fulfillment
+  - name: Subscription Lifecycle
+  - name: Customer Management
+  - name: Discounts and Promotions
+  - name: Webhooks
+  - name: Storefront Content
+
+protocols:
+  - REST
+  - GraphQL (experimental alpha)
+  - Webhooks
+  - Custom wire protocol (port 8443, via official Node and PHP libraries)
+
+auth:
+  - Public Key (`pk_...`) for Frontend API
+  - Secret Key (`sk_...`) for Backend API
+  - Session token for storefront customer sessions
+
+tags:
+  - Commerce
+  - Headless
+  - API-First
+  - Storefront
+  - Subscriptions
+  - Wholesale
+  - B2B
+  - B2C
+  - Marketplace
+  - Checkout
+  - Payments
+  - Carts
+  - Orders
+  - Products
+  - Catalog
+  - Webhooks
+  - Internationalization

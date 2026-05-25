@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-schema/swell-order-schema.json",
+  "title": "Swell Order",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{24}$" },
+    "number": { "type": "string", "description": "Sequential, human-readable order number." },
+    "account_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "draft", "payment_pending", "delivery_pending", "hold", "complete", "canceled"]
+    },
+    "items": { "type": "array", "items": { "type": "object" } },
+    "billing": { "type": "object" },
+    "shipping": { "type": "object" },
+    "sub_total": { "type": "number" },
+    "discount_total": { "type": "number" },
+    "tax_total": { "type": "number" },
+    "shipment_total": { "type": "number" },
+    "grand_total": { "type": "number" },
+    "payment_balance": { "type": "number" },
+    "paid": { "type": "boolean" },
+    "delivered": { "type": "boolean" },
+    "refunded": { "type": "boolean" },
+    "canceled": { "type": "boolean" },
+    "coupon_code": { "type": "string" },
+    "giftcards": { "type": "array", "items": { "type": "object" } },
+    "comments": { "type": "string" },
+    "metadata": { "type": "object" },
+    "test": { "type": "boolean" },
+    "currency": { "type": "string" },
+    "date_created": { "type": "string", "format": "date-time" },
+    "date_updated": { "type": "string", "format": "date-time" }
+  }
+}

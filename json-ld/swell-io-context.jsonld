@@ -1,0 +1,72 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "swell": "https://www.swell.is/ns/",
+    "id": "@id",
+    "type": "@type",
+
+    "Product": "schema:Product",
+    "Order": "schema:Order",
+    "Cart": "swell:Cart",
+    "Account": "schema:Person",
+    "BusinessAccount": "schema:Organization",
+    "Subscription": "swell:Subscription",
+    "Payment": "schema:PaymentMethod",
+    "Refund": "swell:Refund",
+    "Shipment": "schema:ParcelDelivery",
+    "Return": "swell:Return",
+    "Coupon": "swell:Coupon",
+    "Promotion": "swell:Promotion",
+    "Giftcard": "schema:Product",
+    "Webhook": "swell:Webhook",
+
+    "name": "schema:name",
+    "slug": "swell:slug",
+    "sku": "schema:sku",
+    "description": "schema:description",
+    "price": "schema:price",
+    "sale_price": "swell:salePrice",
+    "currency": "schema:priceCurrency",
+    "category_id": "schema:category",
+    "images": "schema:image",
+    "tags": "schema:keywords",
+    "stock_level": "schema:inventoryLevel",
+    "stock_status": "schema:itemCondition",
+
+    "account_id": "schema:customer",
+    "number": "schema:orderNumber",
+    "items": "schema:orderedItem",
+    "status": "schema:orderStatus",
+    "grand_total": "schema:totalPrice",
+    "sub_total": "swell:subTotal",
+    "tax_total": "swell:taxTotal",
+    "discount_total": "swell:discountTotal",
+    "shipment_total": "swell:shipmentTotal",
+    "billing": "schema:billingAddress",
+    "shipping": "schema:shippingDetails",
+
+    "email": "schema:email",
+    "first_name": "schema:givenName",
+    "last_name": "schema:familyName",
+    "phone": "schema:telephone",
+
+    "interval": "swell:billingInterval",
+    "interval_count": "swell:intervalCount",
+    "trial_days": "swell:trialDays",
+    "recurring_total": "swell:recurringTotal",
+
+    "amount": "schema:amount",
+    "method": "schema:paymentMethod",
+    "gateway": "swell:paymentGateway",
+    "transaction_id": "swell:transactionId",
+    "amount_refunded": "swell:amountRefunded",
+
+    "url": "schema:url",
+    "events": "swell:eventTypes",
+    "enabled": "swell:enabled",
+
+    "date_created": "schema:dateCreated",
+    "date_updated": "schema:dateModified"
+  }
+}

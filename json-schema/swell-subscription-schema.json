@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-schema/swell-subscription-schema.json",
+  "title": "Swell Subscription",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{24}$" },
+    "number": { "type": "string" },
+    "account_id": { "type": "string" },
+    "product_id": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paid", "unpaid", "canceled", "trial", "pastdue", "complete", "paused"]
+    },
+    "interval": { "type": "string", "enum": ["daily", "weekly", "monthly", "yearly"] },
+    "interval_count": { "type": "integer", "minimum": 1 },
+    "trial_days": { "type": "integer", "minimum": 0 },
+    "limit": { "type": "integer", "minimum": 0, "description": "Maximum billing cycles before stopping." },
+    "price": { "type": "number" },
+    "recurring_total": { "type": "number" },
+    "date_period_start": { "type": "string", "format": "date-time" },
+    "date_period_end": { "type": "string", "format": "date-time" },
+    "date_canceled": { "type": "string", "format": "date-time" },
+    "date_created": { "type": "string", "format": "date-time" }
+  }
+}

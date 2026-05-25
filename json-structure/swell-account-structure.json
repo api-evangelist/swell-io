@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-structure/swell-account-structure.json",
+  "title": "Swell Account",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "email": { "type": "string" },
+    "first_name": { "type": "string" },
+    "last_name": { "type": "string" },
+    "phone": { "type": "string" },
+    "type": { "type": "string" },
+    "currency": { "type": "string" },
+    "balance": { "type": "decimal" },
+    "billing": { "type": "object" },
+    "shipping": { "type": "object" },
+    "order_count": { "type": "int32" },
+    "order_value": { "type": "decimal" },
+    "date_created": { "type": "string" }
+  }
+}

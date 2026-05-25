@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-schema/swell-cart-schema.json",
+  "title": "Swell Cart",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{24}$" },
+    "status": { "type": "string", "enum": ["active", "converted", "abandoned", "recovered"] },
+    "account_id": { "type": "string" },
+    "items": { "type": "array", "items": { "type": "object" } },
+    "billing": { "type": "object" },
+    "shipping": { "type": "object" },
+    "sub_total": { "type": "number" },
+    "discount_total": { "type": "number" },
+    "tax_total": { "type": "number" },
+    "shipment_total": { "type": "number" },
+    "grand_total": { "type": "number" },
+    "coupon_code": { "type": "string" },
+    "currency": { "type": "string" },
+    "date_created": { "type": "string", "format": "date-time" },
+    "date_updated": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.swell.store/orders",
+    "headers": {
+      "Authorization": "Basic <base64(store-id:secret-key)>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "account_id": "65d0a000f7d9d80012a10001",
+      "items": [
+        { "product_id": "65d0b1a5f7d9d80012a1b2c3", "quantity": 2 }
+      ],
+      "billing": {
+        "method": "card",
+        "first_name": "Avery",
+        "last_name": "Chen"
+      },
+      "shipping": {
+        "name": "Avery Chen",
+        "address1": "100 Market Street",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94103",
+        "country": "US"
+      },
+      "coupon_code": "WELCOME10"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "65d0b3f7f7d9d80012a1c111",
+      "number": "100123",
+      "status": "payment_pending",
+      "grand_total": 98.0,
+      "item_quantity": 2,
+      "paid": false,
+      "delivered": false,
+      "date_created": "2026-05-25T15:11:23.011Z"
+    }
+  }
+}

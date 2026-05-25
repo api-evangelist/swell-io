@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.swell.store/products",
+    "headers": {
+      "Authorization": "Basic <base64(store-id:secret-key)>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Linen Crew T-Shirt",
+      "sku": "TSH-LIN-001",
+      "active": true,
+      "price": 49.0,
+      "type": "standard",
+      "delivery": "shipment",
+      "description": "Lightweight, breathable linen crew neck for warmer weather.",
+      "options": [
+        {
+          "name": "Size",
+          "values": [{ "name": "S" }, { "name": "M" }, { "name": "L" }, { "name": "XL" }]
+        },
+        {
+          "name": "Color",
+          "values": [{ "name": "Sand" }, { "name": "Indigo" }]
+        }
+      ],
+      "variable": true,
+      "stock_tracking": true,
+      "shipment_weight": 0.25,
+      "tags": ["linen", "summer", "ss26"]
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "65d0b1a5f7d9d80012a1b2c3",
+      "name": "Linen Crew T-Shirt",
+      "slug": "linen-crew-t-shirt",
+      "sku": "TSH-LIN-001",
+      "active": true,
+      "type": "standard",
+      "delivery": "shipment",
+      "price": 49.0,
+      "currency": "USD",
+      "stock_tracking": true,
+      "stock_status": "in_stock",
+      "variable": true,
+      "date_created": "2026-05-25T15:00:00.000Z"
+    }
+  }
+}

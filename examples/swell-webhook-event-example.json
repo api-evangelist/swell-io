@@ -1,0 +1,12 @@
+{
+  "id": "58991ed385c95b9e2e0aa433",
+  "date_created": "2026-05-25T15:11:30.001Z",
+  "model": "orders",
+  "type": "order.created",
+  "data": {
+    "id": "65d0b3f7f7d9d80012a1c111",
+    "number": "100123",
+    "status": "payment_pending",
+    "grand_total": 98.0
+  }
+}

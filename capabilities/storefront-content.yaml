@@ -1,0 +1,22 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: storefront-content
+  description: Power a headless storefront — fetch settings, currencies, menus, pages, and custom content models via the Frontend API.
+spec:
+  steps:
+    - id: get-settings
+      operation: frontendGetSettings
+      api: swell-frontend-api
+    - id: list-currencies
+      operation: frontendListCurrencies
+      api: swell-frontend-api
+    - id: list-menus
+      operation: frontendListMenus
+      api: swell-frontend-api
+    - id: list-products
+      operation: frontendListProducts
+      api: swell-frontend-api
+    - id: list-content
+      operation: frontendListContent
+      api: swell-frontend-api

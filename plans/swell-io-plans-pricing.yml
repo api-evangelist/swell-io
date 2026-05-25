@@ -1,0 +1,105 @@
+apiCommonsPlans: "0.1"
+provider:
+  id: swell-io
+  name: Swell
+  url: https://www.swell.is/pricing
+
+plans:
+  - id: starter
+    name: Starter
+    description: Entry tier for small merchants up to $50K annual sales.
+    prices:
+      - currency: USD
+        amount: 29
+        period: month
+        billingCycle: annual
+    limits:
+      annualRevenueCeilingUSD: 50000
+      adminUsers: 2
+      apiRequestsPerMonth: 100000
+      dataStorageGB: 1
+    overages:
+      revenuePct: 2.0
+      apiRequestsPer100k: 5
+      storagePerGBPerMonth: 5
+    features:
+      - Unlimited product variants
+      - Subscriptions
+      - Wholesale / B2B
+      - Test environments
+      - Advanced localization
+
+  - id: basic
+    name: Basic
+    description: Most popular tier — for growing merchants up to $250K annual sales.
+    prices:
+      - currency: USD
+        amount: 79
+        period: month
+        billingCycle: annual
+    limits:
+      annualRevenueCeilingUSD: 250000
+      adminUsers: 5
+      apiRequestsPerMonth: 500000
+      dataStorageGB: 3
+    overages:
+      revenuePct: 1.5
+      apiRequestsPer100k: 5
+      storagePerGBPerMonth: 5
+
+  - id: standard
+    name: Standard
+    description: For established merchants up to $1M annual sales; adds priority support and advanced reports.
+    prices:
+      - currency: USD
+        amount: 299
+        period: month
+        billingCycle: annual
+    limits:
+      annualRevenueCeilingUSD: 1000000
+      adminUsers: 15
+      apiRequestsPerMonth: 2000000
+      dataStorageGB: 10
+    overages:
+      revenuePct: 1.0
+      apiRequestsPer100k: 5
+      storagePerGBPerMonth: 5
+    features:
+      - Priority support
+      - Advanced reports
+      - Priced currencies
+
+  - id: unlimited
+    name: Unlimited
+    description: For high-volume merchants up to $5M annual sales; unlimited API usage and 100% uptime SLA.
+    prices:
+      - currency: USD
+        amount: 2250
+        period: month
+        billingCycle: annual
+    limits:
+      annualRevenueCeilingUSD: 5000000
+      adminUsers: -1
+      apiRequestsPerMonth: -1
+      dataStorageGB: -1
+    overages:
+      revenuePct: 0.4
+    features:
+      - Role-based permissions
+      - Developer support
+      - 100% uptime SLA
+
+  - id: custom
+    name: Custom
+    description: For merchants exceeding $10M annual sales — contact sales.
+    prices:
+      - currency: USD
+        amount: null
+        period: month
+        billingCycle: annual
+    contact: https://www.swell.is/contact
+
+notes:
+  - "All tiers include unlimited product variants, subscriptions, advanced localization, wholesale/B2B, and access to APIs."
+  - "Free trial available across all plans."
+  - "No additional transaction fees beyond the revenue ceiling overage."

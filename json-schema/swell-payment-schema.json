@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swell-io/main/json-schema/swell-payment-schema.json",
+  "title": "Swell Payment",
+  "type": "object",
+  "required": ["account_id", "amount", "method"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{24}$" },
+    "number": { "type": "string" },
+    "account_id": { "type": "string" },
+    "order_id": { "type": "string" },
+    "amount": { "type": "number", "minimum": 0.01 },
+    "amount_refundable": { "type": "number" },
+    "amount_refunded": { "type": "number" },
+    "method": { "type": "string", "enum": ["card", "account", "amazon", "paypal", "manual"] },
+    "gateway": { "type": "string" },
+    "status": { "type": "string", "enum": ["pending", "error", "success", "authorized"] },
+    "transaction_id": { "type": "string" },
+    "currency": { "type": "string" },
+    "date_created": { "type": "string", "format": "date-time" }
+  }
+}
