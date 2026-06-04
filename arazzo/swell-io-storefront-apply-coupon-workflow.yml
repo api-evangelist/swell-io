@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: Swell Storefront Validate and Apply Coupon
+  summary: Validate a coupon code, then apply it to the session cart only when it is valid.
+  description: >-
+    A branching storefront discount flow. The workflow validates a coupon code,
+    branches on the validation result, applies the coupon to the current cart
+    when it is valid, and ends without acting when it is not. Each step spells
+    out its request inline, including the public-key authorization, so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellFrontendApi
+  url: ../openapi/swell-frontend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: storefront-validate-and-apply-coupon
+  summary: Validate a coupon code, then apply it to the cart when valid.
+  description: >-
+    Gets coupon validity by code; on a valid coupon it applies the code to the
+    session cart, otherwise it ends.
+  inputs:
+    type: object
+    required:
+    - publicKey
+    - code
+    properties:
+      publicKey:
+        type: string
+        description: Public storefront key, prefixed with pk_.
+      code:
+        type: string
+        description: The coupon code to validate and apply.
+  steps:
+  - stepId: validateCouponStep
+    description: Validate the coupon code before applying it.
+    operationId: frontendGetCoupon
+    parameters:
+    - name: code
+      in: path
+      value: $inputs.code
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      couponId: $response.body#/id
+    onSuccess:
+    - name: couponValid
+      type: goto
+      stepId: applyCouponStep
+      criteria:
+      - condition: $statusCode == 200
+    onFailure:
+    - name: couponInvalid
+      type: end
+      criteria:
+      - condition: $statusCode == 404
+  - stepId: applyCouponStep
+    description: Apply the validated coupon code to the current session cart.
+    operationId: frontendApplyCoupon
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    requestBody:
+      contentType: application/json
+      payload:
+        code: $inputs.code
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      couponCode: $response.body#/coupon_code
+      discountTotal: $response.body#/discount_total
+      grandTotal: $response.body#/grand_total
+  outputs:
+    couponCode: $steps.applyCouponStep.outputs.couponCode
+    discountTotal: $steps.applyCouponStep.outputs.discountTotal

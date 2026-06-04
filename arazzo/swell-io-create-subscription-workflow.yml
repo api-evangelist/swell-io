@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: Swell Create and Verify Subscription
+  summary: Create a recurring subscription for an account and product, then read it back.
+  description: >-
+    Stands up recurring revenue for a headless store. The workflow creates a
+    subscription tying an account to a subscription product and plan with a
+    billing interval, captures the new subscription id, and reads it back to
+    confirm its status and billing period. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellBackendApi
+  url: ../openapi/swell-backend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-verify-subscription
+  summary: Create a subscription, then fetch it back by id.
+  description: >-
+    Posts a subscription for an account/product/plan and reads it back to
+    confirm its status and billing period.
+  inputs:
+    type: object
+    required:
+    - account_id
+    - product_id
+    properties:
+      account_id:
+        type: string
+        description: The account that owns the subscription.
+      product_id:
+        type: string
+        description: The subscription product being billed.
+      plan_id:
+        type: string
+        description: The plan template defining schedule and price.
+      interval:
+        type: string
+        description: Billing interval (daily, weekly, monthly, yearly).
+      interval_count:
+        type: integer
+        description: Number of intervals between billings.
+      trial_days:
+        type: integer
+        description: Number of trial days before the first charge.
+  steps:
+  - stepId: createSubscriptionStep
+    description: >-
+      Create the subscription tying the account to the product and plan with the
+      supplied billing interval.
+    operationId: createSubscription
+    requestBody:
+      contentType: application/json
+      payload:
+        account_id: $inputs.account_id
+        product_id: $inputs.product_id
+        plan_id: $inputs.plan_id
+        interval: $inputs.interval
+        interval_count: $inputs.interval_count
+        trial_days: $inputs.trial_days
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      subscriptionId: $response.body#/id
+  - stepId: getSubscriptionStep
+    description: Read the new subscription back to confirm its status and period.
+    operationId: getSubscription
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createSubscriptionStep.outputs.subscriptionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      subscriptionId: $response.body#/id
+      status: $response.body#/status
+      periodEnd: $response.body#/date_period_end
+  outputs:
+    subscriptionId: $steps.getSubscriptionStep.outputs.subscriptionId
+    status: $steps.getSubscriptionStep.outputs.status
+    periodEnd: $steps.getSubscriptionStep.outputs.periodEnd

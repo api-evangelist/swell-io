@@ -501,7 +501,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      description: Public storefront key, prefixed with `pk_`. Pass as `Authorization: pk_...`.
+      description: 'Public storefront key, prefixed with `pk_`. Pass as `Authorization: pk_...`.'
   parameters:
     Limit:
       name: limit

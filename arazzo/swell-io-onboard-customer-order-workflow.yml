@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Swell Onboard Customer and Place Order
+  summary: Create a customer account and immediately place an order for that account.
+  description: >-
+    A core back-office flow for headless commerce. The workflow creates a
+    customer account from an email and name, captures the new account id, and
+    then creates an order tied to that account with line items and a currency.
+    Each step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellBackendApi
+  url: ../openapi/swell-backend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-customer-and-place-order
+  summary: Create a customer account, then create an order for that account.
+  description: >-
+    Posts a new account and then posts an order referencing the returned account
+    id along with the supplied line items.
+  inputs:
+    type: object
+    required:
+    - email
+    - items
+    properties:
+      email:
+        type: string
+        description: Customer email address, the only required account field.
+      first_name:
+        type: string
+        description: Customer first name.
+      last_name:
+        type: string
+        description: Customer last name.
+      phone:
+        type: string
+        description: Customer phone number.
+      currency:
+        type: string
+        description: ISO 4217 currency code for the order.
+      items:
+        type: array
+        description: Order line items, each typically a product_id and quantity.
+        items:
+          type: object
+  steps:
+  - stepId: createAccountStep
+    description: Create the customer account using the supplied email and name.
+    operationId: createAccount
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        first_name: $inputs.first_name
+        last_name: $inputs.last_name
+        phone: $inputs.phone
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/id
+      email: $response.body#/email
+  - stepId: createOrderStep
+    description: >-
+      Create an order tied to the new account with the supplied line items.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        account_id: $steps.createAccountStep.outputs.accountId
+        items: $inputs.items
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/id
+      orderNumber: $response.body#/number
+      grandTotal: $response.body#/grand_total
+  outputs:
+    accountId: $steps.createAccountStep.outputs.accountId
+    orderId: $steps.createOrderStep.outputs.orderId
+    orderNumber: $steps.createOrderStep.outputs.orderNumber

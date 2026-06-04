@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Swell Storefront Register and Log In
+  summary: Create a storefront customer account and immediately authenticate the session.
+  description: >-
+    The storefront sign-up flow. The workflow creates a customer account from an
+    email, password, and name through the frontend account endpoint, then logs
+    that customer in to establish an authenticated session. Each step spells out
+    its request inline, including the public-key authorization, so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellFrontendApi
+  url: ../openapi/swell-frontend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: storefront-register-and-login
+  summary: Create a storefront account, then log in.
+  description: >-
+    Posts a new account, then posts login credentials to establish a session.
+  inputs:
+    type: object
+    required:
+    - publicKey
+    - email
+    - password
+    properties:
+      publicKey:
+        type: string
+        description: Public storefront key, prefixed with pk_.
+      email:
+        type: string
+        description: Customer email address.
+      password:
+        type: string
+        description: Customer password for the new account and login.
+      first_name:
+        type: string
+        description: Customer first name.
+      last_name:
+        type: string
+        description: Customer last name.
+  steps:
+  - stepId: createAccountStep
+    description: Create the storefront customer account.
+    operationId: frontendCreateAccount
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        first_name: $inputs.first_name
+        last_name: $inputs.last_name
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/id
+      email: $response.body#/email
+  - stepId: loginStep
+    description: Authenticate the new customer to establish a session.
+    operationId: frontendAccountLogin
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        password: $inputs.password
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accountId: $response.body#/id
+      email: $response.body#/email
+  outputs:
+    accountId: $steps.loginStep.outputs.accountId
+    email: $steps.loginStep.outputs.email

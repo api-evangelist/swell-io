@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Swell Create Category and Product
+  summary: Create a category and then create a product assigned to that category.
+  description: >-
+    Builds out store taxonomy and catalog in one pass. The workflow first
+    creates a category, captures its generated id, and then creates a product
+    that references that category through its category_id field so the new
+    product is immediately discoverable under the new taxonomy node. Each step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellBackendApi
+  url: ../openapi/swell-backend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-category-and-product
+  summary: Create a category, then create a product within it.
+  description: >-
+    Posts a new category and then posts a product that references the returned
+    category id.
+  inputs:
+    type: object
+    required:
+    - categoryName
+    - productName
+    - sku
+    properties:
+      categoryName:
+        type: string
+        description: Display name of the category to create.
+      productName:
+        type: string
+        description: Display name of the product to create.
+      sku:
+        type: string
+        description: Stock keeping unit for the product.
+      price:
+        type: number
+        description: List price in store currency.
+  steps:
+  - stepId: createCategoryStep
+    description: Create a new category to group products under.
+    operationId: createCategory
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.categoryName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      categoryId: $response.body#/id
+  - stepId: createProductStep
+    description: >-
+      Create a product assigned to the new category via its category_id field.
+    operationId: createProduct
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.productName
+        sku: $inputs.sku
+        price: $inputs.price
+        category_id: $steps.createCategoryStep.outputs.categoryId
+        active: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      productId: $response.body#/id
+      categoryId: $response.body#/category_id
+  outputs:
+    categoryId: $steps.createCategoryStep.outputs.categoryId
+    productId: $steps.createProductStep.outputs.productId

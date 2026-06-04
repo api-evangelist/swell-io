@@ -1,0 +1,89 @@
+arazzo: 1.0.1
+info:
+  title: Swell Build Cart and Convert to Order
+  summary: Create a cart, populate its items, then convert it into an order.
+  description: >-
+    The backend equivalent of a guided checkout. The workflow creates a cart for
+    an account, updates that cart with line items, then creates an order that
+    carries the same account and items so the pending purchase request becomes a
+    real order. Each step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellBackendApi
+  url: ../openapi/swell-backend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: build-cart-and-convert-to-order
+  summary: Create a cart, set its items, then create an order from it.
+  description: >-
+    Posts a cart, updates it with line items, then posts an order using the same
+    account and items.
+  inputs:
+    type: object
+    required:
+    - account_id
+    - items
+    properties:
+      account_id:
+        type: string
+        description: The account the cart and order belong to.
+      items:
+        type: array
+        description: Line items to place in the cart and resulting order.
+        items:
+          type: object
+      currency:
+        type: string
+        description: ISO 4217 currency code.
+  steps:
+  - stepId: createCartStep
+    description: Create an empty cart tied to the supplied account.
+    operationId: createCart
+    requestBody:
+      contentType: application/json
+      payload:
+        account_id: $inputs.account_id
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      cartId: $response.body#/id
+  - stepId: addItemsStep
+    description: Update the cart with the supplied line items.
+    operationId: updateCart
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createCartStep.outputs.cartId
+    requestBody:
+      contentType: application/json
+      payload:
+        items: $inputs.items
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cartId: $response.body#/id
+      subTotal: $response.body#/sub_total
+      grandTotal: $response.body#/grand_total
+  - stepId: convertToOrderStep
+    description: >-
+      Create an order carrying the same account and items, converting the
+      pending cart into a real order.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        account_id: $inputs.account_id
+        items: $inputs.items
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/id
+      orderNumber: $response.body#/number
+      grandTotal: $response.body#/grand_total
+  outputs:
+    cartId: $steps.addItemsStep.outputs.cartId
+    orderId: $steps.convertToOrderStep.outputs.orderId
+    orderNumber: $steps.convertToOrderStep.outputs.orderNumber

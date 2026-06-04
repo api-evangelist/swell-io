@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Swell Find-or-Create Customer and Order
+  summary: Look up a customer by email and reuse it or create it, then place an order.
+  description: >-
+    A branching find-then-act flow that prevents duplicate customer records. The
+    workflow searches accounts for a matching email using a where filter and
+    branches: when a match is found it reuses that account id, and when none is
+    found it creates a new account. Either branch converges on creating an order
+    for the resolved account. Each step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellBackendApi
+  url: ../openapi/swell-backend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-or-create-customer-and-order
+  summary: Resolve a customer by email, creating one if absent, then place an order.
+  description: >-
+    Filters accounts by email; on a hit it reuses the matched account id, on a
+    miss it creates a new account, then both paths create an order.
+  inputs:
+    type: object
+    required:
+    - email
+    - items
+    properties:
+      email:
+        type: string
+        description: Customer email used to match an existing account.
+      first_name:
+        type: string
+        description: First name used when creating a new account.
+      last_name:
+        type: string
+        description: Last name used when creating a new account.
+      currency:
+        type: string
+        description: ISO 4217 currency code for the order.
+      items:
+        type: array
+        description: Order line items.
+        items:
+          type: object
+  steps:
+  - stepId: findAccountStep
+    description: >-
+      Search accounts for one whose email matches the supplied value, returning
+      at most one match.
+    operationId: listAccounts
+    parameters:
+    - name: where
+      in: query
+      value:
+        email: $inputs.email
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedAccountId: $response.body#/results/0/id
+    onSuccess:
+    - name: accountExists
+      type: goto
+      stepId: orderForExistingStep
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: accountMissing
+      type: goto
+      stepId: createAccountStep
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: orderForExistingStep
+    description: Create an order for the matched existing account.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        account_id: $steps.findAccountStep.outputs.matchedAccountId
+        items: $inputs.items
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/id
+      orderNumber: $response.body#/number
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createAccountStep
+    description: Create a new account because no existing account matched the email.
+    operationId: createAccount
+    requestBody:
+      contentType: application/json
+      payload:
+        email: $inputs.email
+        first_name: $inputs.first_name
+        last_name: $inputs.last_name
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/id
+  - stepId: orderForNewStep
+    description: Create an order for the newly created account.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        account_id: $steps.createAccountStep.outputs.accountId
+        items: $inputs.items
+        currency: $inputs.currency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/id
+      orderNumber: $response.body#/number
+  outputs:
+    orderId: $steps.orderForExistingStep.outputs.orderId
+    newAccountOrderId: $steps.orderForNewStep.outputs.orderId

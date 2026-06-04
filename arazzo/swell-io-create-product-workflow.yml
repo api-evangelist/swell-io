@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Swell Create and Verify Product
+  summary: Create a product in the catalog and immediately retrieve it to confirm it was stored.
+  description: >-
+    The foundational catalog write pattern for a Swell store. The workflow
+    creates a product with the required name and sku fields plus pricing and
+    stock attributes, captures the generated object id, and then reads the
+    product back by that id to confirm it persisted exactly as written. Each
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellBackendApi
+  url: ../openapi/swell-backend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-verify-product
+  summary: Create a product, then fetch it back by id.
+  description: >-
+    Posts a new product to the catalog and reads it back by the returned id so
+    the caller can confirm the stored representation.
+  inputs:
+    type: object
+    required:
+    - name
+    - sku
+    properties:
+      name:
+        type: string
+        description: Display name of the product.
+      sku:
+        type: string
+        description: Stock keeping unit, unique per product.
+      price:
+        type: number
+        description: List price in store currency.
+      description:
+        type: string
+        description: Long-form product description.
+      active:
+        type: boolean
+        description: Whether the product is available for sale.
+      stock_level:
+        type: integer
+        description: Initial on-hand stock quantity.
+  steps:
+  - stepId: createProductStep
+    description: >-
+      Create the product in the catalog with the supplied name, sku, price and
+      stock attributes.
+    operationId: createProduct
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        sku: $inputs.sku
+        price: $inputs.price
+        description: $inputs.description
+        active: $inputs.active
+        stock_level: $inputs.stock_level
+        stock_tracking: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      productId: $response.body#/id
+      productSlug: $response.body#/slug
+  - stepId: getProductStep
+    description: Read the newly created product back by its generated id.
+    operationId: getProduct
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createProductStep.outputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/id
+      name: $response.body#/name
+      sku: $response.body#/sku
+      price: $response.body#/price
+  outputs:
+    productId: $steps.getProductStep.outputs.productId
+    productSlug: $steps.createProductStep.outputs.productSlug
+    name: $steps.getProductStep.outputs.name
+    sku: $steps.getProductStep.outputs.sku

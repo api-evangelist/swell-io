@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Swell Storefront Add Item and Submit Order
+  summary: Look up a product, add it to the session cart, then submit the cart as an order.
+  description: >-
+    The canonical headless storefront checkout. The workflow retrieves a product
+    by slug to resolve its id, adds that product to the session-scoped cart with
+    a quantity, and then submits the current cart, converting it into an order.
+    Each step spells out its request inline, including the public-key
+    authorization, so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellFrontendApi
+  url: ../openapi/swell-frontend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: storefront-add-item-and-submit-order
+  summary: Resolve a product, add it to the cart, then submit the order.
+  description: >-
+    Gets a product by slug, adds it to the session cart, then submits the cart
+    as an order.
+  inputs:
+    type: object
+    required:
+    - publicKey
+    - slug
+    properties:
+      publicKey:
+        type: string
+        description: Public storefront key, prefixed with pk_.
+      slug:
+        type: string
+        description: Product slug or id to add to the cart.
+      quantity:
+        type: integer
+        description: Quantity of the product to add.
+  steps:
+  - stepId: getProductStep
+    description: Retrieve the product by slug to resolve its id.
+    operationId: frontendGetProduct
+    parameters:
+    - name: slug
+      in: path
+      value: $inputs.slug
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/id
+      price: $response.body#/price
+  - stepId: addItemStep
+    description: Add the resolved product to the session cart with the given quantity.
+    operationId: frontendAddCartItem
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    requestBody:
+      contentType: application/json
+      payload:
+        product_id: $steps.getProductStep.outputs.productId
+        quantity: $inputs.quantity
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cartId: $response.body#/id
+      grandTotal: $response.body#/grand_total
+  - stepId: submitOrderStep
+    description: Submit the current cart, converting it into an order.
+    operationId: frontendSubmitOrder
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/id
+      orderNumber: $response.body#/number
+      grandTotal: $response.body#/grand_total
+  outputs:
+    cartId: $steps.addItemStep.outputs.cartId
+    orderId: $steps.submitOrderStep.outputs.orderId
+    orderNumber: $steps.submitOrderStep.outputs.orderNumber

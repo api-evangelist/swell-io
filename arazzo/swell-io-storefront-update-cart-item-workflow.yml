@@ -1,0 +1,68 @@
+arazzo: 1.0.1
+info:
+  title: Swell Storefront Adjust Cart Item Quantity
+  summary: Read the session cart, then update the quantity of one of its line items.
+  description: >-
+    A storefront cart-maintenance flow. The workflow retrieves the current
+    session cart to confirm it exists and exposes its line items, then updates a
+    specific cart item to a new quantity. Each step spells out its request
+    inline, including the public-key authorization, so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: swellFrontendApi
+  url: ../openapi/swell-frontend-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: storefront-adjust-cart-item-quantity
+  summary: Get the cart, then change a line item's quantity.
+  description: >-
+    Reads the session cart, then puts a new quantity on the specified cart item.
+  inputs:
+    type: object
+    required:
+    - publicKey
+    - itemId
+    - quantity
+    properties:
+      publicKey:
+        type: string
+        description: Public storefront key, prefixed with pk_.
+      itemId:
+        type: string
+        description: The cart line item id to adjust.
+      quantity:
+        type: integer
+        description: The new quantity for the line item.
+  steps:
+  - stepId: getCartStep
+    description: Retrieve the current session cart and its line items.
+    operationId: frontendGetCart
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cartId: $response.body#/id
+  - stepId: updateItemStep
+    description: Update the specified cart line item to the new quantity.
+    operationId: frontendUpdateCartItem
+    parameters:
+    - name: itemId
+      in: path
+      value: $inputs.itemId
+    - name: Authorization
+      in: header
+      value: $inputs.publicKey
+    requestBody:
+      contentType: application/json
+      payload:
+        quantity: $inputs.quantity
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cartId: $steps.getCartStep.outputs.cartId
+  outputs:
+    cartId: $steps.updateItemStep.outputs.cartId
