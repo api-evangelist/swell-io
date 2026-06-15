@@ -1,0 +1,1986 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Swell Backend API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Store-Id",
+      "value": "{{X-Store-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/products",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (1-1000). Default 15."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Result page number, 1-indexed."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression, e.g. \"name asc\" or \"date_created desc\"."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search across model-specific searchable fields."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Include related objects, e.g. expand=account or expand=variants:10."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "List Products"
+        },
+        {
+          "info": {
+            "name": "Create Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Product"
+        },
+        {
+          "info": {
+            "name": "Retrieve Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Product"
+        },
+        {
+          "info": {
+            "name": "Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Product"
+        },
+        {
+          "info": {
+            "name": "Delete Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Product"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Variants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/variants",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (1-1000). Default 15."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Result page number, 1-indexed."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size."
+              }
+            ]
+          },
+          "docs": "List Variants"
+        },
+        {
+          "info": {
+            "name": "Create Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/variants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Variant"
+        },
+        {
+          "info": {
+            "name": "Retrieve Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/variants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Variant"
+        },
+        {
+          "info": {
+            "name": "Update Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/variants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Variant"
+        },
+        {
+          "info": {
+            "name": "Delete Variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/variants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Variant"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stock",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Stock Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/stock"
+          },
+          "docs": "List Stock Entries"
+        },
+        {
+          "info": {
+            "name": "Adjust Stock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/stock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adjust Stock"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/categories"
+          },
+          "docs": "List Categories"
+        },
+        {
+          "info": {
+            "name": "Create Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Category"
+        },
+        {
+          "info": {
+            "name": "Retrieve Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Category"
+        },
+        {
+          "info": {
+            "name": "Update Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Category"
+        },
+        {
+          "info": {
+            "name": "Delete Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Category"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/attributes"
+          },
+          "docs": "List Attributes"
+        },
+        {
+          "info": {
+            "name": "Create Attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/attributes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Attribute"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Purchase Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Purchase Links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/purchase-links"
+          },
+          "docs": "List Purchase Links"
+        },
+        {
+          "info": {
+            "name": "Create Purchase Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/purchase-links",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Purchase Link"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Carts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Carts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/carts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (1-1000). Default 15."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Result page number, 1-indexed."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size."
+              }
+            ]
+          },
+          "docs": "List Carts"
+        },
+        {
+          "info": {
+            "name": "Create Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/carts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Cart"
+        },
+        {
+          "info": {
+            "name": "Retrieve Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/carts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Cart"
+        },
+        {
+          "info": {
+            "name": "Update Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/carts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Cart"
+        },
+        {
+          "info": {
+            "name": "Delete Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/carts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Cart"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/orders",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (1-1000). Default 15."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Result page number, 1-indexed."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression, e.g. \"name asc\" or \"date_created desc\"."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Include related objects, e.g. expand=account or expand=variants:10."
+              }
+            ]
+          },
+          "docs": "List Orders"
+        },
+        {
+          "info": {
+            "name": "Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Order"
+        },
+        {
+          "info": {
+            "name": "Retrieve Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Order"
+        },
+        {
+          "info": {
+            "name": "Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.swell.store/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Order"
+        },
+        {
+          "info": {
+            "name": "Delete Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Order"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/payments"
+          },
+          "docs": "List Payments"
+        },
+        {
+          "info": {
+            "name": "Create Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Payment"
+        },
+        {
+          "info": {
+            "name": "Retrieve Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Payment"
+        },
+        {
+          "info": {
+            "name": "Update Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/payments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Payment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Refund Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/payments/:id/refunds",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refund Payment"
+        },
+        {
+          "info": {
+            "name": "List Refunds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/refunds"
+          },
+          "docs": "List Refunds"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/shipments"
+          },
+          "docs": "List Shipments"
+        },
+        {
+          "info": {
+            "name": "Create Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Shipment"
+        },
+        {
+          "info": {
+            "name": "Retrieve Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/shipments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Shipment"
+        },
+        {
+          "info": {
+            "name": "Update Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/shipments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Shipment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/returns"
+          },
+          "docs": "List Returns"
+        },
+        {
+          "info": {
+            "name": "Create Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/returns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Return"
+        },
+        {
+          "info": {
+            "name": "Retrieve Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/returns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Return"
+        },
+        {
+          "info": {
+            "name": "Update Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/returns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Return"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/subscriptions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (1-1000). Default 15."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Result page number, 1-indexed."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size."
+              }
+            ]
+          },
+          "docs": "List Subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Subscription"
+        },
+        {
+          "info": {
+            "name": "Retrieve Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Subscription"
+        },
+        {
+          "info": {
+            "name": "Update Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Subscription"
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Cancel Subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscription Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subscription Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/subscription-plans"
+          },
+          "docs": "List Subscription Plans"
+        },
+        {
+          "info": {
+            "name": "Create Subscription Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/subscription-plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Subscription Plan"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/accounts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (1-1000). Default 15."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Result page number, 1-indexed."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size."
+              }
+            ]
+          },
+          "docs": "List Accounts"
+        },
+        {
+          "info": {
+            "name": "Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Account"
+        },
+        {
+          "info": {
+            "name": "Retrieve Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Account"
+        },
+        {
+          "info": {
+            "name": "Update Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Account"
+        },
+        {
+          "info": {
+            "name": "Delete Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/accounts/:id/addresses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "List Account Addresses"
+        },
+        {
+          "info": {
+            "name": "Create Account Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/accounts/:id/addresses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Account Address"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/accounts/:id/cards",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "List Account Cards"
+        },
+        {
+          "info": {
+            "name": "Tokenize Account Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/accounts/:id/cards",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tokenize Account Card"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/accounts/:id/credits",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "List Account Credits"
+        },
+        {
+          "info": {
+            "name": "Adjust Account Credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/accounts/:id/credits",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adjust Account Credit"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/invoices"
+          },
+          "docs": "List Invoices"
+        },
+        {
+          "info": {
+            "name": "Create Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Invoice"
+        },
+        {
+          "info": {
+            "name": "Retrieve Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/invoices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Invoice"
+        },
+        {
+          "info": {
+            "name": "Update Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/invoices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Invoice"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Coupons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/coupons"
+          },
+          "docs": "List Coupons"
+        },
+        {
+          "info": {
+            "name": "Create Coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/coupons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Coupon"
+        },
+        {
+          "info": {
+            "name": "Retrieve Coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/coupons/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Coupon"
+        },
+        {
+          "info": {
+            "name": "Update Coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/coupons/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Coupon"
+        },
+        {
+          "info": {
+            "name": "Delete Coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/coupons/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Coupon"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Promotions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Promotions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/promotions"
+          },
+          "docs": "List Promotions"
+        },
+        {
+          "info": {
+            "name": "Create Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/promotions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Promotion"
+        },
+        {
+          "info": {
+            "name": "Retrieve Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/promotions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Promotion"
+        },
+        {
+          "info": {
+            "name": "Update Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/promotions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Promotion"
+        },
+        {
+          "info": {
+            "name": "Delete Promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/promotions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Promotion"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gift Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/giftcards"
+          },
+          "docs": "List Gift Cards"
+        },
+        {
+          "info": {
+            "name": "Create Gift Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/giftcards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Gift Card"
+        },
+        {
+          "info": {
+            "name": "Retrieve Gift Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/giftcards/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Gift Card"
+        },
+        {
+          "info": {
+            "name": "Update Gift Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/giftcards/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Gift Card"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Content Pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/pages"
+          },
+          "docs": "List Content Pages"
+        },
+        {
+          "info": {
+            "name": "Create Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/pages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Content Page"
+        },
+        {
+          "info": {
+            "name": "Retrieve Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Content Page"
+        },
+        {
+          "info": {
+            "name": "Update Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Content Page"
+        },
+        {
+          "info": {
+            "name": "Delete Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Content Page"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/files"
+          },
+          "docs": "List Files"
+        },
+        {
+          "info": {
+            "name": "Upload File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/files",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload File"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/events"
+          },
+          "docs": "List Events"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/webhooks"
+          },
+          "docs": "List Webhook Subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Webhook Subscription"
+        },
+        {
+          "info": {
+            "name": "Retrieve Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Webhook Subscription"
+        },
+        {
+          "info": {
+            "name": "Update Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Webhook Subscription"
+        },
+        {
+          "info": {
+            "name": "Delete Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Webhook Subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

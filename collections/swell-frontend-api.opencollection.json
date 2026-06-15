@@ -1,0 +1,781 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Swell Frontend API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/products",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category ID or slug."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Products"
+        },
+        {
+          "info": {
+            "name": "Retrieve Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/products/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Product slug or ID."
+              }
+            ]
+          },
+          "docs": "Retrieve Product"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/categories"
+          },
+          "docs": "List Categories"
+        },
+        {
+          "info": {
+            "name": "Retrieve Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/categories/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Category"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/attributes"
+          },
+          "docs": "List Attributes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Current Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/cart"
+          },
+          "docs": "Retrieve Current Cart"
+        },
+        {
+          "info": {
+            "name": "Update Current Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/cart",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Current Cart"
+        },
+        {
+          "info": {
+            "name": "Add Item To Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/cart/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Item To Cart"
+        },
+        {
+          "info": {
+            "name": "Update Cart Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/cart/items/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Cart Item"
+        },
+        {
+          "info": {
+            "name": "Remove Cart Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{storeId}.swell.store/api/cart/items/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove Cart Item"
+        },
+        {
+          "info": {
+            "name": "Apply Coupon To Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/cart/apply-coupon",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply Coupon To Cart"
+        },
+        {
+          "info": {
+            "name": "Apply Gift Card To Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/cart/apply-giftcard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply Gift Card To Cart"
+        },
+        {
+          "info": {
+            "name": "Recover Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/cart/recover/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Recover Cart"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/cart/submit-order"
+          },
+          "docs": "Converts the current cart into an order. Requires billing.method and shipping."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Current Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account"
+          },
+          "docs": "Retrieve Current Account"
+        },
+        {
+          "info": {
+            "name": "Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Account"
+        },
+        {
+          "info": {
+            "name": "Update Current Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Current Account"
+        },
+        {
+          "info": {
+            "name": "List Account Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account/addresses"
+          },
+          "docs": "List Account Addresses"
+        },
+        {
+          "info": {
+            "name": "Add Account Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/account/addresses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Account Address"
+        },
+        {
+          "info": {
+            "name": "Update Account Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/account/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Account Address"
+        },
+        {
+          "info": {
+            "name": "Delete Account Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{storeId}.swell.store/api/account/addresses/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Account Address"
+        },
+        {
+          "info": {
+            "name": "List Saved Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account/cards"
+          },
+          "docs": "List Saved Cards"
+        },
+        {
+          "info": {
+            "name": "Tokenize Saved Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/account/cards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tokenize Saved Card"
+        },
+        {
+          "info": {
+            "name": "Remove Saved Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{storeId}.swell.store/api/account/cards/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove Saved Card"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Log In",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/account/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Log In"
+        },
+        {
+          "info": {
+            "name": "Log Out",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/account/logout"
+          },
+          "docs": "Log Out"
+        },
+        {
+          "info": {
+            "name": "Send Account Recovery Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{storeId}.swell.store/api/account/recover",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send Account Recovery Email"
+        },
+        {
+          "info": {
+            "name": "Reset Account Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/account/recover/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reset Account Password"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account/orders"
+          },
+          "docs": "List Account Orders"
+        },
+        {
+          "info": {
+            "name": "Retrieve Account Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Account Order"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Account Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account/subscriptions"
+          },
+          "docs": "List Account Subscriptions"
+        },
+        {
+          "info": {
+            "name": "Retrieve Account Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/account/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Account Subscription"
+        },
+        {
+          "info": {
+            "name": "Update Account Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{storeId}.swell.store/api/account/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Account Subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Coupons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Coupon Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/coupons/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Validate Coupon Code"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gift Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Gift Card Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/giftcards/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Gift Card Balance"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Store",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Store Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/settings"
+          },
+          "docs": "Retrieve Store Settings"
+        },
+        {
+          "info": {
+            "name": "Retrieve Payment Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/settings/payments"
+          },
+          "docs": "Retrieve Payment Settings"
+        },
+        {
+          "info": {
+            "name": "List Supported Currencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/settings/currencies"
+          },
+          "docs": "List Supported Currencies"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Navigation Menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/settings/menus"
+          },
+          "docs": "List Navigation Menus"
+        },
+        {
+          "info": {
+            "name": "List Content Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/content/:model",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path",
+                "description": "Custom content model slug."
+              }
+            ]
+          },
+          "docs": "List Content Records"
+        },
+        {
+          "info": {
+            "name": "Retrieve Content Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{storeId}.swell.store/api/content/:model/:slug",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Content Record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

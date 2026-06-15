@@ -1,0 +1,4327 @@
+{
+  "item": [
+    {
+      "id": "de8f64be-058b-4cb4-93ce-b71f3d4ccb60",
+      "name": "Products",
+      "description": {
+        "content": "Public product catalog browsing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f73e1160-79a2-43f8-86fa-09670c085265",
+          "name": "List Products",
+          "request": {
+            "name": "List Products",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "15"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by category ID or slug."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65bd9cb5-f535-4527-90fb-e494b1f51059",
+              "name": "Page of public products.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3679,\n  \"page\": 9668,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"active\": true,\n      \"price\": \"<float>\",\n      \"sale_price\": \"<float>\",\n      \"currency\": \"string\",\n      \"type\": \"string\",\n      \"description\": \"string\",\n      \"purchase_options\": {},\n      \"meta_title\": \"string\",\n      \"meta_description\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"active\": true,\n      \"price\": \"<float>\",\n      \"sale_price\": \"<float>\",\n      \"currency\": \"string\",\n      \"type\": \"string\",\n      \"description\": \"string\",\n      \"purchase_options\": {},\n      \"meta_title\": \"string\",\n      \"meta_description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7d1b661-ea1b-4723-bf8b-c6883b300046",
+          "name": "Retrieve Product",
+          "request": {
+            "name": "Retrieve Product",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "products",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Product slug or ID."
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ace730d-a31f-4b46-9a1e-91410fb6c7b0",
+              "name": "Public product.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "products",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Product slug or ID."
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"active\": true,\n  \"price\": \"<float>\",\n  \"sale_price\": \"<float>\",\n  \"currency\": \"string\",\n  \"type\": \"string\",\n  \"description\": \"string\",\n  \"purchase_options\": {},\n  \"meta_title\": \"string\",\n  \"meta_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c4ed8849-a99e-4f88-92bf-ece57b2a63f1",
+      "name": "Categories",
+      "description": {
+        "content": "Category tree for storefront navigation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab5a8928-7560-45e9-bdfb-af9f8df8e624",
+          "name": "List Categories",
+          "request": {
+            "name": "List Categories",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d40b4526-9030-4974-babe-e5c3979d9c5b",
+              "name": "Categories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffc3eeb1-b234-4382-8420-c8d3ee98a525",
+          "name": "Retrieve Category",
+          "request": {
+            "name": "Retrieve Category",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "categories",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ecb9561a-8e7f-4473-9673-a14839d6812b",
+              "name": "Category.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "categories",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4a146210-0dd8-44f6-83b2-2e668daa805c",
+      "name": "Attributes",
+      "description": {
+        "content": "Attributes used for faceted product filtering.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8c4f1af-2def-4f33-a945-0b2a9f87b815",
+          "name": "List Attributes",
+          "request": {
+            "name": "List Attributes",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "422bdfa2-41ce-4022-8bee-1b3d842ea788",
+              "name": "Attributes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b3921288-b265-46db-9e1c-89e5a1522a8c",
+      "name": "Cart",
+      "description": {
+        "content": "Session-scoped shopping cart for the current visitor.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01927da9-efa2-4bdc-9dff-02873de0ddfb",
+          "name": "Retrieve Current Cart",
+          "request": {
+            "name": "Retrieve Current Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21dd9830-0237-4f77-a2e5-e84743ac0af1",
+              "name": "Current cart for the session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"account_id\": \"string\",\n  \"billing\": {},\n  \"shipping\": {},\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"string\",\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e9104fb-c61d-49be-a8bf-3a536e69bf02",
+          "name": "Update Current Cart",
+          "request": {
+            "name": "Update Current Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f147195d-a517-4cdc-8c10-d24f85e9a488",
+              "name": "Updated cart.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8946aa9a-7214-4d35-962b-4c30348a1378",
+          "name": "Add Item To Cart",
+          "request": {
+            "name": "Add Item To Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"variant_id\": \"<string>\",\n  \"options\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9266dde-61e3-4161-a444-7834aad653d6",
+              "name": "Updated cart.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"variant_id\": \"<string>\",\n  \"options\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16dd1a6e-3065-481a-a868-91df88c5959a",
+          "name": "Update Cart Item",
+          "request": {
+            "name": "Update Cart Item",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f95025fd-a70e-4c03-a010-f10c3817cce9",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b78da793-4c98-4eb6-a8f6-b88f666df79d",
+          "name": "Remove Cart Item",
+          "request": {
+            "name": "Remove Cart Item",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97076a33-acbc-41ab-b719-1a8137fa2a11",
+              "name": "Removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d60b798f-9170-419a-b3fa-a74619608367",
+          "name": "Apply Coupon To Cart",
+          "request": {
+            "name": "Apply Coupon To Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "apply-coupon"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa2f6b0c-31a7-4c84-b24c-b8bb17282505",
+              "name": "Coupon applied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "apply-coupon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9de20ecd-4911-4359-8cd6-b5a22b3e23ea",
+          "name": "Apply Gift Card To Cart",
+          "request": {
+            "name": "Apply Gift Card To Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "apply-giftcard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57b33f77-58b2-4418-95e8-5f47d23c51c8",
+              "name": "Gift card applied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "apply-giftcard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5368855-a751-42f6-9a17-074740aeb7d4",
+          "name": "Recover Cart",
+          "request": {
+            "name": "Recover Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "recover",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46f2a8af-fcef-47c2-87b9-8d27b7e9132a",
+              "name": "Recovered cart.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "recover",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "74ad59bd-fb38-48c0-bb7e-c50fa8f3a2fb",
+      "name": "Checkout",
+      "description": {
+        "content": "Cart conversion and order placement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a25106d4-b7cd-42cd-8db7-447d031d1a96",
+          "name": "Submit Order",
+          "request": {
+            "name": "Submit Order",
+            "description": {
+              "content": "Converts the current cart into an order. Requires billing.method and shipping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "submit-order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b61d4b85-74b1-4a5c-89ff-fa6df84aa344",
+              "name": "Order created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "submit-order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"status\": \"string\",\n  \"grand_total\": \"<float>\",\n  \"paid\": false,\n  \"delivered\": false,\n  \"date_created\": \"1957-12-21T09:27:40.431Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3dc91e33-dff0-4121-8ce8-e4e96d50d706",
+      "name": "Account",
+      "description": {
+        "content": "Authenticated customer account operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ddf95c8-230e-40b5-b0ab-752e783e93c1",
+          "name": "Retrieve Current Account",
+          "request": {
+            "name": "Retrieve Current Account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82b3146c-d3c1-4bd7-b1f9-50551e8883b5",
+              "name": "Current authenticated account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"AH6HyJVk1Gc@c.oi\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"phone\": \"string\",\n  \"currency\": \"string\",\n  \"balance\": 1129.2146413805083\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3745e44d-dc4b-4ddd-b2c6-32a9bd1c8a20",
+          "name": "Update Current Account",
+          "request": {
+            "name": "Update Current Account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38822518-963b-4855-826d-573e19dd9be7",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e22ca660-4e16-4281-ab52-d13da433bf4b",
+          "name": "Create Account",
+          "request": {
+            "name": "Create Account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f2549231-30fb-468d-9814-0ef2235aa547",
+              "name": "Account created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c8fc0ad-bdcd-4b2f-a489-0a6497e60027",
+          "name": "List Account Addresses",
+          "request": {
+            "name": "List Account Addresses",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "addresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de57f4a3-fb5e-4961-8f5d-307eaa683218",
+              "name": "Addresses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1767a0d-01c2-46f7-ae54-86e5769d8bdc",
+          "name": "Add Account Address",
+          "request": {
+            "name": "Add Account Address",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "addresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d105fb6-06e8-4296-b060-bbc90ce4812a",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "addresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d27e2eb-ef1d-402e-a1f9-e2d27716fe9b",
+          "name": "Update Account Address",
+          "request": {
+            "name": "Update Account Address",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "addresses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "522b48f1-0325-448a-bf72-82a72e0a22bc",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "addresses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53730977-ca09-431b-987b-1cc68daa1a96",
+          "name": "Delete Account Address",
+          "request": {
+            "name": "Delete Account Address",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "addresses",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b24adbc5-2c19-4a07-9443-d1ed19836ff6",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "addresses",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce56257a-60bd-45b1-b19f-c8f0dce35f66",
+          "name": "List Saved Cards",
+          "request": {
+            "name": "List Saved Cards",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bec06fb7-9fd9-4011-81e7-d061cfdef340",
+              "name": "Saved cards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "942c9675-17e5-42f9-826a-bd4bdf521c74",
+          "name": "Tokenize Saved Card",
+          "request": {
+            "name": "Tokenize Saved Card",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2454f47d-3d04-48b0-a95f-661392fc897e",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5df6814e-427f-47df-b272-03c905202aa1",
+          "name": "Remove Saved Card",
+          "request": {
+            "name": "Remove Saved Card",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "cards",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bca6ce41-87f9-4458-8dd4-7910aa55c3ac",
+              "name": "Removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "cards",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4fa8f7bc-9a26-4676-a384-341aee6e6c3f",
+      "name": "Account Session",
+      "description": {
+        "content": "Login, logout, and session recovery.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "149a728a-54d5-4b50-bde9-e02184bf316e",
+          "name": "Log In",
+          "request": {
+            "name": "Log In",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a0aafa1-d984-46c5-b30d-bbb8da8142cc",
+              "name": "Logged in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"AH6HyJVk1Gc@c.oi\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"phone\": \"string\",\n  \"currency\": \"string\",\n  \"balance\": 1129.2146413805083\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bd58e8f-36b3-4e0a-abb1-f48c656e33ef",
+          "name": "Log Out",
+          "request": {
+            "name": "Log Out",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "000354a8-643e-4382-aac9-120d02d74782",
+              "name": "Logged out.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aa47d17-94d8-4569-a39c-c8eee3995f17",
+          "name": "Send Account Recovery Email",
+          "request": {
+            "name": "Send Account Recovery Email",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "recover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6948455b-44de-44e3-9192-0ebadb1d38ee",
+              "name": "Recovery email sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "recover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1853d16-10fe-4efe-b18a-d91ec862d2ec",
+          "name": "Reset Account Password",
+          "request": {
+            "name": "Reset Account Password",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "recover",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35c38161-03a4-43e6-8f7a-fcdc06b77a70",
+              "name": "Password reset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "recover",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b4a453e3-b3a4-4fa3-9e28-95c30152b47a",
+      "name": "Orders",
+      "description": {
+        "content": "Customer order history.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7cabaa05-df86-45ad-9d49-85273f2112ae",
+          "name": "List Account Orders",
+          "request": {
+            "name": "List Account Orders",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9474d024-5959-483c-bbcd-0bb5b682fe90",
+              "name": "Customer order history.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2769,\n  \"page\": 9275,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"number\": \"string\",\n      \"status\": \"string\",\n      \"grand_total\": 4232.981641326159,\n      \"paid\": false,\n      \"delivered\": true,\n      \"date_created\": \"2007-01-03T14:25:32.506Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"number\": \"string\",\n      \"status\": \"string\",\n      \"grand_total\": 2863.014847551496,\n      \"paid\": true,\n      \"delivered\": true,\n      \"date_created\": \"1953-03-10T17:54:26.266Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68858b9e-3a12-477f-99ab-95f479224061",
+          "name": "Retrieve Account Order",
+          "request": {
+            "name": "Retrieve Account Order",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c43e978-7a72-40ed-a16d-9ca93e3298ab",
+              "name": "Order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"status\": \"string\",\n  \"grand_total\": 1479.3644817843187,\n  \"paid\": true,\n  \"delivered\": false,\n  \"date_created\": \"1967-06-28T18:37:45.946Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a46b86e8-93d3-46a1-b39d-581321f6d042",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Customer-facing subscription management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8feab3bc-1fd9-4f20-abe8-8db784a5e8a2",
+          "name": "List Account Subscriptions",
+          "request": {
+            "name": "List Account Subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d919558d-8791-46ca-8d22-de886edfc5a1",
+              "name": "Account subscriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af47e2cd-c124-4e46-8cbe-6563243cf26f",
+          "name": "Retrieve Account Subscription",
+          "request": {
+            "name": "Retrieve Account Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae269966-478f-4585-85e9-e72eb59918ec",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e428a490-e82e-4f1a-bf56-d77750069c95",
+          "name": "Update Account Subscription",
+          "request": {
+            "name": "Update Account Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5faacc2-1da9-4313-87b0-22e183d71955",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7e7a6675-16c0-475b-928b-759b0b70893e",
+      "name": "Coupons",
+      "description": {
+        "content": "Public coupon validation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29032634-ae10-49ad-bcdc-2d95d24bf1ec",
+          "name": "Validate Coupon Code",
+          "request": {
+            "name": "Validate Coupon Code",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "coupons",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f138333-8ebf-4900-a377-c4a601078b96",
+              "name": "Coupon validity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "coupons",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4ecb34ea-41e1-4eb9-bc01-1116defd032f",
+      "name": "Gift Cards",
+      "description": {
+        "content": "Gift card balance lookups.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "245b6802-7205-43d5-9a85-e0db52020401",
+          "name": "Retrieve Gift Card Balance",
+          "request": {
+            "name": "Retrieve Gift Card Balance",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "giftcards",
+                ":code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c094e25b-41f9-4478-9550-5d955aeb7f94",
+              "name": "Gift card balance and status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "giftcards",
+                    ":code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "44f8724b-dc76-4648-885e-42c16e50e91d",
+      "name": "Store",
+      "description": {
+        "content": "Public store settings, currencies, payment settings, and menus.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "568e0be7-11b7-4a43-b5b8-dada67fd44cc",
+          "name": "Retrieve Store Settings",
+          "request": {
+            "name": "Retrieve Store Settings",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d534b76-7e02-44a1-91b8-40cb3399263b",
+              "name": "Public store settings (currency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7943b15-307a-4f84-8a75-0b6327c0577f",
+          "name": "Retrieve Payment Settings",
+          "request": {
+            "name": "Retrieve Payment Settings",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "settings",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb3ca245-cc40-48c5-b634-40557c132392",
+              "name": "Public payment gateway configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "settings",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db17e63f-0554-4daa-9978-5822f9a4fac0",
+          "name": "List Supported Currencies",
+          "request": {
+            "name": "List Supported Currencies",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "settings",
+                "currencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cbed165-299c-4f26-b8b4-eb0ebdc9c2ab",
+              "name": "Currencies and exchange rates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "settings",
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a75eb7c2-1410-4bfb-93d8-a30741551ffd",
+      "name": "Content",
+      "description": {
+        "content": "Content pages, custom content models, and navigation menus.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ddaa784b-7c6a-4676-bb39-b114ffafc1ca",
+          "name": "List Navigation Menus",
+          "request": {
+            "name": "List Navigation Menus",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "settings",
+                "menus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "065dd3f3-6ce6-45a2-888a-7d7f279cfbf9",
+              "name": "Menus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "settings",
+                    "menus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46c462b9-6370-49f4-bee7-86f4461edefb",
+          "name": "List Content Records",
+          "request": {
+            "name": "List Content Records",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "content",
+                ":model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model",
+                  "description": "(Required) Custom content model slug."
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3059fb15-20f9-402d-9aa8-0ad5a7b5bd46",
+              "name": "Records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "content",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) Custom content model slug."
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f1568e2-375c-4830-b0a7-76fcbd732f9b",
+          "name": "Retrieve Content Record",
+          "request": {
+            "name": "Retrieve Content Record",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "content",
+                ":model",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Swell store ID (subdomain).",
+                  "type": "any",
+                  "value": "{{storeId}}",
+                  "key": "storeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11a1ae4e-7c08-40af-941c-58cffdade8b7",
+              "name": "Record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "content",
+                    ":model",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Swell store ID (subdomain).",
+                      "type": "any",
+                      "value": "{{storeId}}",
+                      "key": "storeId"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Swell store ID (subdomain).",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "storeId"
+    },
+    {
+      "type": "string",
+      "value": "https://{{storeId}}.swell.store",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ed3e23f-ee7e-4831-bbe2-3f884001c538",
+    "name": "Swell Frontend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swell Frontend API — the client-safe, public-key-authenticated REST surface used from storefronts, single-page apps, and headless commerce experiences. Exposes a curated subset of the Backend API authorized with a public key plus a session token. Powers Swell.js, the React/Vue/Next storefront kits (Origin, Horizon, Verswell), and any custom JAMstack or SSR storefront. Resources include products, categories, carts, accounts, orders, subscriptions, payments, coupons, gift cards, store settings, currencies, localization, menus, and content pages.\n\nContact Support:\n Name: Swell Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

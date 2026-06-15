@@ -1,0 +1,3773 @@
+{
+  "info": {
+    "_postman_id": "600d6828-2ca6-4f6e-8b20-deab3c22ec70",
+    "name": "Swell Frontend API",
+    "description": "Swell Frontend API \u2014 the client-safe, public-key-authenticated REST surface used from storefronts, single-page apps, and headless commerce experiences. Exposes a curated subset of the Backend API authorized with a public key plus a session token. Powers Swell.js, the React/Vue/Next storefront kits (Origin, Horizon, Verswell), and any custom JAMstack or SSR storefront. Resources include products, categories, carts, accounts, orders, subscriptions, payments, coupons, gift cards, store settings, currencies, localization, menus, and content pages.\n\nContact Support:\n Name: Swell Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:18:52.000Z",
+    "updatedAt": "2026-06-05T15:18:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-600d6828-2ca6-4f6e-8b20-deab3c22ec70"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "products",
+          "item": [
+            {
+              "name": "{slug}",
+              "item": [
+                {
+                  "name": "Retrieve Product",
+                  "id": "37faf845-b9df-442b-81e5-cfa1e3ed31f6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/products/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "products",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9a5a8fdc-cda6-4969-8c19-956f46bf8ac3",
+                          "key": "slug",
+                          "value": "<string>",
+                          "description": "(Required) Product slug or ID."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "449c9e3e-ea37-42b5-bb1b-33bbbcd065bc",
+                      "name": "Public product.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/products/:slug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "products",
+                            ":slug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"price\": \"<float>\",\n  \"sale_price\": \"<float>\",\n  \"currency\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"purchase_options\": {},\n  \"meta_title\": \"<string>\",\n  \"meta_description\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-449c9e3e-ea37-42b5-bb1b-33bbbcd065bc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-37faf845-b9df-442b-81e5-cfa1e3ed31f6"
+                }
+              ],
+              "id": "8d392aa9-7d26-43f5-a249-60d9739b4320",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-8d392aa9-7d26-43f5-a249-60d9739b4320"
+            },
+            {
+              "name": "List Products",
+              "id": "b9d12097-a311-4d3f-8fca-1385bc9c7401",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products?limit=15&page=1&search=<string>&category=<string>&sort=<string>&expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by category ID or slug.",
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c9e02489-6471-4ba5-b1b6-38010bfc4bb9",
+                  "name": "Page of public products.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/products?limit=15&page=1&search=<string>&category=<string>&sort=<string>&expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "15"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by category ID or slug.",
+                          "key": "category",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"price\": \"<float>\",\n      \"sale_price\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"purchase_options\": {},\n      \"meta_title\": \"<string>\",\n      \"meta_description\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"price\": \"<float>\",\n      \"sale_price\": \"<float>\",\n      \"currency\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"purchase_options\": {},\n      \"meta_title\": \"<string>\",\n      \"meta_description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-c9e02489-6471-4ba5-b1b6-38010bfc4bb9"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-b9d12097-a311-4d3f-8fca-1385bc9c7401"
+            }
+          ],
+          "id": "580fcaab-bd3f-45b7-9087-25607b20d10e",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-580fcaab-bd3f-45b7-9087-25607b20d10e"
+        },
+        {
+          "name": "categories",
+          "item": [
+            {
+              "name": "{slug}",
+              "item": [
+                {
+                  "name": "Retrieve Category",
+                  "id": "37ba215d-b24b-44ba-8312-a17cf9a41194",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2e54b18d-0575-4c4b-8999-28089bce30fd",
+                          "key": "slug",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a733e2f9-6ae5-417a-bd39-ea677c9ba875",
+                      "name": "Category.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/categories/:slug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "categories",
+                            ":slug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-a733e2f9-6ae5-417a-bd39-ea677c9ba875"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-37ba215d-b24b-44ba-8312-a17cf9a41194"
+                }
+              ],
+              "id": "1358518b-9c04-458e-9503-bf81bcadc6fb",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-1358518b-9c04-458e-9503-bf81bcadc6fb"
+            },
+            {
+              "name": "List Categories",
+              "id": "d8a2a49e-f126-4f98-8219-a95dd97038fe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b1951fb4-6d28-4686-8c08-f7582f461859",
+                  "name": "Categories.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-b1951fb4-6d28-4686-8c08-f7582f461859"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-d8a2a49e-f126-4f98-8219-a95dd97038fe"
+            }
+          ],
+          "id": "e276f7b0-2fc5-409e-8905-8ecf755f3389",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-e276f7b0-2fc5-409e-8905-8ecf755f3389"
+        },
+        {
+          "name": "attributes",
+          "item": [
+            {
+              "name": "List Attributes",
+              "id": "a7ba546d-5348-4496-a2de-1dfdcf43dd6f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/attributes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "attributes"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7687696e-6770-4a6b-8180-5a4e4d9adfb6",
+                  "name": "Attributes.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/attributes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "attributes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-7687696e-6770-4a6b-8180-5a4e4d9adfb6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-a7ba546d-5348-4496-a2de-1dfdcf43dd6f"
+            }
+          ],
+          "id": "22529bc8-e0df-4d8f-aec0-a4209480172a",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-22529bc8-e0df-4d8f-aec0-a4209480172a"
+        },
+        {
+          "name": "cart",
+          "item": [
+            {
+              "name": "items",
+              "item": [
+                {
+                  "name": "{itemId}",
+                  "item": [
+                    {
+                      "name": "Update Cart Item",
+                      "id": "d3835ea6-2332-417c-9a34-9f54f1921d74",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/items/:itemId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "items",
+                            ":itemId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "da0724e0-c5c1-4e46-9a9e-fc9f140aa57a",
+                              "key": "itemId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "272b5021-b423-4570-806f-257565322ad5",
+                          "name": "Updated.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/cart/items/:itemId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "cart",
+                                "items",
+                                ":itemId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "itemId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-272b5021-b423-4570-806f-257565322ad5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-d3835ea6-2332-417c-9a34-9f54f1921d74"
+                    },
+                    {
+                      "name": "Remove Cart Item",
+                      "id": "28225076-f14d-4feb-b060-139b36be5c38",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/items/:itemId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "items",
+                            ":itemId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "127b6802-67b3-4d90-b2d4-cb38a5fe42dd",
+                              "key": "itemId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "84097ea8-9479-413f-b913-0906e58d0a4a",
+                          "name": "Removed.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/cart/items/:itemId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "cart",
+                                "items",
+                                ":itemId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "itemId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-84097ea8-9479-413f-b913-0906e58d0a4a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-28225076-f14d-4feb-b060-139b36be5c38"
+                    }
+                  ],
+                  "id": "e36887e7-b7bb-44eb-8f49-ac545a995a6a",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-e36887e7-b7bb-44eb-8f49-ac545a995a6a"
+                },
+                {
+                  "name": "Add Item To Cart",
+                  "id": "81fd9790-fb75-4847-8826-896e10424955",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"product_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"variant_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/cart/items",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "cart",
+                        "items"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "85b0008e-58fd-4083-87e3-ffc53e12c40b",
+                      "name": "Updated cart.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"product_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"variant_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/items",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "items"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"billing\": {},\n  \"shipping\": {},\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-85b0008e-58fd-4083-87e3-ffc53e12c40b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-81fd9790-fb75-4847-8826-896e10424955"
+                }
+              ],
+              "id": "35d0c539-345f-4658-8b77-d2353cef6cf3",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-35d0c539-345f-4658-8b77-d2353cef6cf3"
+            },
+            {
+              "name": "apply-coupon",
+              "item": [
+                {
+                  "name": "Apply Coupon To Cart",
+                  "id": "c3d0faf9-9c7c-4ab8-a372-11d92030359f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"code\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/cart/apply-coupon",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "cart",
+                        "apply-coupon"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "cac19bde-2ead-411d-9565-f73970851b94",
+                      "name": "Coupon applied.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"code\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/apply-coupon",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "apply-coupon"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-cac19bde-2ead-411d-9565-f73970851b94"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-c3d0faf9-9c7c-4ab8-a372-11d92030359f"
+                }
+              ],
+              "id": "31583b3b-a599-4b47-9a69-671114484b82",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-31583b3b-a599-4b47-9a69-671114484b82"
+            },
+            {
+              "name": "apply-giftcard",
+              "item": [
+                {
+                  "name": "Apply Gift Card To Cart",
+                  "id": "4ece6571-2545-4928-be96-20e14e706143",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"code\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/cart/apply-giftcard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "cart",
+                        "apply-giftcard"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d61f1325-7eeb-45ab-b9e3-37116dc17ccb",
+                      "name": "Gift card applied.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"code\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/apply-giftcard",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "apply-giftcard"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-d61f1325-7eeb-45ab-b9e3-37116dc17ccb"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-4ece6571-2545-4928-be96-20e14e706143"
+                }
+              ],
+              "id": "463d0d1d-c8fb-4da4-a5bb-eeac8faa1d6c",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-463d0d1d-c8fb-4da4-a5bb-eeac8faa1d6c"
+            },
+            {
+              "name": "recover",
+              "item": [
+                {
+                  "name": "{token}",
+                  "item": [
+                    {
+                      "name": "Recover Cart",
+                      "id": "b2f43d2a-c253-40e1-a987-2b47d6aa8d67",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/recover/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "recover",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f29c9922-3419-4c08-a205-837f14621db8",
+                              "key": "token",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "47786c84-1c89-4319-bdcc-2ece163aef9c",
+                          "name": "Recovered cart.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/cart/recover/:token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "cart",
+                                "recover",
+                                ":token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-47786c84-1c89-4319-bdcc-2ece163aef9c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-b2f43d2a-c253-40e1-a987-2b47d6aa8d67"
+                    }
+                  ],
+                  "id": "b6cbded9-c195-4028-ab32-602d8ed8acf5",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-b6cbded9-c195-4028-ab32-602d8ed8acf5"
+                }
+              ],
+              "id": "c293903c-a4f9-46c9-96cc-4cf127026a23",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-c293903c-a4f9-46c9-96cc-4cf127026a23"
+            },
+            {
+              "name": "submit-order",
+              "item": [
+                {
+                  "name": "Submit Order",
+                  "id": "7795703d-be9c-4c5d-9e42-081cf44235b1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/cart/submit-order",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "cart",
+                        "submit-order"
+                      ]
+                    },
+                    "description": "Converts the current cart into an order. Requires billing.method and shipping."
+                  },
+                  "response": [
+                    {
+                      "id": "bd61b4e7-1095-45dd-86bd-fe9d412df983",
+                      "name": "Order created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/cart/submit-order",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "cart",
+                            "submit-order"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"grand_total\": \"<float>\",\n  \"paid\": \"<boolean>\",\n  \"delivered\": \"<boolean>\",\n  \"date_created\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-bd61b4e7-1095-45dd-86bd-fe9d412df983"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-7795703d-be9c-4c5d-9e42-081cf44235b1"
+                }
+              ],
+              "id": "50333450-c72a-49c8-b4df-e07dde8b489b",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-50333450-c72a-49c8-b4df-e07dde8b489b"
+            },
+            {
+              "name": "Retrieve Current Cart",
+              "id": "92e83f78-473e-49cb-8555-e16779e70a5f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/cart",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "cart"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b3e5d2ac-3f40-47d2-a52b-8d3be43fb03e",
+                  "name": "Current cart for the session.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/cart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "cart"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"billing\": {},\n  \"shipping\": {},\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-b3e5d2ac-3f40-47d2-a52b-8d3be43fb03e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-92e83f78-473e-49cb-8555-e16779e70a5f"
+            },
+            {
+              "name": "Update Current Cart",
+              "id": "66217698-4807-4771-9955-4b0b92c03454",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"billing\": {},\n  \"shipping\": {},\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/cart",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "cart"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "55822990-f3ec-46fc-b0d8-7e3fe0ebf7eb",
+                  "name": "Updated cart.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"billing\": {},\n  \"shipping\": {},\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/cart",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "cart"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"billing\": {},\n  \"shipping\": {},\n  \"sub_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-55822990-f3ec-46fc-b0d8-7e3fe0ebf7eb"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-66217698-4807-4771-9955-4b0b92c03454"
+            }
+          ],
+          "id": "226654a2-54dd-4707-93e6-c7fcfa8cdad2",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-226654a2-54dd-4707-93e6-c7fcfa8cdad2"
+        },
+        {
+          "name": "account",
+          "item": [
+            {
+              "name": "login",
+              "item": [
+                {
+                  "name": "Log In",
+                  "id": "4fda0d96-2bcf-4983-9192-007ecaa76d0c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5f2cccf3-4d2e-4af4-877d-f74f6a0f583a",
+                      "name": "Logged in.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "login"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-5f2cccf3-4d2e-4af4-877d-f74f6a0f583a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-4fda0d96-2bcf-4983-9192-007ecaa76d0c"
+                }
+              ],
+              "id": "df28de24-7a13-4805-81cb-b043ddaaf2d2",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-df28de24-7a13-4805-81cb-b043ddaaf2d2"
+            },
+            {
+              "name": "logout",
+              "item": [
+                {
+                  "name": "Log Out",
+                  "id": "3ccb79c9-4e18-41cc-b019-d20b7b714297",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "logout"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0d9e98f9-406f-4e2f-b36c-307e0fd745ec",
+                      "name": "Logged out.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/logout",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "logout"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-0d9e98f9-406f-4e2f-b36c-307e0fd745ec"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-3ccb79c9-4e18-41cc-b019-d20b7b714297"
+                }
+              ],
+              "id": "76c106d5-3f3d-40aa-b54e-50e0670e15ae",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-76c106d5-3f3d-40aa-b54e-50e0670e15ae"
+            },
+            {
+              "name": "recover",
+              "item": [
+                {
+                  "name": "{key}",
+                  "item": [
+                    {
+                      "name": "Reset Account Password",
+                      "id": "2917769b-1d5a-410a-96c6-50e3a63a3b42",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/recover/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "recover",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7705026e-f6bb-492b-85c9-b20b25bc1874",
+                              "key": "key",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "c1b99c97-3c58-4a15-95d5-329e0633501b",
+                          "name": "Password reset.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/recover/:key",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "recover",
+                                ":key"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "key"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-c1b99c97-3c58-4a15-95d5-329e0633501b"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-2917769b-1d5a-410a-96c6-50e3a63a3b42"
+                    }
+                  ],
+                  "id": "32511606-d64f-44c5-879b-69be2ebfb74c",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-32511606-d64f-44c5-879b-69be2ebfb74c"
+                },
+                {
+                  "name": "Send Account Recovery Email",
+                  "id": "acdc5730-c499-49f3-86ca-d52caa587ec5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/recover",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "recover"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "90211b83-7543-43bb-9a64-fa9056977977",
+                      "name": "Recovery email sent.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/recover",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "recover"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-90211b83-7543-43bb-9a64-fa9056977977"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-acdc5730-c499-49f3-86ca-d52caa587ec5"
+                }
+              ],
+              "id": "d7d7d140-aea3-4ffc-b8e2-5c8edd296b65",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-d7d7d140-aea3-4ffc-b8e2-5c8edd296b65"
+            },
+            {
+              "name": "addresses",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Update Account Address",
+                      "id": "7a16f928-e219-4af3-aac9-629934dd474f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/addresses/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "addresses",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "05630d04-008b-4a08-a5fc-6674ac807190",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "d0f772d6-b396-4797-b21f-10c9f2944f30",
+                          "name": "Updated.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/addresses/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "addresses",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-d0f772d6-b396-4797-b21f-10c9f2944f30"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-7a16f928-e219-4af3-aac9-629934dd474f"
+                    },
+                    {
+                      "name": "Delete Account Address",
+                      "id": "a0387414-305b-4267-8290-7127bac470df",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/addresses/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "addresses",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4f73d45c-ee0b-4fc8-afd6-f051a69279e3",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ff6583a9-fd11-47cc-9f11-92b940530d3d",
+                          "name": "Deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/addresses/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "addresses",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-ff6583a9-fd11-47cc-9f11-92b940530d3d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-a0387414-305b-4267-8290-7127bac470df"
+                    }
+                  ],
+                  "id": "8861957b-df33-4dfe-9db1-1cd9d42e81f8",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-8861957b-df33-4dfe-9db1-1cd9d42e81f8"
+                },
+                {
+                  "name": "List Account Addresses",
+                  "id": "15b5189d-7112-4d78-b847-cf6286d566f5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/addresses",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "addresses"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "04e336d1-cd0e-4b0c-9ad6-3cce7329e25f",
+                      "name": "Addresses.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/addresses",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "addresses"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-04e336d1-cd0e-4b0c-9ad6-3cce7329e25f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-15b5189d-7112-4d78-b847-cf6286d566f5"
+                },
+                {
+                  "name": "Add Account Address",
+                  "id": "a3ae95ca-d944-4c0c-bfa0-234da34836f2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/addresses",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "addresses"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "37732f84-73d5-44f4-a61b-a26dcf2a2409",
+                      "name": "Created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/addresses",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "addresses"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-37732f84-73d5-44f4-a61b-a26dcf2a2409"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-a3ae95ca-d944-4c0c-bfa0-234da34836f2"
+                }
+              ],
+              "id": "132d768d-9370-4e07-bdff-4910a19879a7",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-132d768d-9370-4e07-bdff-4910a19879a7"
+            },
+            {
+              "name": "cards",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Remove Saved Card",
+                      "id": "d55a859e-2717-403c-b6e8-02fd5c91ee53",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/cards/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "cards",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7b9a332e-a8ca-41ad-9410-06a2d91c7fc4",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "72ac9ad5-7032-4010-bfec-9af9f70e9d28",
+                          "name": "Removed.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/cards/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "cards",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-72ac9ad5-7032-4010-bfec-9af9f70e9d28"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-d55a859e-2717-403c-b6e8-02fd5c91ee53"
+                    }
+                  ],
+                  "id": "fda69994-b54e-4efd-a371-f3db620b47c4",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-fda69994-b54e-4efd-a371-f3db620b47c4"
+                },
+                {
+                  "name": "List Saved Cards",
+                  "id": "3118195d-0573-4dcb-ac1a-8e2711497987",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/cards",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "cards"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f11b07e5-8d74-4b5a-b186-2656096b41f1",
+                      "name": "Saved cards.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/cards",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "cards"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-f11b07e5-8d74-4b5a-b186-2656096b41f1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-3118195d-0573-4dcb-ac1a-8e2711497987"
+                },
+                {
+                  "name": "Tokenize Saved Card",
+                  "id": "81b9d785-9b12-419f-985e-8a3ce4a1683b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/cards",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "cards"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "3d07bfe6-5459-403f-9c09-2bacbba1cec4",
+                      "name": "Created.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/cards",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "cards"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-3d07bfe6-5459-403f-9c09-2bacbba1cec4"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-81b9d785-9b12-419f-985e-8a3ce4a1683b"
+                }
+              ],
+              "id": "febdddfa-8d24-4c58-97b3-d19833ba0604",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-febdddfa-8d24-4c58-97b3-d19833ba0604"
+            },
+            {
+              "name": "orders",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Retrieve Account Order",
+                      "id": "b71ab60d-9d76-4aa3-98ee-c5e2bdfced19",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/orders/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "orders",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e150e5b4-1ecd-46a5-9d22-345486269d13",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "98eba3dc-d337-49be-b06b-f1a21538254d",
+                          "name": "Order.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/orders/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "orders",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"grand_total\": \"<float>\",\n  \"paid\": \"<boolean>\",\n  \"delivered\": \"<boolean>\",\n  \"date_created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-98eba3dc-d337-49be-b06b-f1a21538254d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-b71ab60d-9d76-4aa3-98ee-c5e2bdfced19"
+                    }
+                  ],
+                  "id": "302ed564-15ae-4bb9-8bac-c90ebeee2331",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-302ed564-15ae-4bb9-8bac-c90ebeee2331"
+                },
+                {
+                  "name": "List Account Orders",
+                  "id": "3d067468-37c6-446c-aaa7-6988078a8002",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "orders"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a5ebee70-e931-442f-a59d-f2a75f018343",
+                      "name": "Customer order history.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/orders",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "orders"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"number\": \"<string>\",\n      \"status\": \"<string>\",\n      \"grand_total\": \"<float>\",\n      \"paid\": \"<boolean>\",\n      \"delivered\": \"<boolean>\",\n      \"date_created\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"number\": \"<string>\",\n      \"status\": \"<string>\",\n      \"grand_total\": \"<float>\",\n      \"paid\": \"<boolean>\",\n      \"delivered\": \"<boolean>\",\n      \"date_created\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-a5ebee70-e931-442f-a59d-f2a75f018343"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-3d067468-37c6-446c-aaa7-6988078a8002"
+                }
+              ],
+              "id": "67644359-1e61-4658-90ac-93e1fb1d77dd",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-67644359-1e61-4658-90ac-93e1fb1d77dd"
+            },
+            {
+              "name": "subscriptions",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Retrieve Account Subscription",
+                      "id": "02d0c02f-c4e2-418c-b242-7bbfc8875c82",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/subscriptions/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "subscriptions",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0729efd7-bf63-4209-84ee-c598e3ea8620",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "fab03b13-7f9c-4abc-897f-8c3456c6e017",
+                          "name": "Subscription.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/subscriptions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "subscriptions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-fab03b13-7f9c-4abc-897f-8c3456c6e017"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-02d0c02f-c4e2-418c-b242-7bbfc8875c82"
+                    },
+                    {
+                      "name": "Update Account Subscription",
+                      "id": "8753ea44-9a8e-4251-bdfc-ca4ec70fb9a4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/subscriptions/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "subscriptions",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6e65ff3c-2b25-42d4-b642-1ce173fde440",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "c40e4eda-e324-4d32-aa04-a24c48519ae3",
+                          "name": "Updated.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/account/subscriptions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "account",
+                                "subscriptions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-c40e4eda-e324-4d32-aa04-a24c48519ae3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-8753ea44-9a8e-4251-bdfc-ca4ec70fb9a4"
+                    }
+                  ],
+                  "id": "e35b1946-274f-403f-b652-be306db2cfe1",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-e35b1946-274f-403f-b652-be306db2cfe1"
+                },
+                {
+                  "name": "List Account Subscriptions",
+                  "id": "7aa308e5-45bc-4903-b1ad-a9c36baf8264",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account/subscriptions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account",
+                        "subscriptions"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ae2e8319-a225-4369-98cb-a4a45951b30a",
+                      "name": "Account subscriptions.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/account/subscriptions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "account",
+                            "subscriptions"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-ae2e8319-a225-4369-98cb-a4a45951b30a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-7aa308e5-45bc-4903-b1ad-a9c36baf8264"
+                }
+              ],
+              "id": "e99c10d9-a12f-4280-bf2d-7a0ef68055a1",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-e99c10d9-a12f-4280-bf2d-7a0ef68055a1"
+            },
+            {
+              "name": "Retrieve Current Account",
+              "id": "bfc6005f-3828-41c5-ae86-411268746af6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "account"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c337bf64-1a93-4d71-babd-5a59fd6c8e1d",
+                  "name": "Current authenticated account.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-c337bf64-1a93-4d71-babd-5a59fd6c8e1d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-bfc6005f-3828-41c5-ae86-411268746af6"
+            },
+            {
+              "name": "Update Current Account",
+              "id": "5bd0548c-a477-455f-a891-3fbb72646bfe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "account"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "87b2f5c5-8fea-42f5-ba04-f2ccabff3043",
+                  "name": "Updated.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-87b2f5c5-8fea-42f5-ba04-f2ccabff3043"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-5bd0548c-a477-455f-a891-3fbb72646bfe"
+            },
+            {
+              "name": "Create Account",
+              "id": "ee35be80-6ecb-43e9-95bf-de0b07709ca9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "account"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8abe1add-7813-4085-a38c-b6f70e11f263",
+                  "name": "Account created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"balance\": \"<float>\"\n}",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-8abe1add-7813-4085-a38c-b6f70e11f263"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-ee35be80-6ecb-43e9-95bf-de0b07709ca9"
+            }
+          ],
+          "id": "9b6920dc-092c-4ca2-88ff-450568abb515",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-9b6920dc-092c-4ca2-88ff-450568abb515"
+        },
+        {
+          "name": "coupons",
+          "item": [
+            {
+              "name": "{code}",
+              "item": [
+                {
+                  "name": "Validate Coupon Code",
+                  "id": "7d31d9f7-9d15-491b-a61a-b691bd86fd44",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/coupons/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "coupons",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c2d8ab52-3180-4207-9d67-9e0ff39f6f79",
+                          "key": "code",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "782d84cc-a846-4075-bcf7-61b6dd347985",
+                      "name": "Coupon validity.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/coupons/:code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "coupons",
+                            ":code"
+                          ],
+                          "variable": [
+                            {
+                              "key": "code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-782d84cc-a846-4075-bcf7-61b6dd347985"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-7d31d9f7-9d15-491b-a61a-b691bd86fd44"
+                }
+              ],
+              "id": "16145c79-deef-47a1-bb55-210faa726cdd",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-16145c79-deef-47a1-bb55-210faa726cdd"
+            }
+          ],
+          "id": "3543b17d-5332-4790-9f52-35a0fc8f8800",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-3543b17d-5332-4790-9f52-35a0fc8f8800"
+        },
+        {
+          "name": "giftcards",
+          "item": [
+            {
+              "name": "{code}",
+              "item": [
+                {
+                  "name": "Retrieve Gift Card Balance",
+                  "id": "e9ef3ad3-0d8a-400c-9705-b1a26652af4a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/giftcards/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "giftcards",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ec06664b-14e9-4c1f-aa8c-463612112dcf",
+                          "key": "code",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f73f44ce-9d49-4b36-be52-d6b6f7b473aa",
+                      "name": "Gift card balance and status.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/giftcards/:code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "giftcards",
+                            ":code"
+                          ],
+                          "variable": [
+                            {
+                              "key": "code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-f73f44ce-9d49-4b36-be52-d6b6f7b473aa"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-e9ef3ad3-0d8a-400c-9705-b1a26652af4a"
+                }
+              ],
+              "id": "8f45813a-d120-4192-8ec5-e059e52eb72d",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-8f45813a-d120-4192-8ec5-e059e52eb72d"
+            }
+          ],
+          "id": "b0008d9a-d9b6-4593-b0b0-142b34efbf3b",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-b0008d9a-d9b6-4593-b0b0-142b34efbf3b"
+        },
+        {
+          "name": "settings",
+          "item": [
+            {
+              "name": "payments",
+              "item": [
+                {
+                  "name": "Retrieve Payment Settings",
+                  "id": "060bf36b-c784-408e-9a65-7d6faabb3f34",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/settings/payments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "settings",
+                        "payments"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f7af562b-da50-4316-88f3-ab6eebd3066c",
+                      "name": "Public payment gateway configuration.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/settings/payments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "settings",
+                            "payments"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-f7af562b-da50-4316-88f3-ab6eebd3066c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-060bf36b-c784-408e-9a65-7d6faabb3f34"
+                }
+              ],
+              "id": "896c7293-c66c-46cd-b46a-a75bd43a01af",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-896c7293-c66c-46cd-b46a-a75bd43a01af"
+            },
+            {
+              "name": "currencies",
+              "item": [
+                {
+                  "name": "List Supported Currencies",
+                  "id": "ac02f599-40e7-4212-96bc-a64d6acadab6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/settings/currencies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "settings",
+                        "currencies"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "6c24d4da-076a-4dba-ae82-edfef7cb30a3",
+                      "name": "Currencies and exchange rates.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/settings/currencies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "settings",
+                            "currencies"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-6c24d4da-076a-4dba-ae82-edfef7cb30a3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-ac02f599-40e7-4212-96bc-a64d6acadab6"
+                }
+              ],
+              "id": "f173b5da-1235-45a8-9f0c-a0aee85e6f16",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-f173b5da-1235-45a8-9f0c-a0aee85e6f16"
+            },
+            {
+              "name": "menus",
+              "item": [
+                {
+                  "name": "List Navigation Menus",
+                  "id": "7b0f352b-b69a-42b9-a301-40ca105618a3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/settings/menus",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "settings",
+                        "menus"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "75d05a01-573e-47b3-9b2b-db80114131d8",
+                      "name": "Menus.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/settings/menus",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "settings",
+                            "menus"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-75d05a01-573e-47b3-9b2b-db80114131d8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-7b0f352b-b69a-42b9-a301-40ca105618a3"
+                }
+              ],
+              "id": "1d52098b-c71b-4f0b-a9bc-ca6d37be3418",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-1d52098b-c71b-4f0b-a9bc-ca6d37be3418"
+            },
+            {
+              "name": "Retrieve Store Settings",
+              "id": "44325b2a-c8ff-4bef-bd9c-5e86552d0038",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/settings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "settings"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7d04b4e4-1b63-4756-94dd-f95b34d1aa2f",
+                  "name": "Public store settings (currency",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/settings",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "settings"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-7d04b4e4-1b63-4756-94dd-f95b34d1aa2f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-44325b2a-c8ff-4bef-bd9c-5e86552d0038"
+            }
+          ],
+          "id": "ad240046-bf69-4af8-b2f8-66641fda9157",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-ad240046-bf69-4af8-b2f8-66641fda9157"
+        },
+        {
+          "name": "content",
+          "item": [
+            {
+              "name": "{model}",
+              "item": [
+                {
+                  "name": "{slug}",
+                  "item": [
+                    {
+                      "name": "Retrieve Content Record",
+                      "id": "d40d1ad2-1fd4-4654-a9bf-e2e968d6ca75",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/content/:model/:slug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "content",
+                            ":model",
+                            ":slug"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ccf07ba7-9339-478b-a0b2-b011ed8fd52c",
+                              "key": "model",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "1851194a-e5f3-4f9a-aabe-7485961f8661",
+                              "key": "slug",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "2a601515-b339-41be-94ad-2cb365ec9773",
+                          "name": "Record.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/content/:model/:slug",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "content",
+                                ":model",
+                                ":slug"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "model"
+                                },
+                                {
+                                  "key": "slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:18:53.000Z",
+                          "updatedAt": "2026-06-05T15:18:53.000Z",
+                          "uid": "35240-2a601515-b339-41be-94ad-2cb365ec9773"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-d40d1ad2-1fd4-4654-a9bf-e2e968d6ca75"
+                    }
+                  ],
+                  "id": "8f01f5a3-fae5-48b3-94fa-79255fb77c0e",
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-8f01f5a3-fae5-48b3-94fa-79255fb77c0e"
+                },
+                {
+                  "name": "List Content Records",
+                  "id": "383598a5-30e1-4779-a840-56e4ec095e7b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/content/:model",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "content",
+                        ":model"
+                      ],
+                      "variable": [
+                        {
+                          "id": "18c17145-4acf-41b6-bafc-4dae65367858",
+                          "key": "model",
+                          "value": "<string>",
+                          "description": "(Required) Custom content model slug."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c2c82720-8728-4411-a10c-0659d273deb0",
+                      "name": "Records.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/content/:model",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "content",
+                            ":model"
+                          ],
+                          "variable": [
+                            {
+                              "key": "model"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:18:53.000Z",
+                      "updatedAt": "2026-06-05T15:18:53.000Z",
+                      "uid": "35240-c2c82720-8728-4411-a10c-0659d273deb0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:18:53.000Z",
+                  "updatedAt": "2026-06-05T15:18:53.000Z",
+                  "uid": "35240-383598a5-30e1-4779-a840-56e4ec095e7b"
+                }
+              ],
+              "id": "6e1e8309-06f6-4f48-8f85-b11855756124",
+              "createdAt": "2026-06-05T15:18:53.000Z",
+              "updatedAt": "2026-06-05T15:18:53.000Z",
+              "uid": "35240-6e1e8309-06f6-4f48-8f85-b11855756124"
+            }
+          ],
+          "id": "20e7c703-9552-4252-9c9f-1f10427e9f97",
+          "createdAt": "2026-06-05T15:18:53.000Z",
+          "updatedAt": "2026-06-05T15:18:53.000Z",
+          "uid": "35240-20e7c703-9552-4252-9c9f-1f10427e9f97"
+        }
+      ],
+      "id": "3bfdedc5-5a42-4364-904f-4675891d3245",
+      "createdAt": "2026-06-05T15:18:53.000Z",
+      "updatedAt": "2026-06-05T15:18:53.000Z",
+      "uid": "35240-3bfdedc5-5a42-4364-904f-4675891d3245"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "storeId",
+      "value": "my-store"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{storeId}}.swell.store"
+    }
+  ]
+}
