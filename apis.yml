@@ -78,15 +78,15 @@ apis:
   - url: json-structure/swell-account-structure.json
     type: JSONStructure
   - url: examples/swell-product-create-example.json
-    type: Example
+    type: Examples
   - url: examples/swell-order-create-example.json
-    type: Example
+    type: Examples
   - url: examples/swell-subscription-create-example.json
-    type: Example
+    type: Examples
   - url: examples/swell-account-create-example.json
-    type: Example
+    type: Examples
   - url: examples/swell-webhook-event-example.json
-    type: Example
+    type: Examples
   description: >-
     Server-side REST API authorized with a secret API key and store ID. Covers products, variants, stock, categories,
     attributes, purchase links, carts, orders, payments, refunds, shipments, returns, subscriptions, subscription
@@ -111,7 +111,7 @@ apis:
   - url: openapi/swell-frontend-api-openapi.yml
     type: OpenAPI
   - url: examples/swell-cart-add-item-example.json
-    type: Example
+    type: Examples
   description: >-
     Public-key-authorized REST API designed for storefronts, JAMstack apps, and SSR frameworks. Powers Swell.js and
     the official Next.js (Horizon, verswell-commerce, nextjs-commerce, nextjs-builder) and Nuxt (Origin) headless
@@ -153,7 +153,7 @@ apis:
   - url: https://developers.swell.is/backend-api/webhooks
     type: Documentation
   - url: examples/swell-webhook-event-example.json
-    type: Example
+    type: Examples
   description: >-
     Event-driven HTTP callbacks for cart, order, subscription, payment, account, and product lifecycle events.
     Configurable via the dashboard (Developer → Webhooks) or programmatically through the Backend API and Swell Apps.
@@ -173,10 +173,10 @@ apis:
   - url: https://developers.swell.is/apps/overview
     type: Documentation
   - url: https://github.com/swellstores/apps-sdk
-    type: SDK
+    type: SDKs
     name: Swell Apps SDK
   - url: https://github.com/swellstores/app-types
-    type: SDK
+    type: SDKs
     name: Swell Apps TypeScript Bindings
   description: >-
     Swell Apps extend the platform with custom data models (added fields or new entities), events (triggering
@@ -191,56 +191,53 @@ maintainers:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/swell/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/swell-io-apply-coupon-to-cart-workflow.yml
-    name: Swell Create Cart and Apply Coupon
-    summary: Create a backend cart with items and apply a coupon code to it.
-  - url: arazzo/swell-io-build-cart-convert-order-workflow.yml
-    name: Swell Build Cart and Convert to Order
-    summary: Create a cart, populate its items, then convert it into an order.
-  - url: arazzo/swell-io-cancel-subscription-workflow.yml
-    name: Swell Find and Cancel Active Subscription
-    summary: Locate an account's active subscription and cancel it, branching when none exists.
-  - url: arazzo/swell-io-capture-refund-payment-workflow.yml
-    name: Swell Capture and Refund Payment
-    summary: Record a payment against an order, then issue a refund against that payment.
-  - url: arazzo/swell-io-categorize-product-workflow.yml
-    name: Swell Create Category and Product
-    summary: Create a category and then create a product assigned to that category.
-  - url: arazzo/swell-io-create-product-workflow.yml
-    name: Swell Create and Verify Product
-    summary: Create a product in the catalog and immediately retrieve it to confirm it was stored.
-  - url: arazzo/swell-io-create-subscription-workflow.yml
-    name: Swell Create and Verify Subscription
-    summary: Create a recurring subscription for an account and product, then read it back.
-  - url: arazzo/swell-io-find-or-create-customer-order-workflow.yml
-    name: Swell Find-or-Create Customer and Order
-    summary: Look up a customer by email and reuse it or create it, then place an order.
-  - url: arazzo/swell-io-onboard-customer-order-workflow.yml
-    name: Swell Onboard Customer and Place Order
-    summary: Create a customer account and immediately place an order for that account.
-  - url: arazzo/swell-io-storefront-apply-coupon-workflow.yml
-    name: Swell Storefront Validate and Apply Coupon
-    summary: Validate a coupon code, then apply it to the session cart only when it is valid.
-  - url: arazzo/swell-io-storefront-checkout-workflow.yml
-    name: Swell Storefront Add Item and Submit Order
-    summary: Look up a product, add it to the session cart, then submit the cart as an order.
-  - url: arazzo/swell-io-storefront-register-login-workflow.yml
-    name: Swell Storefront Register and Log In
-    summary: Create a storefront customer account and immediately authenticate the session.
-  - url: arazzo/swell-io-storefront-update-cart-item-workflow.yml
-    name: Swell Storefront Adjust Cart Item Quantity
-    summary: Read the session cart, then update the quantity of one of its line items.
+- type: Arazzo
+  url: arazzo/swell-io-apply-coupon-to-cart-workflow.yml
+  name: Swell Create Cart and Apply Coupon
+- type: Arazzo
+  url: arazzo/swell-io-build-cart-convert-order-workflow.yml
+  name: Swell Build Cart and Convert to Order
+- type: Arazzo
+  url: arazzo/swell-io-cancel-subscription-workflow.yml
+  name: Swell Find and Cancel Active Subscription
+- type: Arazzo
+  url: arazzo/swell-io-capture-refund-payment-workflow.yml
+  name: Swell Capture and Refund Payment
+- type: Arazzo
+  url: arazzo/swell-io-categorize-product-workflow.yml
+  name: Swell Create Category and Product
+- type: Arazzo
+  url: arazzo/swell-io-create-product-workflow.yml
+  name: Swell Create and Verify Product
+- type: Arazzo
+  url: arazzo/swell-io-create-subscription-workflow.yml
+  name: Swell Create and Verify Subscription
+- type: Arazzo
+  url: arazzo/swell-io-find-or-create-customer-order-workflow.yml
+  name: Swell Find-or-Create Customer and Order
+- type: Arazzo
+  url: arazzo/swell-io-onboard-customer-order-workflow.yml
+  name: Swell Onboard Customer and Place Order
+- type: Arazzo
+  url: arazzo/swell-io-storefront-apply-coupon-workflow.yml
+  name: Swell Storefront Validate and Apply Coupon
+- type: Arazzo
+  url: arazzo/swell-io-storefront-checkout-workflow.yml
+  name: Swell Storefront Add Item and Submit Order
+- type: Arazzo
+  url: arazzo/swell-io-storefront-register-login-workflow.yml
+  name: Swell Storefront Register and Log In
+- type: Arazzo
+  url: arazzo/swell-io-storefront-update-cart-item-workflow.yml
+  name: Swell Storefront Adjust Cart Item Quantity
 - url: https://www.swell.is/
-  type: Homepage
+  type: Website
 - url: https://www.swell.is/
   type: DeveloperPortal
 - url: https://developers.swell.is
   type: Documentation
 - url: https://developers.swell.is/guides/quickstart-guide
-  type: Quickstart
+  type: GettingStarted
 - url: https://developers.swell.is/guides/core-concepts/platform-overview
   type: GettingStarted
 - url: https://www.swell.is/features
@@ -249,7 +246,7 @@ common:
 - url: https://www.swell.is/pricing
   type: Pricing
 - url: https://swell.store/signup
-  type: SignUp
+  type: Signup
 - url: https://swell.store/admin/login
   type: Login
 - url: https://swell.store/admin
@@ -271,29 +268,29 @@ common:
 - url: https://github.com/swellstores
   type: GitHubOrganization
 - url: https://github.com/orgs/swellstores/discussions
-  type: Forum
+  type: Forums
   name: Swell Community Discussions
 - url: https://x.com/swellcommerce
   type: X
 - url: https://www.linkedin.com/company/swellcommerce/
   type: LinkedIn
 - url: https://github.com/swellstores/swell-node
-  type: SDK
+  type: SDKs
   name: Swell Node.js SDK
 - url: https://github.com/swellstores/swell-php
-  type: SDK
+  type: SDKs
   name: Swell PHP SDK
 - url: https://github.com/swellstores/swell-js
-  type: SDK
+  type: SDKs
   name: Swell.js Universal Storefront SDK
 - url: https://github.com/swellstores/swellpy
-  type: SDK
+  type: SDKs
   name: Swellpy (community Python SDK)
 - url: https://github.com/swellstores/apps-sdk
-  type: SDK
+  type: SDKs
   name: Swell Apps SDK
 - url: https://github.com/swellstores/app-types
-  type: SDK
+  type: SDKs
   name: Swell Apps TypeScript Bindings
 - url: https://github.com/swellstores/horizon
   type: Resources
