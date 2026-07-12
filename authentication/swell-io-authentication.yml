@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/swell-backend-api-openapi.yml, openapi/swell-frontend-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: SwellStoreId
+  type: apiKey
+  in: header
+  parameter: X-Store-Id
+  description: Your Swell store ID, found in the Developer section of the dashboard.
+  sources:
+  - openapi/swell-backend-api-openapi.yml
+- name: SwellSecretKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>`
+    or equivalent custom header by official libraries.'
+  sources:
+  - openapi/swell-backend-api-openapi.yml
+  - openapi/swell-frontend-api-openapi.yml

@@ -189,6 +189,10 @@ maintainers:
   email: kin@apievangelist.com
   url: https://kinlane.com
 common:
+- type: DomainSecurity
+  url: security/swell-io-domain-security.yml
+- type: Authentication
+  url: authentication/swell-io-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/swell/overview
 - type: Arazzo
