@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Addresses Account API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Account
+  description: Authenticated customer account operations.
+paths:
+  /api/account:
+    get:
+      tags:
+      - Account
+      summary: Retrieve Current Account
+      operationId: frontendGetAccount
+      responses:
+        '200':
+          description: Current authenticated account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    put:
+      tags:
+      - Account
+      summary: Update Current Account
+      operationId: frontendUpdateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    post:
+      tags:
+      - Account
+      summary: Create Account
+      operationId: frontendCreateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: Account created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /api/account/addresses:
+    get:
+      tags:
+      - Account
+      summary: List Account Addresses
+      operationId: frontendListAccountAddresses
+      responses:
+        '200':
+          description: Addresses.
+    post:
+      tags:
+      - Account
+      summary: Add Account Address
+      operationId: frontendCreateAccountAddress
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created.
+  /api/account/addresses/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      tags:
+      - Account
+      summary: Update Account Address
+      operationId: frontendUpdateAccountAddress
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated.
+    delete:
+      tags:
+      - Account
+      summary: Delete Account Address
+      operationId: frontendDeleteAccountAddress
+      responses:
+        '200':
+          description: Deleted.
+  /api/account/cards:
+    get:
+      tags:
+      - Account
+      summary: List Saved Cards
+      operationId: frontendListAccountCards
+      responses:
+        '200':
+          description: Saved cards.
+    post:
+      tags:
+      - Account
+      summary: Tokenize Saved Card
+      operationId: frontendCreateAccountCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created.
+  /api/account/cards/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      tags:
+      - Account
+      summary: Remove Saved Card
+      operationId: frontendDeleteAccountCard
+      responses:
+        '200':
+          description: Removed.
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        currency:
+          type: string
+        balance:
+          $ref: '#/components/schemas/Money'
+    Money:
+      type: number
+      format: float
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

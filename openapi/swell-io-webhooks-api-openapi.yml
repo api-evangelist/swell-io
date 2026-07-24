@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Webhooks API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Webhooks
+  description: Webhook subscriptions for receiving event callbacks.
+paths:
+  /webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: List Webhook Subscriptions
+      operationId: listWebhooks
+      responses:
+        '200':
+          description: Webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookList'
+    post:
+      tags:
+      - Webhooks
+      summary: Create Webhook Subscription
+      operationId: createWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreate'
+      responses:
+        '201':
+          description: Webhook subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Webhooks
+      summary: Retrieve Webhook Subscription
+      operationId: getWebhook
+      responses:
+        '200':
+          description: Webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    put:
+      tags:
+      - Webhooks
+      summary: Update Webhook Subscription
+      operationId: updateWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookUpdate'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete Webhook Subscription
+      operationId: deleteWebhook
+      responses:
+        '200':
+          description: Deleted.
+components:
+  schemas:
+    WebhookUpdate:
+      $ref: '#/components/schemas/Webhook'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Webhook:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        auto_disabled:
+          type: boolean
+        schedule:
+          type: object
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type: string
+          format: date-time
+      required:
+      - url
+      - events
+    WebhookCreate:
+      $ref: '#/components/schemas/Webhook'
+    WebhookList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

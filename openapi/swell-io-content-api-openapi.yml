@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Content API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Content
+  description: Pages, custom data models, and stored records.
+paths:
+  /pages:
+    get:
+      tags:
+      - Content
+      summary: List Content Pages
+      operationId: listPages
+      responses:
+        '200':
+          description: Pages.
+    post:
+      tags:
+      - Content
+      summary: Create Content Page
+      operationId: createPage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created.
+  /pages/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Content
+      summary: Retrieve Content Page
+      operationId: getPage
+      responses:
+        '200':
+          description: Page.
+    put:
+      tags:
+      - Content
+      summary: Update Content Page
+      operationId: updatePage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated.
+    delete:
+      tags:
+      - Content
+      summary: Delete Content Page
+      operationId: deletePage
+      responses:
+        '200':
+          description: Deleted.
+  /api/settings/menus:
+    get:
+      tags:
+      - Content
+      summary: List Navigation Menus
+      operationId: frontendListMenus
+      responses:
+        '200':
+          description: Menus.
+  /api/content/{model}:
+    parameters:
+    - name: model
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Custom content model slug.
+    get:
+      tags:
+      - Content
+      summary: List Content Records
+      operationId: frontendListContent
+      responses:
+        '200':
+          description: Records.
+  /api/content/{model}/{slug}:
+    parameters:
+    - name: model
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Content
+      summary: Retrieve Content Record
+      operationId: frontendGetContent
+      responses:
+        '200':
+          description: Record.
+components:
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

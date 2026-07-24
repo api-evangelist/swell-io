@@ -1,0 +1,207 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Carts API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Carts
+  description: Pending purchase requests that can be converted into orders.
+paths:
+  /carts:
+    get:
+      tags:
+      - Carts
+      summary: List Carts
+      operationId: listCarts
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Where'
+      responses:
+        '200':
+          description: A page of carts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartList'
+    post:
+      tags:
+      - Carts
+      summary: Create Cart
+      operationId: createCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartCreate'
+      responses:
+        '201':
+          description: Cart created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /carts/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Carts
+      summary: Retrieve Cart
+      operationId: getCart
+      responses:
+        '200':
+          description: Cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    put:
+      tags:
+      - Carts
+      summary: Update Cart
+      operationId: updateCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartUpdate'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    delete:
+      tags:
+      - Carts
+      summary: Delete Cart
+      operationId: deleteCart
+      responses:
+        '200':
+          description: Deleted.
+components:
+  schemas:
+    CartCreate:
+      $ref: '#/components/schemas/Cart'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Cart:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        status:
+          type: string
+          enum:
+          - active
+          - converted
+          - abandoned
+          - recovered
+        account_id:
+          $ref: '#/components/schemas/ObjectId'
+        items:
+          type: array
+          items:
+            type: object
+        billing:
+          type: object
+        shipping:
+          type: object
+        sub_total:
+          $ref: '#/components/schemas/Money'
+        discount_total:
+          $ref: '#/components/schemas/Money'
+        tax_total:
+          $ref: '#/components/schemas/Money'
+        shipment_total:
+          $ref: '#/components/schemas/Money'
+        grand_total:
+          $ref: '#/components/schemas/Money'
+        coupon_code:
+          type: string
+        currency:
+          type: string
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type: string
+          format: date-time
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    CartList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+    CartUpdate:
+      $ref: '#/components/schemas/Cart'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

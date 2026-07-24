@@ -1,0 +1,221 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Accounts API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Accounts
+  description: Customer accounts including billing/shipping, saved cards, and history.
+paths:
+  /accounts:
+    get:
+      tags:
+      - Accounts
+      summary: List Accounts
+      operationId: listAccounts
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Where'
+      responses:
+        '200':
+          description: A page of accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountList'
+    post:
+      tags:
+      - Accounts
+      summary: Create Account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCreate'
+      responses:
+        '201':
+          description: Account created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /accounts/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Accounts
+      summary: Retrieve Account
+      operationId: getAccount
+      responses:
+        '200':
+          description: Account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    put:
+      tags:
+      - Accounts
+      summary: Update Account
+      operationId: updateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountUpdate'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    delete:
+      tags:
+      - Accounts
+      summary: Delete Account
+      operationId: deleteAccount
+      responses:
+        '200':
+          description: Deleted.
+components:
+  schemas:
+    AccountCreate:
+      $ref: '#/components/schemas/Account'
+    AccountUpdate:
+      $ref: '#/components/schemas/Account'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    AccountList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    Account:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        type:
+          type: string
+          enum:
+          - individual
+          - business
+        currency:
+          type: string
+        group:
+          type: string
+        balance:
+          $ref: '#/components/schemas/Money'
+        billing:
+          type: object
+        shipping:
+          type: object
+        order_count:
+          type: integer
+        order_value:
+          $ref: '#/components/schemas/Money'
+        cart_abandoned_count:
+          type: integer
+        email_optin:
+          type: boolean
+        date_first_order:
+          type: string
+          format: date-time
+        date_last_order:
+          type: string
+          format: date-time
+        date_last_login:
+          type: string
+          format: date-time
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type: string
+          format: date-time
+      required:
+      - email
+  parameters:
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

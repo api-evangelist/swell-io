@@ -1,0 +1,257 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Subscriptions API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Subscriptions
+  description: Recurring billing subscriptions and plans.
+paths:
+  /subscriptions:
+    get:
+      tags:
+      - Subscriptions
+      summary: List Subscriptions
+      operationId: listSubscriptions
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Where'
+      responses:
+        '200':
+          description: A page of subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionList'
+    post:
+      tags:
+      - Subscriptions
+      summary: Create Subscription
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionCreate'
+      responses:
+        '201':
+          description: Subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /subscriptions/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieve Subscription
+      operationId: getSubscription
+      responses:
+        '200':
+          description: Subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    put:
+      tags:
+      - Subscriptions
+      summary: Update Subscription
+      operationId: updateSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionUpdate'
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    delete:
+      tags:
+      - Subscriptions
+      summary: Cancel Subscription
+      operationId: cancelSubscription
+      responses:
+        '200':
+          description: Subscription canceled.
+  /api/account/subscriptions:
+    get:
+      tags:
+      - Subscriptions
+      summary: List Account Subscriptions
+      operationId: frontendListAccountSubscriptions
+      responses:
+        '200':
+          description: Account subscriptions.
+  /api/account/subscriptions/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieve Account Subscription
+      operationId: frontendGetAccountSubscription
+      responses:
+        '200':
+          description: Subscription.
+    put:
+      tags:
+      - Subscriptions
+      summary: Update Account Subscription
+      operationId: frontendUpdateAccountSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated.
+components:
+  schemas:
+    SubscriptionCreate:
+      $ref: '#/components/schemas/Subscription'
+    Subscription:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        number:
+          type: string
+        account_id:
+          $ref: '#/components/schemas/ObjectId'
+        product_id:
+          $ref: '#/components/schemas/ObjectId'
+        plan_id:
+          $ref: '#/components/schemas/ObjectId'
+        status:
+          type: string
+          enum:
+          - active
+          - paid
+          - unpaid
+          - canceled
+          - trial
+          - pastdue
+          - complete
+          - paused
+        interval:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - yearly
+        interval_count:
+          type: integer
+        trial_days:
+          type: integer
+        price:
+          $ref: '#/components/schemas/Money'
+        recurring_total:
+          $ref: '#/components/schemas/Money'
+        date_period_start:
+          type: string
+          format: date-time
+        date_period_end:
+          type: string
+          format: date-time
+        date_canceled:
+          type: string
+          format: date-time
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type: string
+          format: date-time
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    SubscriptionUpdate:
+      $ref: '#/components/schemas/Subscription'
+    SubscriptionList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+  parameters:
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

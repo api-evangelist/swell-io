@@ -1,0 +1,447 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Products API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Products
+  description: Product catalog including variants, options, bundles, gift cards, and subscription products.
+paths:
+  /products:
+    get:
+      tags:
+      - Products
+      summary: List Products
+      operationId: listProducts
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Where'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Search'
+      - $ref: '#/components/parameters/Expand'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: A page of products.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+    post:
+      tags:
+      - Products
+      summary: Create Product
+      operationId: createProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreate'
+      responses:
+        '201':
+          description: Product created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+  /products/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Products
+      summary: Retrieve Product
+      operationId: getProduct
+      responses:
+        '200':
+          description: The requested product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    put:
+      tags:
+      - Products
+      summary: Update Product
+      operationId: updateProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdate'
+      responses:
+        '200':
+          description: Product updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    delete:
+      tags:
+      - Products
+      summary: Delete Product
+      operationId: deleteProduct
+      responses:
+        '200':
+          description: Product deleted.
+  /api/products:
+    get:
+      tags:
+      - Products
+      summary: List Products
+      operationId: frontendListProducts
+      parameters:
+      - $ref: '#/components/parameters/Limit_2'
+      - $ref: '#/components/parameters/Page_2'
+      - $ref: '#/components/parameters/Search_2'
+      - $ref: '#/components/parameters/Category'
+      - $ref: '#/components/parameters/Sort_2'
+      - $ref: '#/components/parameters/Expand_2'
+      responses:
+        '200':
+          description: Page of public products.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList_2'
+  /api/products/{slug}:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Product slug or ID.
+    get:
+      tags:
+      - Products
+      summary: Retrieve Product
+      operationId: frontendGetProduct
+      responses:
+        '200':
+          description: Public product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product_2'
+components:
+  parameters:
+    Category:
+      name: category
+      in: query
+      description: Filter by category ID or slug.
+      schema:
+        type: string
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    Page_2:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Expand:
+      name: expand
+      in: query
+      description: Include related objects, e.g. expand=account or expand=variants:10.
+      schema:
+        type: string
+    Search:
+      name: search
+      in: query
+      description: Full-text search across model-specific searchable fields.
+      schema:
+        type: string
+    Expand_2:
+      name: expand
+      in: query
+      schema:
+        type: string
+    Sort_2:
+      name: sort
+      in: query
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Sort:
+      name: sort
+      in: query
+      description: Sort expression, e.g. "name asc" or "date_created desc".
+      schema:
+        type: string
+    Limit_2:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 15
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Search_2:
+      name: search
+      in: query
+      schema:
+        type: string
+  schemas:
+    ProductList_2:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product_2'
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    ProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pages:
+          type: object
+    ProductUpdate:
+      allOf:
+      - $ref: '#/components/schemas/Product'
+    Product:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        name:
+          type: string
+        slug:
+          type: string
+        sku:
+          type: string
+        active:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - standard
+          - subscription
+          - bundle
+          - giftcard
+        delivery:
+          type: string
+          enum:
+          - shipment
+          - subscription
+          - giftcard
+          - null
+          nullable: true
+        price:
+          $ref: '#/components/schemas/Money'
+        sale_price:
+          $ref: '#/components/schemas/Money'
+        sale:
+          type: boolean
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        description:
+          type: string
+        stock_tracking:
+          type: boolean
+        stock_level:
+          type: integer
+        stock_status:
+          type: string
+          enum:
+          - in_stock
+          - out_of_stock
+          - preorder
+          - backorder
+        stock_purchasable:
+          type: boolean
+        variable:
+          type: boolean
+        variants:
+          type: array
+          items:
+            type: object
+        options:
+          type: array
+          items:
+            type: object
+        bundle:
+          type: boolean
+        bundle_items:
+          type: array
+          items:
+            type: object
+        purchase_options:
+          type: object
+        category_id:
+          $ref: '#/components/schemas/ObjectId'
+        categories:
+          type: array
+          items:
+            type: object
+        related_product_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/ObjectId'
+        cross_sells:
+          type: array
+          items:
+            type: object
+        up_sells:
+          type: array
+          items:
+            type: object
+        shipment_weight:
+          type: number
+        shipment_dimensions:
+          type: object
+        shipment_location:
+          type: string
+        shipment_prices:
+          type: array
+          items:
+            type: object
+        images:
+          type: array
+          items:
+            type: object
+        tags:
+          type: array
+          items:
+            type: string
+        meta_title:
+          type: string
+        meta_keywords:
+          type: string
+        meta_description:
+          type: string
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type: string
+          format: date-time
+      required:
+      - name
+      - sku
+    ProductCreate:
+      allOf:
+      - $ref: '#/components/schemas/Product'
+    Money_2:
+      type: number
+      format: float
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Product_2:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        active:
+          type: boolean
+        price:
+          $ref: '#/components/schemas/Money_2'
+        sale_price:
+          $ref: '#/components/schemas/Money_2'
+        currency:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        images:
+          type: array
+          items:
+            type: object
+        options:
+          type: array
+          items:
+            type: object
+        variants:
+          type: array
+          items:
+            type: object
+        purchase_options:
+          type: object
+        meta_title:
+          type: string
+        meta_description:
+          type: string
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Cart API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Cart
+  description: Session-scoped shopping cart for the current visitor.
+paths:
+  /api/cart:
+    get:
+      tags:
+      - Cart
+      summary: Retrieve Current Cart
+      operationId: frontendGetCart
+      responses:
+        '200':
+          description: Current cart for the session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    put:
+      tags:
+      - Cart
+      summary: Update Current Cart
+      operationId: frontendUpdateCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: Updated cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /api/cart/items:
+    post:
+      tags:
+      - Cart
+      summary: Add Item To Cart
+      operationId: frontendAddCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                quantity:
+                  type: integer
+                variant_id:
+                  type: string
+                options:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Updated cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /api/cart/items/{itemId}:
+    parameters:
+    - name: itemId
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      tags:
+      - Cart
+      summary: Update Cart Item
+      operationId: frontendUpdateCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          description: Updated.
+    delete:
+      tags:
+      - Cart
+      summary: Remove Cart Item
+      operationId: frontendRemoveCartItem
+      responses:
+        '200':
+          description: Removed.
+  /api/cart/apply-coupon:
+    put:
+      tags:
+      - Cart
+      summary: Apply Coupon To Cart
+      operationId: frontendApplyCoupon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+      responses:
+        '200':
+          description: Coupon applied.
+  /api/cart/apply-giftcard:
+    put:
+      tags:
+      - Cart
+      summary: Apply Gift Card To Cart
+      operationId: frontendApplyGiftcard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+      responses:
+        '200':
+          description: Gift card applied.
+  /api/cart/recover/{token}:
+    parameters:
+    - name: token
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Cart
+      summary: Recover Cart
+      operationId: frontendRecoverCart
+      responses:
+        '200':
+          description: Recovered cart.
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        account_id:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+        billing:
+          type: object
+        shipping:
+          type: object
+        sub_total:
+          $ref: '#/components/schemas/Money'
+        tax_total:
+          $ref: '#/components/schemas/Money'
+        discount_total:
+          $ref: '#/components/schemas/Money'
+        shipment_total:
+          $ref: '#/components/schemas/Money'
+        grand_total:
+          $ref: '#/components/schemas/Money'
+        coupon_code:
+          type: string
+        currency:
+          type: string
+    Money:
+      type: number
+      format: float
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

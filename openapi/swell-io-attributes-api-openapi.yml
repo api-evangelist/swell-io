@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Attributes API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Attributes
+  description: Product attributes used for filtering and faceted search.
+paths:
+  /attributes:
+    get:
+      tags:
+      - Attributes
+      summary: List Attributes
+      operationId: listAttributes
+      responses:
+        '200':
+          description: Attributes.
+    post:
+      tags:
+      - Attributes
+      summary: Create Attribute
+      operationId: createAttribute
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created.
+  /api/attributes:
+    get:
+      tags:
+      - Attributes
+      summary: List Attributes
+      operationId: frontendListAttributes
+      responses:
+        '200':
+          description: Attributes.
+components:
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'

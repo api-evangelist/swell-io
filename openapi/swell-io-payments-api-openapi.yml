@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Swell Backend Account Addresses Payments API
+  version: 2025-01
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  contact:
+    name: Swell Developer Support
+    url: https://developers.swell.is
+    email: support@swell.is
+  license:
+    name: API Profile — API Evangelist
+    url: https://apievangelist.com
+servers:
+- url: https://api.swell.store
+  description: Production Backend API
+security:
+- SwellStoreId: []
+  SwellSecretKey: []
+tags:
+- name: Payments
+  description: Payment transactions, refunds, and gateway settlement.
+paths:
+  /payments:
+    get:
+      tags:
+      - Payments
+      summary: List Payments
+      operationId: listPayments
+      responses:
+        '200':
+          description: A page of payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentList'
+    post:
+      tags:
+      - Payments
+      summary: Create Payment
+      operationId: createPayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCreate'
+      responses:
+        '201':
+          description: Payment created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+  /payments/{id}:
+    parameters:
+    - $ref: '#/components/parameters/PathId'
+    get:
+      tags:
+      - Payments
+      summary: Retrieve Payment
+      operationId: getPayment
+      responses:
+        '200':
+          description: Payment.
+    put:
+      tags:
+      - Payments
+      summary: Update Payment
+      operationId: updatePayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated.
+components:
+  schemas:
+    PaymentCreate:
+      $ref: '#/components/schemas/Payment'
+    PaymentList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    Payment:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ObjectId'
+        number:
+          type: string
+        account_id:
+          $ref: '#/components/schemas/ObjectId'
+        order_id:
+          $ref: '#/components/schemas/ObjectId'
+        amount:
+          $ref: '#/components/schemas/Money'
+        amount_refundable:
+          $ref: '#/components/schemas/Money'
+        amount_refunded:
+          $ref: '#/components/schemas/Money'
+        method:
+          type: string
+          enum:
+          - card
+          - account
+          - amazon
+          - paypal
+          - manual
+        gateway:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - error
+          - success
+          - authorized
+        transaction_id:
+          type: string
+        currency:
+          type: string
+        date_created:
+          type: string
+          format: date-time
+        date_updated:
+          type: string
+          format: date-time
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+  securitySchemes:
+    SwellStoreId:
+      type: apiKey
+      in: header
+      name: X-Store-Id
+      description: Your Swell store ID, found in the Developer section of the dashboard.
+    SwellSecretKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'
