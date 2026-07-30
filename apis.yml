@@ -1,4 +1,18 @@
 aid: swell-io
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/swell-io.png
 name: Swell
 description: >-
   Swell is a customizable, API-first headless commerce platform powering modern B2C, B2B, subscription, and marketplace
@@ -31,94 +45,6 @@ tags:
 - Catalog
 - Internationalization
 apis:
-- aid: swell-io:swell-backend-api
-  name: Swell Backend API
-  tags:
-  - Commerce
-  - Backend
-  - REST
-  - Catalog
-  - Orders
-  - Payments
-  - Subscriptions
-  humanURL: https://developers.swell.is/backend-api/introduction
-  baseURL: https://api.swell.store
-  properties:
-  - url: https://developers.swell.is/backend-api/introduction
-    type: Documentation
-  - url: https://developers.swell.is/backend-api/authentication
-    type: Authentication
-  - url: https://developers.swell.is/backend-api/querying
-    type: APIReference
-  - url: https://developers.swell.is/backend-api/errors
-    type: APIReference
-    name: Errors and Error Codes
-  - url: openapi/swell-backend-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/swell-product-schema.json
-    type: JSONSchema
-  - url: json-schema/swell-order-schema.json
-    type: JSONSchema
-  - url: json-schema/swell-cart-schema.json
-    type: JSONSchema
-  - url: json-schema/swell-subscription-schema.json
-    type: JSONSchema
-  - url: json-schema/swell-account-schema.json
-    type: JSONSchema
-  - url: json-schema/swell-payment-schema.json
-    type: JSONSchema
-  - url: json-schema/swell-webhook-schema.json
-    type: JSONSchema
-  - url: json-structure/swell-product-structure.json
-    type: JSONStructure
-  - url: json-structure/swell-order-structure.json
-    type: JSONStructure
-  - url: json-structure/swell-subscription-structure.json
-    type: JSONStructure
-  - url: json-structure/swell-account-structure.json
-    type: JSONStructure
-  - url: examples/swell-product-create-example.json
-    type: Examples
-  - url: examples/swell-order-create-example.json
-    type: Examples
-  - url: examples/swell-subscription-create-example.json
-    type: Examples
-  - url: examples/swell-account-create-example.json
-    type: Examples
-  - url: examples/swell-webhook-event-example.json
-    type: Examples
-  description: >-
-    Server-side REST API authorized with a secret API key and store ID. Covers products, variants, stock, categories,
-    attributes, purchase links, carts, orders, payments, refunds, shipments, returns, subscriptions, subscription
-    plans, accounts, addresses, cards, credits, invoices, coupons, promotions, gift cards, content pages, files,
-    events, and webhooks. Supports MongoDB-style `where` filters with operators ($eq, $ne, $gt, $gte, $lt, $lte, $in,
-    $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size), `sort`, `limit` (1-1000, default 15),
-    `page`, `search`, `expand`, `fields`, and `include`. Official libraries connect over a custom wire protocol on
-    port 8443 for improved performance and caching; HTTPS REST is available at api.swell.store.
-- aid: swell-io:swell-frontend-api
-  name: Swell Frontend API
-  tags:
-  - Commerce
-  - Frontend
-  - Storefront
-  - REST
-  - JAMstack
-  humanURL: https://developers.swell.is/frontend-api/introduction
-  baseURL: https://{store-id}.swell.store
-  properties:
-  - url: https://developers.swell.is/frontend-api/introduction
-    type: Documentation
-  - url: openapi/swell-frontend-api-openapi.yml
-    type: OpenAPI
-  - url: examples/swell-cart-add-item-example.json
-    type: Examples
-  description: >-
-    Public-key-authorized REST API designed for storefronts, JAMstack apps, and SSR frameworks. Powers Swell.js and
-    the official Next.js (Horizon, verswell-commerce, nextjs-commerce, nextjs-builder) and Nuxt (Origin) headless
-    starters. Exposes products, categories, attributes, carts (with coupon and gift-card application, recovery, and
-    order submission), authenticated customer accounts (login, recovery, addresses, cards, orders, subscriptions),
-    store settings, payment settings, currencies, menus, and content models. Authenticated with a public key (pk_...)
-    and a session token making it safe to use from any client context.
 - aid: swell-io:swell-graphql-api
   name: Swell GraphQL API
   tags:
@@ -137,11 +63,12 @@ apis:
   - url: graphql/swell-io-graphql.md
     type: GraphQL
   description: >-
-    Experimental (alpha) GraphQL endpoint that exposes a curated subset of the storefront commerce model — products,
-    attributes, categories, accounts, sessions, carts, orders, payments, payment settings, subscriptions, store
-    settings, currencies, and navigation menus. Authorized with a public storefront key passed in the Authorization
-    header. Notable limits: no nested queries, no payment tokenization, no abandoned-cart recovery, no guest cart
-    email updates. A GraphQL playground is available at /playground when logged into the dashboard.
+    Experimental (alpha) GraphQL endpoint that exposes a curated subset of the storefront commerce model
+    — products, attributes, categories, accounts, sessions, carts, orders, payments, payment settings,
+    subscriptions, store settings, currencies, and navigation menus. Authorized with a public storefront
+    key passed in the Authorization header. Notable limits: no nested queries, no payment tokenization,
+    no abandoned-cart recovery, no guest cart email updates. A GraphQL playground is available at /playground
+    when logged into the dashboard.
 - aid: swell-io:swell-webhooks-api
   name: Swell Webhooks
   tags:
@@ -155,12 +82,12 @@ apis:
   - url: examples/swell-webhook-event-example.json
     type: Examples
   description: >-
-    Event-driven HTTP callbacks for cart, order, subscription, payment, account, and product lifecycle events.
-    Configurable via the dashboard (Developer → Webhooks) or programmatically through the Backend API and Swell Apps.
-    Payloads are JSON POSTs with `id`, `date_created`, `model`, `type`, and `data`. Endpoints must return 2xx; failed
-    deliveries retry hourly for two days, continue hourly after, and auto-disable after three days. Webhooks originate
-    from the documented Swell IP allowlist (52.52.111.237, 54.219.85.17, 54.241.235.166, plus 216.218.185.0/27,
-    216.218.244.192/27, 74.80.234.0/24).
+    Event-driven HTTP callbacks for cart, order, subscription, payment, account, and product lifecycle
+    events. Configurable via the dashboard (Developer → Webhooks) or programmatically through the Backend
+    API and Swell Apps. Payloads are JSON POSTs with `id`, `date_created`, `model`, `type`, and `data`.
+    Endpoints must return 2xx; failed deliveries retry hourly for two days, continue hourly after, and
+    auto-disable after three days. Webhooks originate from the documented Swell IP allowlist (52.52.111.237,
+    54.219.85.17, 54.241.235.166, plus 216.218.185.0/27, 216.218.244.192/27, 74.80.234.0/24).
 - aid: swell-io:swell-apps-platform
   name: Swell Apps Platform
   tags:
@@ -180,10 +107,1686 @@ apis:
     name: Swell Apps TypeScript Bindings
   description: >-
     Swell Apps extend the platform with custom data models (added fields or new entities), events (triggering
-    functions, webhooks, and notifications), edge functions deployed to 200+ locations with no cold start, and admin
-    UI surfaces (settings, content views). Apps are distributed via a swell.json manifest and built with the Swell CLI
-    and Apps SDK; TypeScript bindings are published in the app-types package. Used for first-party integrations
-    (Contentful, Builder.io, honest reviews) and third-party merchant extensions.
+    functions, webhooks, and notifications), edge functions deployed to 200+ locations with no cold start,
+    and admin UI surfaces (settings, content views). Apps are distributed via a swell.json manifest and
+    built with the Swell CLI and Apps SDK; TypeScript bindings are published in the app-types package.
+    Used for first-party integrations (Contentful, Builder.io, honest reviews) and third-party merchant
+    extensions.
+- aid: swell-io:swell-io-account-addresses-api
+  name: Swell Account Addresses API
+  description: Saved shipping/billing addresses on an account.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Account Addresses
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-account-addresses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-account-api
+  name: Swell Account API
+  description: Authenticated customer account operations.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-account-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-account-cards-api
+  name: Swell Account Cards API
+  description: Saved payment cards on an account.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Account Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-account-cards-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-account-credits-api
+  name: Swell Account Credits API
+  description: Store credit balances and transactions per account.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Account Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-account-credits-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-account-session-api
+  name: Swell Account Session API
+  description: Login, logout, and session recovery.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Account Session
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-account-session-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-accounts-api
+  name: Swell Accounts API
+  description: Customer accounts including billing/shipping, saved cards, and history.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-attributes-api
+  name: Swell Attributes API
+  description: Product attributes used for filtering and faceted search.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-cart-api
+  name: Swell Cart API
+  description: Session-scoped shopping cart for the current visitor.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Cart
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-cart-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-carts-api
+  name: Swell Carts API
+  description: Pending purchase requests that can be converted into orders.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Carts
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-carts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-categories-api
+  name: Swell Categories API
+  description: Category tree and product taxonomy.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-checkout-api
+  name: Swell Checkout API
+  description: Cart conversion and order placement.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-content-api
+  name: Swell Content API
+  description: Pages, custom data models, and stored records.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-content-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-coupons-api
+  name: Swell Coupons API
+  description: Coupon definitions with codes, redemptions, and discount rules.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Coupons
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-coupons-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-events-api
+  name: Swell Events API
+  description: Event records emitted by the platform.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-files-api
+  name: Swell Files API
+  description: Stored files (images, attachments) served via Swell CDN.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-gift-cards-api
+  name: Swell Gift Cards API
+  description: Gift cards, debit transactions, and gift card products.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Gift Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-gift-cards-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-invoices-api
+  name: Swell Invoices API
+  description: Invoices generated for subscription billing cycles and B2B orders.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-orders-api
+  name: Swell Orders API
+  description: Customer orders, line items, financial totals, and lifecycle.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-payments-api
+  name: Swell Payments API
+  description: Payment transactions, refunds, and gateway settlement.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-products-api
+  name: Swell Products API
+  description: >-
+    Product catalog including variants, options, bundles, gift cards, and subscription products.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-products-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-promotions-api
+  name: Swell Promotions API
+  description: Automatic promotion rules applied at cart and checkout.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Promotions
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-promotions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-purchase-links-api
+  name: Swell Purchase Links API
+  description: Shareable purchase links that prefill a cart.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Purchase Links
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-purchase-links-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-refunds-api
+  name: Swell Refunds API
+  description: Refund records linked to a payment.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-returns-api
+  name: Swell Returns API
+  description: Customer return merchandise authorizations.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Returns
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-returns-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-shipments-api
+  name: Swell Shipments API
+  description: Fulfillment shipments, tracking, and split fulfillment.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-shipments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-stock-api
+  name: Swell Stock API
+  description: Stock levels and stock adjustments across locations.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Stock
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-stock-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-store-api
+  name: Swell Store API
+  description: Public store settings, currencies, payment settings, and menus.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Store
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-store-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-subscription-plans-api
+  name: Swell Subscription Plans API
+  description: Plan templates that define billing schedule and price for recurring products.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Subscription Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-subscription-plans-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-subscriptions-api
+  name: Swell Subscriptions API
+  description: Recurring billing subscriptions and plans.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-variants-api
+  name: Swell Variants API
+  description: Variant-level inventory and pricing under a parent product.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Variants
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-variants-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
+- aid: swell-io:swell-io-webhooks-api
+  name: Swell Webhooks API
+  description: Webhook subscriptions for receiving event callbacks.
+  humanURL: https://developers.swell.is/backend-api/introduction
+  baseURL: https://api.swell.store
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/swell-io-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.swell.is/backend-api/introduction
+  - type: Authentication
+    url: https://developers.swell.is/backend-api/authentication
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/querying
+  - type: APIReference
+    url: https://developers.swell.is/backend-api/errors
+  - type: JSONSchema
+    url: json-schema/swell-product-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-order-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-cart-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-account-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-payment-schema.json
+  - type: JSONSchema
+    url: json-schema/swell-webhook-schema.json
+  - type: JSONStructure
+    url: json-structure/swell-product-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-order-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/swell-account-structure.json
+  - type: Examples
+    url: examples/swell-product-create-example.json
+  - type: Examples
+    url: examples/swell-order-create-example.json
+  - type: Examples
+    url: examples/swell-subscription-create-example.json
+  - type: Examples
+    url: examples/swell-account-create-example.json
+  - type: Examples
+    url: examples/swell-webhook-event-example.json
+  - type: Documentation
+    url: https://developers.swell.is/frontend-api/introduction
+  - type: Examples
+    url: examples/swell-cart-add-item-example.json
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
