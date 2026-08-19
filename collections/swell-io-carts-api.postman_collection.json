@@ -1,0 +1,532 @@
+{
+  "item": [
+    {
+      "id": "d25fb6a1-7631-447f-b9cc-2b031bd45f20",
+      "name": "Carts",
+      "description": {
+        "content": "Pending purchase requests that can be converted into orders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a530f442-6460-457c-9ed1-50cea5c991cf",
+          "name": "List Carts",
+          "request": {
+            "name": "List Carts",
+            "description": {},
+            "url": {
+              "path": [
+                "carts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "15",
+                  "description": "Records per page (1-1000). Default 15."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Result page number, 1-indexed."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f70af53a-865d-4814-8c72-834bcdd20de4",
+              "name": "A page of carts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3362,\n  \"page\": 3907,\n  \"results\": [\n    {\n      \"id\": \"ff9e9f154828f64b3cac0772\",\n      \"status\": \"converted\",\n      \"account_id\": \"4bc80db931022e9c80948bbb\",\n      \"billing\": {},\n      \"shipping\": {},\n      \"sub_total\": 6953.115991532562,\n      \"discount_total\": 1518.7937872214563,\n      \"tax_total\": 2870.968012242814,\n      \"shipment_total\": 4355.341765254984,\n      \"grand_total\": 2821.2377052779702,\n      \"coupon_code\": \"string\",\n      \"currency\": \"string\",\n      \"date_created\": \"1972-07-05T22:20:38.361Z\",\n      \"date_updated\": \"1959-01-30T20:44:48.543Z\"\n    },\n    {\n      \"id\": \"e891b54f2eb3f158e94dd7d3\",\n      \"status\": \"recovered\",\n      \"account_id\": \"f689a2b210464085801cb16b\",\n      \"billing\": {},\n      \"shipping\": {},\n      \"sub_total\": 1728.7704165083994,\n      \"discount_total\": 4379.137399545307,\n      \"tax_total\": 4503.800888616345,\n      \"shipment_total\": 8722.23891191055,\n      \"grand_total\": 8240.290454115038,\n      \"coupon_code\": \"string\",\n      \"currency\": \"string\",\n      \"date_created\": \"1969-11-01T07:30:10.780Z\",\n      \"date_updated\": \"1978-11-29T22:42:38.988Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0c4ef40-b968-4d7a-901f-e44e6373ca64",
+          "name": "Create Cart",
+          "request": {
+            "name": "Create Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "carts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb079346-693d-4f61-a06c-7b8632bb582b",
+              "name": "Cart created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a490cc36-c4d3-486a-928e-df4a55383f9b",
+          "name": "Retrieve Cart",
+          "request": {
+            "name": "Retrieve Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "carts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e5cf960-413a-4929-9834-617bb46a94ea",
+              "name": "Cart.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a1c4ad9-901d-4dc3-809f-b5ae3ed44bde",
+          "name": "Update Cart",
+          "request": {
+            "name": "Update Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "carts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e2b54c09-6ebe-4445-8793-c74f315f4401",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"items\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"sub_total\": \"<float>\",\n  \"discount_total\": \"<float>\",\n  \"tax_total\": \"<float>\",\n  \"shipment_total\": \"<float>\",\n  \"grand_total\": \"<float>\",\n  \"coupon_code\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "691c8f50-b6c6-4692-b7c4-21f8b210fd99",
+          "name": "Delete Cart",
+          "request": {
+            "name": "Delete Cart",
+            "description": {},
+            "url": {
+              "path": [
+                "carts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98ba7abe-a4ca-4b20-a25d-e9bfef0b80a1",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swell.store",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Store-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5ddcf463-73a3-461b-8edd-e8f9a061c72d",
+    "name": "Swell Backend Account Addresses Carts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.\n\nContact Support:\n Name: Swell Developer Support\n Email: support@swell.is",
+      "type": "text/plain"
+    }
+  }
+}

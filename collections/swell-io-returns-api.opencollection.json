@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Swell Backend Account Addresses Returns API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Store-Id",
+      "value": "{{X-Store-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/returns"
+          },
+          "docs": "List Returns"
+        },
+        {
+          "info": {
+            "name": "Create Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/returns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Return"
+        },
+        {
+          "info": {
+            "name": "Retrieve Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/returns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Return"
+        },
+        {
+          "info": {
+            "name": "Update Return",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/returns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Return"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

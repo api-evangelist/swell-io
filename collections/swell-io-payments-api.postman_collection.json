@@ -1,0 +1,409 @@
+{
+  "item": [
+    {
+      "id": "efdb613d-7fe0-4ca4-8b37-3508877ae371",
+      "name": "Payments",
+      "description": {
+        "content": "Payment transactions, refunds, and gateway settlement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fa34e65-1d8f-4a88-a8ab-9c7db76d385c",
+          "name": "List Payments",
+          "request": {
+            "name": "List Payments",
+            "description": {},
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8949b66b-ec83-46f1-8fc7-7f6022ece5b8",
+              "name": "A page of payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 893,\n  \"page\": 9855,\n  \"results\": [\n    {\n      \"id\": \"25f0474bab91e587804dfc7a\",\n      \"number\": \"string\",\n      \"account_id\": \"58bdc7566683d85a2dcb1610\",\n      \"order_id\": \"50bb0c3dac1c08d44901c727\",\n      \"amount\": 7308.590176698032,\n      \"amount_refundable\": 9443.191051708887,\n      \"amount_refunded\": 92.60795034019998,\n      \"method\": \"account\",\n      \"gateway\": \"string\",\n      \"status\": \"error\",\n      \"transaction_id\": \"string\",\n      \"currency\": \"string\",\n      \"date_created\": \"1967-06-28T19:49:10.297Z\",\n      \"date_updated\": \"2019-02-20T04:21:31.907Z\"\n    },\n    {\n      \"id\": \"4a91cb5df3e0fcfbfb8dfd29\",\n      \"number\": \"string\",\n      \"account_id\": \"a79af35ca68370d27b213a2f\",\n      \"order_id\": \"c2dbef87c47475a896f4ce42\",\n      \"amount\": 4928.990715301914,\n      \"amount_refundable\": 2457.500624868385,\n      \"amount_refunded\": 6071.291756459406,\n      \"method\": \"paypal\",\n      \"gateway\": \"string\",\n      \"status\": \"authorized\",\n      \"transaction_id\": \"string\",\n      \"currency\": \"string\",\n      \"date_created\": \"1954-10-03T00:38:28.518Z\",\n      \"date_updated\": \"2007-01-10T03:49:15.366Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00f9acb7-9514-472d-b007-84d089a38132",
+          "name": "Create Payment",
+          "request": {
+            "name": "Create Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"amount_refundable\": \"<float>\",\n  \"amount_refunded\": \"<float>\",\n  \"method\": \"<string>\",\n  \"gateway\": \"<string>\",\n  \"status\": \"<string>\",\n  \"transaction_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4548ec2e-b981-4639-853f-69f4ab9fdcd4",
+              "name": "Payment created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"amount_refundable\": \"<float>\",\n  \"amount_refunded\": \"<float>\",\n  \"method\": \"<string>\",\n  \"gateway\": \"<string>\",\n  \"status\": \"<string>\",\n  \"transaction_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"amount_refundable\": \"<float>\",\n  \"amount_refunded\": \"<float>\",\n  \"method\": \"<string>\",\n  \"gateway\": \"<string>\",\n  \"status\": \"<string>\",\n  \"transaction_id\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e147df1-a9b8-47ed-a35d-f2888225477d",
+          "name": "Retrieve Payment",
+          "request": {
+            "name": "Retrieve Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b8079e5-58e4-4c17-81c1-e9750ab934e3",
+              "name": "Payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0919f9e-95ec-4d8f-bae9-12e6ef776bc1",
+          "name": "Update Payment",
+          "request": {
+            "name": "Update Payment",
+            "description": {},
+            "url": {
+              "path": [
+                "payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbbc6337-15db-4bf7-a636-fcffb1be1e2c",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swell.store",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Store-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8da48bff-1c08-48d1-8063-7c57aed65ef6",
+    "name": "Swell Backend Account Addresses Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.\n\nContact Support:\n Name: Swell Developer Support\n Email: support@swell.is",
+      "type": "text/plain"
+    }
+  }
+}

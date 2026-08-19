@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Swell Backend Account Addresses Cart API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Store-Id",
+      "value": "{{X-Store-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Current Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/api/cart"
+          },
+          "docs": "Retrieve Current Cart"
+        },
+        {
+          "info": {
+            "name": "Update Current Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/api/cart",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Current Cart"
+        },
+        {
+          "info": {
+            "name": "Add Item To Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/api/cart/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Item To Cart"
+        },
+        {
+          "info": {
+            "name": "Update Cart Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/api/cart/items/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Cart Item"
+        },
+        {
+          "info": {
+            "name": "Remove Cart Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/api/cart/items/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove Cart Item"
+        },
+        {
+          "info": {
+            "name": "Apply Coupon To Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/api/cart/apply-coupon",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply Coupon To Cart"
+        },
+        {
+          "info": {
+            "name": "Apply Gift Card To Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/api/cart/apply-giftcard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply Gift Card To Cart"
+        },
+        {
+          "info": {
+            "name": "Recover Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/api/cart/recover/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Recover Cart"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

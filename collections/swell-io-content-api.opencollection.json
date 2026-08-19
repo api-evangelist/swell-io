@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Swell Backend Account Addresses Content API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Store-Id",
+      "value": "{{X-Store-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Content Pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/pages"
+          },
+          "docs": "List Content Pages"
+        },
+        {
+          "info": {
+            "name": "Create Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swell.store/pages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Content Page"
+        },
+        {
+          "info": {
+            "name": "Retrieve Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve Content Page"
+        },
+        {
+          "info": {
+            "name": "Update Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swell.store/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Content Page"
+        },
+        {
+          "info": {
+            "name": "Delete Content Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swell.store/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object ID of the resource."
+              }
+            ]
+          },
+          "docs": "Delete Content Page"
+        },
+        {
+          "info": {
+            "name": "List Navigation Menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/api/settings/menus"
+          },
+          "docs": "List Navigation Menus"
+        },
+        {
+          "info": {
+            "name": "List Content Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/api/content/:model",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path",
+                "description": "Custom content model slug."
+              }
+            ]
+          },
+          "docs": "List Content Records"
+        },
+        {
+          "info": {
+            "name": "Retrieve Content Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swell.store/api/content/:model/:slug",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve Content Record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

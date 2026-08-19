@@ -1,0 +1,532 @@
+{
+  "item": [
+    {
+      "id": "0eea5891-0aa3-4546-b517-7c7fc5d31598",
+      "name": "Accounts",
+      "description": {
+        "content": "Customer accounts including billing/shipping, saved cards, and history.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39f2144e-47cb-4a9d-8292-031aed5aa9aa",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "15",
+                  "description": "Records per page (1-1000). Default 15."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Result page number, 1-indexed."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbbb8bf2-2e60-42fe-911c-418f82bf48f4",
+              "name": "A page of accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8014,\n  \"page\": 2521,\n  \"results\": [\n    {\n      \"email\": \"4PA@RlJxLCeXVVU.kwdu\",\n      \"id\": \"46a3025d2ef5a5a6c35480a0\",\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"phone\": \"string\",\n      \"type\": \"business\",\n      \"currency\": \"string\",\n      \"group\": \"string\",\n      \"balance\": 3340.7605671017704,\n      \"billing\": {},\n      \"shipping\": {},\n      \"order_count\": 659,\n      \"order_value\": 5447.561942035332,\n      \"cart_abandoned_count\": 756,\n      \"email_optin\": true,\n      \"date_first_order\": \"1991-07-23T07:37:29.466Z\",\n      \"date_last_order\": \"1976-06-13T04:13:17.761Z\",\n      \"date_last_login\": \"1993-01-30T09:30:27.754Z\",\n      \"date_created\": \"1968-01-08T07:35:00.784Z\",\n      \"date_updated\": \"1949-07-28T08:48:55.187Z\"\n    },\n    {\n      \"email\": \"1mbfWwYXxoy@JtXQgtNATbzoiM.ly\",\n      \"id\": \"082fa2c25c5289a916f00f7e\",\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"phone\": \"string\",\n      \"type\": \"business\",\n      \"currency\": \"string\",\n      \"group\": \"string\",\n      \"balance\": 1733.5528065632789,\n      \"billing\": {},\n      \"shipping\": {},\n      \"order_count\": 2884,\n      \"order_value\": 6530.034333884018,\n      \"cart_abandoned_count\": 2801,\n      \"email_optin\": true,\n      \"date_first_order\": \"2019-04-08T18:14:43.679Z\",\n      \"date_last_order\": \"1991-12-11T01:05:34.175Z\",\n      \"date_last_login\": \"1993-03-22T09:18:22.434Z\",\n      \"date_created\": \"1981-01-19T09:28:18.920Z\",\n      \"date_updated\": \"1982-06-19T06:08:51.475Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70b47116-fbd3-4951-9533-c0650cf7024b",
+          "name": "Create Account",
+          "request": {
+            "name": "Create Account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fbd1be1-d4b5-479f-a1d9-0cbc37636742",
+              "name": "Account created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffc5b01e-9aee-49df-bb9d-a93627554cf3",
+          "name": "Retrieve Account",
+          "request": {
+            "name": "Retrieve Account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cd79672-6c79-496a-b35d-0e6abc9a92ad",
+              "name": "Account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c1d1985-d79d-424c-8744-7b7aca9e35db",
+          "name": "Update Account",
+          "request": {
+            "name": "Update Account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95ddfdd8-0eee-426c-92ee-a7a7d57dac97",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"<email>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"group\": \"<string>\",\n  \"balance\": \"<float>\",\n  \"billing\": \"<object>\",\n  \"shipping\": \"<object>\",\n  \"order_count\": \"<integer>\",\n  \"order_value\": \"<float>\",\n  \"cart_abandoned_count\": \"<integer>\",\n  \"email_optin\": \"<boolean>\",\n  \"date_first_order\": \"<dateTime>\",\n  \"date_last_order\": \"<dateTime>\",\n  \"date_last_login\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c505c4af-736d-48fb-81fd-aab8ba2883e5",
+          "name": "Delete Account",
+          "request": {
+            "name": "Delete Account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a0fd204-eca4-4756-860b-2acbe11a3700",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swell.store",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Store-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0815c680-18bb-4056-ac3d-aa38009bd214",
+    "name": "Swell Backend Account Addresses Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.\n\nContact Support:\n Name: Swell Developer Support\n Email: support@swell.is",
+      "type": "text/plain"
+    }
+  }
+}

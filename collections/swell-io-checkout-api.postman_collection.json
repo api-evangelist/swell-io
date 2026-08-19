@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "869b5e41-2de0-49f1-9af7-dbc8563f2c8b",
+      "name": "Checkout",
+      "description": {
+        "content": "Cart conversion and order placement.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a87c19e9-1786-4a3f-879a-ef4247a78349",
+          "name": "Submit Order",
+          "request": {
+            "name": "Submit Order",
+            "description": {
+              "content": "Converts the current cart into an order. Requires billing.method and shipping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cart",
+                "submit-order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a63442a3-2960-48c8-8ff9-648de8637141",
+              "name": "Order created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cart",
+                    "submit-order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"number\": \"string\",\n  \"status\": \"string\",\n  \"grand_total\": 2478.847765028057,\n  \"paid\": true,\n  \"delivered\": true,\n  \"date_created\": \"1968-02-26T14:19:14.248Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swell.store",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Store-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "496280b1-c8b4-4d50-920e-60a67dcb89cb",
+    "name": "Swell Backend Account Addresses Checkout API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.\n\nContact Support:\n Name: Swell Developer Support\n Email: support@swell.is",
+      "type": "text/plain"
+    }
+  }
+}

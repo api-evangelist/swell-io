@@ -1,0 +1,798 @@
+{
+  "item": [
+    {
+      "id": "e910f1ee-34a9-4f1b-882c-061e187361fe",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Recurring billing subscriptions and plans.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05186222-2e47-4590-9340-d9b8c02bb928",
+          "name": "List Subscriptions",
+          "request": {
+            "name": "List Subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "15",
+                  "description": "Records per page (1-1000). Default 15."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Result page number, 1-indexed."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61e1b88c-d8e9-4e25-904d-61a48c7800b4",
+              "name": "A page of subscriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "15"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8717,\n  \"page\": 7191,\n  \"results\": [\n    {\n      \"id\": \"5bc27931a3a99b7b67d7b18b\",\n      \"number\": \"string\",\n      \"account_id\": \"7a2f7b037238129f6e332362\",\n      \"product_id\": \"6d3d9b58983b9c8dafd5326c\",\n      \"plan_id\": \"9dcf4e62e6f3ad8c1fdea042\",\n      \"status\": \"complete\",\n      \"interval\": \"yearly\",\n      \"interval_count\": 7874,\n      \"trial_days\": 5190,\n      \"price\": 9673.654968332354,\n      \"recurring_total\": 3823.037851381865,\n      \"date_period_start\": \"2020-06-08T05:23:52.217Z\",\n      \"date_period_end\": \"2009-01-23T11:41:05.240Z\",\n      \"date_canceled\": \"1996-05-24T11:25:23.807Z\",\n      \"date_created\": \"1971-09-23T15:54:14.136Z\",\n      \"date_updated\": \"1980-02-06T15:52:52.053Z\"\n    },\n    {\n      \"id\": \"b46776708e103bd6da069893\",\n      \"number\": \"string\",\n      \"account_id\": \"66980f5a27cc69c9c9a6e402\",\n      \"product_id\": \"e7cfe0191dd34fea09be9c0d\",\n      \"plan_id\": \"e0d657ae79da99b3b4c12ad7\",\n      \"status\": \"unpaid\",\n      \"interval\": \"yearly\",\n      \"interval_count\": 8444,\n      \"trial_days\": 9411,\n      \"price\": 2453.487507644091,\n      \"recurring_total\": 3298.633577539247,\n      \"date_period_start\": \"1996-03-14T14:30:17.296Z\",\n      \"date_period_end\": \"1988-01-05T08:36:42.526Z\",\n      \"date_canceled\": \"1964-03-26T22:30:30.769Z\",\n      \"date_created\": \"1979-07-25T22:53:07.881Z\",\n      \"date_updated\": \"1981-08-25T16:15:55.873Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "914b6318-04cd-41bf-a88a-4c27583049cb",
+          "name": "Create Subscription",
+          "request": {
+            "name": "Create Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c13f30a5-39ce-4435-8e38-8ec7832e2eaa",
+              "name": "Subscription created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9e1c270-9913-424a-b954-21343435da2f",
+          "name": "Retrieve Subscription",
+          "request": {
+            "name": "Retrieve Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a22559f-51d7-4a1f-ad2e-c813c0c240c5",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "020a15c1-f131-4318-bfe9-ef2726b8a2fe",
+          "name": "Update Subscription",
+          "request": {
+            "name": "Update Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f873d67-7b53-445b-9508-a1a291f19399",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"interval_count\": \"<integer>\",\n  \"trial_days\": \"<integer>\",\n  \"price\": \"<float>\",\n  \"recurring_total\": \"<float>\",\n  \"date_period_start\": \"<dateTime>\",\n  \"date_period_end\": \"<dateTime>\",\n  \"date_canceled\": \"<dateTime>\",\n  \"date_created\": \"<dateTime>\",\n  \"date_updated\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9b0d9ac-ee62-4f14-8f18-9de78ffe7412",
+          "name": "Cancel Subscription",
+          "request": {
+            "name": "Cancel Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The object ID of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7aafe07-6552-4652-a19f-08ac60347139",
+              "name": "Subscription canceled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The object ID of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0515d6c-4b9b-48a5-9479-f6bdd1607e81",
+          "name": "List Account Subscriptions",
+          "request": {
+            "name": "List Account Subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c4e5523-40bb-4c95-b56e-d9529296c3e6",
+              "name": "Account subscriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ccf59e5-1320-41cb-b3c5-5d90d6e919ab",
+          "name": "Retrieve Account Subscription",
+          "request": {
+            "name": "Retrieve Account Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92264664-0b87-4480-bab2-0497ac6386cb",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b26aa1c9-2aa0-45ed-bd0d-4bcd13201909",
+          "name": "Update Account Subscription",
+          "request": {
+            "name": "Update Account Subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "account",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e90f039-ce67-4447-9094-de43a9f7f4b1",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "account",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Store-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swell.store",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Store-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7b3c7205-aa61-485d-a3e5-45f279c230ea",
+    "name": "Swell Backend Account Addresses Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.\n\nContact Support:\n Name: Swell Developer Support\n Email: support@swell.is",
+      "type": "text/plain"
+    }
+  }
+}
