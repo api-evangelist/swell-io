@@ -34,6 +34,22 @@ tags:
 - API-First
 - B2C
 - B2B
+- Subscription
+- Marketplaces
+- Wholesale
+- Storefront
+- Checkout
+- Payments
+- Cart
+- Order
+- Catalog
+- Internationalization
+tags_raw:
+- Commerce
+- Headless Commerce
+- API-First
+- B2C
+- B2B
 - Subscriptions
 - Marketplaces
 - Wholesale
@@ -74,6 +90,10 @@ apis:
   tags:
   - Commerce
   - Eventing
+  - Webhook
+  tags_raw:
+  - Commerce
+  - Eventing
   - Webhooks
   humanURL: https://developers.swell.is/backend-api/webhooks
   properties:
@@ -91,6 +111,11 @@ apis:
 - aid: swell-io:swell-apps-platform
   name: Swell Apps Platform
   tags:
+  - Application
+  - Extensions
+  - Functions
+  - Edge
+  tags_raw:
   - Apps
   - Extensions
   - Functions
@@ -388,6 +413,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -550,6 +577,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Cart
+  tags_raw:
   - Carts
   properties:
   - type: OpenAPI
@@ -820,6 +849,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -874,6 +905,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -1036,6 +1069,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -1145,6 +1180,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -1631,6 +1668,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -1739,6 +1778,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
