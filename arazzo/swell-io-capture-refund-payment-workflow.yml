@@ -10,8 +10,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellBackendApi
-  url: ../openapi/swell-backend-api-openapi.yml
+- name: paymentsApi
+  url: ../openapi/swell-io-payments-api-openapi.yml
+  type: openapi
+- name: refundsApi
+  url: ../openapi/swell-io-refunds-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: capture-and-refund-payment

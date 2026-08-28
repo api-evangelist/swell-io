@@ -10,8 +10,11 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellFrontendApi
-  url: ../openapi/swell-frontend-api-openapi.yml
+- name: cartApi
+  url: ../openapi/swell-io-cart-api-openapi.yml
+  type: openapi
+- name: couponsApi
+  url: ../openapi/swell-io-coupons-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: storefront-validate-and-apply-coupon

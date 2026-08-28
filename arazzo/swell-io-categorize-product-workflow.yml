@@ -11,8 +11,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellBackendApi
-  url: ../openapi/swell-backend-api-openapi.yml
+- name: categoriesApi
+  url: ../openapi/swell-io-categories-api-openapi.yml
+  type: openapi
+- name: productsApi
+  url: ../openapi/swell-io-products-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-category-and-product

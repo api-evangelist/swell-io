@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellBackendApi
-  url: ../openapi/swell-backend-api-openapi.yml
+- name: subscriptionsApi
+  url: ../openapi/swell-io-subscriptions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-and-verify-subscription

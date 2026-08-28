@@ -10,8 +10,8 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellFrontendApi
-  url: ../openapi/swell-frontend-api-openapi.yml
+- name: cartApi
+  url: ../openapi/swell-io-cart-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: storefront-adjust-cart-item-quantity

@@ -10,8 +10,11 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellFrontendApi
-  url: ../openapi/swell-frontend-api-openapi.yml
+- name: accountApi
+  url: ../openapi/swell-io-account-api-openapi.yml
+  type: openapi
+- name: accountSessionApi
+  url: ../openapi/swell-io-account-session-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: storefront-register-and-login

@@ -10,8 +10,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: swellBackendApi
-  url: ../openapi/swell-backend-api-openapi.yml
+- name: cartsApi
+  url: ../openapi/swell-io-carts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-cart-and-apply-coupon
