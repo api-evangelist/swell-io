@@ -1,21 +1,20 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Swell Backend Account Addresses Orders API
+  title: Swell Io Orders API
   version: 2025-01
-  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
-  contact:
-    name: Swell Developer Support
-    url: https://developers.swell.is
-    email: support@swell.is
   license:
     name: API Profile — API Evangelist
     url: https://apievangelist.com
+  description: 'Operations tagged Orders across 2 of this provider''s published API definitions: swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.swell.store
   description: Production Backend API
-security:
-- SwellStoreId: []
-  SwellSecretKey: []
+- url: https://{storeId}.swell.store
+  description: Per-store Frontend API endpoint
+  variables:
+    storeId:
+      default: my-store
+      description: Your Swell store ID (subdomain).
 tags:
 - name: Orders
   description: Customer orders, line items, financial totals, and lifecycle.
@@ -39,6 +38,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderList'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     post:
       tags:
       - Orders
@@ -57,6 +59,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
+    servers:
+    - url: https://api.swell.store
+      description: Production Backend API
   /orders/{id}:
     parameters:
     - $ref: '#/components/parameters/PathId'
@@ -72,6 +80,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     patch:
       tags:
       - Orders
@@ -90,6 +101,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     delete:
       tags:
       - Orders
@@ -98,6 +112,12 @@ paths:
       responses:
         '200':
           description: Deleted.
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
+    servers:
+    - url: https://api.swell.store
+      description: Production Backend API
   /api/account/orders:
     get:
       tags:
@@ -111,6 +131,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderList'
+      security:
+      - SwellPublicKey: []
+    servers:
+    - url: https://{storeId}.swell.store
+      description: Per-store Frontend API endpoint
+      variables:
+        storeId:
+          default: my-store
+          description: Your Swell store ID (subdomain).
   /api/account/orders/{id}:
     parameters:
     - name: id
@@ -130,26 +159,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order_2'
+      security:
+      - SwellPublicKey: []
+    servers:
+    - url: https://{storeId}.swell.store
+      description: Per-store Frontend API endpoint
+      variables:
+        storeId:
+          default: my-store
+          description: Your Swell store ID (subdomain).
 components:
   parameters:
-    Sort:
-      name: sort
+    Page:
+      name: page
       in: query
-      description: Sort expression, e.g. "name asc" or "date_created desc".
+      description: Result page number, 1-indexed.
       schema:
-        type: string
+        type: integer
+        minimum: 1
+        default: 1
     Expand:
       name: expand
       in: query
       description: Include related objects, e.g. expand=account or expand=variants:10.
       schema:
         type: string
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
     Limit:
       name: limit
       in: query
@@ -159,6 +193,18 @@ components:
         minimum: 1
         maximum: 1000
         default: 15
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    Sort:
+      name: sort
+      in: query
+      description: Sort expression, e.g. "name asc" or "date_created desc".
+      schema:
+        type: string
     PathId:
       name: id
       in: path
@@ -167,20 +213,7 @@ components:
       schema:
         type: string
         pattern: ^[a-f0-9]{24}$
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
-    OrderUpdate:
-      $ref: '#/components/schemas/Order'
-    Money_2:
-      type: number
-      format: float
     Order:
       type: object
       properties:
@@ -248,9 +281,6 @@ components:
         date_updated:
           type: string
           format: date-time
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
     OrderList:
       type: object
       properties:
@@ -266,7 +296,12 @@ components:
       type: number
       format: float
       description: Currency amount expressed in store currency.
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
     OrderCreate:
+      $ref: '#/components/schemas/Order'
+    OrderUpdate:
       $ref: '#/components/schemas/Order'
     Order_2:
       type: object
@@ -290,6 +325,9 @@ components:
         date_created:
           type: string
           format: date-time
+    Money_2:
+      type: number
+      format: float
   securitySchemes:
     SwellStoreId:
       type: apiKey
@@ -301,3 +339,11 @@ components:
       in: header
       name: Authorization
       description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'
+    SwellPublicKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Public storefront key, prefixed with `pk_`. Pass as `Authorization: pk_...`.'
+x-refined-from:
+- swell-backend-api-openapi.yml
+- swell-frontend-api-openapi.yml

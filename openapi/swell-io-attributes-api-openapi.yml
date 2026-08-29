@@ -1,21 +1,20 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Swell Backend Account Addresses Attributes API
+  title: Swell Io Attributes API
   version: 2025-01
-  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
-  contact:
-    name: Swell Developer Support
-    url: https://developers.swell.is
-    email: support@swell.is
   license:
     name: API Profile — API Evangelist
     url: https://apievangelist.com
+  description: 'Operations tagged Attributes across 2 of this provider''s published API definitions: swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.swell.store
   description: Production Backend API
-security:
-- SwellStoreId: []
-  SwellSecretKey: []
+- url: https://{storeId}.swell.store
+  description: Per-store Frontend API endpoint
+  variables:
+    storeId:
+      default: my-store
+      description: Your Swell store ID (subdomain).
 tags:
 - name: Attributes
   description: Product attributes used for filtering and faceted search.
@@ -29,6 +28,9 @@ paths:
       responses:
         '200':
           description: Attributes.
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     post:
       tags:
       - Attributes
@@ -43,6 +45,12 @@ paths:
       responses:
         '201':
           description: Created.
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
+    servers:
+    - url: https://api.swell.store
+      description: Production Backend API
   /api/attributes:
     get:
       tags:
@@ -52,6 +60,15 @@ paths:
       responses:
         '200':
           description: Attributes.
+      security:
+      - SwellPublicKey: []
+    servers:
+    - url: https://{storeId}.swell.store
+      description: Per-store Frontend API endpoint
+      variables:
+        storeId:
+          default: my-store
+          description: Your Swell store ID (subdomain).
 components:
   securitySchemes:
     SwellStoreId:
@@ -64,3 +81,11 @@ components:
       in: header
       name: Authorization
       description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'
+    SwellPublicKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Public storefront key, prefixed with `pk_`. Pass as `Authorization: pk_...`.'
+x-refined-from:
+- swell-backend-api-openapi.yml
+- swell-frontend-api-openapi.yml

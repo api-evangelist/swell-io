@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Swell Backend Account Addresses Account Cards API
+  title: Swell Backend Account Cards API
   version: 2025-01
   description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
   contact:

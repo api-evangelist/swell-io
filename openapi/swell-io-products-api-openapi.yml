@@ -1,21 +1,20 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Swell Backend Account Addresses Products API
+  title: Swell Io Products API
   version: 2025-01
-  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
-  contact:
-    name: Swell Developer Support
-    url: https://developers.swell.is
-    email: support@swell.is
   license:
     name: API Profile — API Evangelist
     url: https://apievangelist.com
+  description: 'Operations tagged Products across 2 of this provider''s published API definitions: swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.swell.store
   description: Production Backend API
-security:
-- SwellStoreId: []
-  SwellSecretKey: []
+- url: https://{storeId}.swell.store
+  description: Per-store Frontend API endpoint
+  variables:
+    storeId:
+      default: my-store
+      description: Your Swell store ID (subdomain).
 tags:
 - name: Products
   description: Product catalog including variants, options, bundles, gift cards, and subscription products.
@@ -41,6 +40,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductList'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     post:
       tags:
       - Products
@@ -59,6 +61,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
+    servers:
+    - url: https://api.swell.store
+      description: Production Backend API
   /products/{id}:
     parameters:
     - $ref: '#/components/parameters/PathId'
@@ -74,6 +82,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     put:
       tags:
       - Products
@@ -92,6 +103,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
     delete:
       tags:
       - Products
@@ -100,6 +114,12 @@ paths:
       responses:
         '200':
           description: Product deleted.
+      security:
+      - SwellStoreId: []
+        SwellSecretKey: []
+    servers:
+    - url: https://api.swell.store
+      description: Production Backend API
   /api/products:
     get:
       tags:
@@ -120,6 +140,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductList_2'
+      security:
+      - SwellPublicKey: []
+    servers:
+    - url: https://{storeId}.swell.store
+      description: Per-store Frontend API endpoint
+      variables:
+        storeId:
+          default: my-store
+          description: Your Swell store ID (subdomain).
   /api/products/{slug}:
     parameters:
     - name: slug
@@ -140,12 +169,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product_2'
+      security:
+      - SwellPublicKey: []
+    servers:
+    - url: https://{storeId}.swell.store
+      description: Per-store Frontend API endpoint
+      variables:
+        storeId:
+          default: my-store
+          description: Your Swell store ID (subdomain).
 components:
   parameters:
-    Category:
-      name: category
+    Page:
+      name: page
       in: query
-      description: Filter by category ID or slug.
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Expand:
+      name: expand
+      in: query
+      description: Include related objects, e.g. expand=account or expand=variants:10.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to return.
       schema:
         type: string
     Where:
@@ -154,17 +215,10 @@ components:
       description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
         type: object
-    Page_2:
-      name: page
+    Sort:
+      name: sort
       in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to return.
+      description: Sort expression, e.g. "name asc" or "date_created desc".
       schema:
         type: string
     PathId:
@@ -175,40 +229,22 @@ components:
       schema:
         type: string
         pattern: ^[a-f0-9]{24}$
-    Expand:
-      name: expand
-      in: query
-      description: Include related objects, e.g. expand=account or expand=variants:10.
-      schema:
-        type: string
     Search:
       name: search
       in: query
       description: Full-text search across model-specific searchable fields.
       schema:
         type: string
-    Expand_2:
-      name: expand
-      in: query
-      schema:
-        type: string
-    Sort_2:
-      name: sort
-      in: query
-      schema:
-        type: string
-    Page:
+    Page_2:
       name: page
       in: query
-      description: Result page number, 1-indexed.
       schema:
         type: integer
         minimum: 1
         default: 1
-    Sort:
-      name: sort
+    Expand_2:
+      name: expand
       in: query
-      description: Sort expression, e.g. "name asc" or "date_created desc".
       schema:
         type: string
     Limit_2:
@@ -219,52 +255,23 @@ components:
         minimum: 1
         maximum: 100
         default: 15
-    Limit:
-      name: limit
+    Category:
+      name: category
       in: query
-      description: Records per page (1-1000). Default 15.
+      description: Filter by category ID or slug.
       schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
+        type: string
+    Sort_2:
+      name: sort
+      in: query
+      schema:
+        type: string
     Search_2:
       name: search
       in: query
       schema:
         type: string
   schemas:
-    ProductList_2:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product_2'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
-    ProductList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        pages:
-          type: object
-    ProductUpdate:
-      allOf:
-      - $ref: '#/components/schemas/Product'
     Product:
       type: object
       properties:
@@ -286,13 +293,14 @@ components:
           - bundle
           - giftcard
         delivery:
-          type: string
+          type:
+          - string
+          - 'null'
           enum:
           - shipment
           - subscription
           - giftcard
           - null
-          nullable: true
         price:
           $ref: '#/components/schemas/Money'
         sale_price:
@@ -386,12 +394,29 @@ components:
       required:
       - name
       - sku
+    ProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pages:
+          type: object
+    ProductUpdate:
+      allOf:
+      - $ref: '#/components/schemas/Product'
     ProductCreate:
       allOf:
       - $ref: '#/components/schemas/Product'
-    Money_2:
+    Money:
       type: number
       format: float
+      description: Currency amount expressed in store currency.
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
@@ -434,6 +459,20 @@ components:
           type: string
         meta_description:
           type: string
+    ProductList_2:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product_2'
+    Money_2:
+      type: number
+      format: float
   securitySchemes:
     SwellStoreId:
       type: apiKey
@@ -445,3 +484,11 @@ components:
       in: header
       name: Authorization
       description: 'Secret API key prefixed with `sk_`. Sent as `Authorization: Basic <base64(store-id:secret-key)>` or equivalent custom header by official libraries.'
+    SwellPublicKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Public storefront key, prefixed with `pk_`. Pass as `Authorization: pk_...`.'
+x-refined-from:
+- swell-backend-api-openapi.yml
+- swell-frontend-api-openapi.yml
