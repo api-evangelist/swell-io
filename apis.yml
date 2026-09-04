@@ -13,16 +13,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: paid
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Paid · Self-serve signup
-  confidence: high
+  label: Paid
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/swell-io.png
 name: Swell
@@ -1845,6 +1846,9 @@ maintainers:
   email: kin@apievangelist.com
   url: https://kinlane.com
 common:
+- type: CapabilityMap
+  url: capabilities/swell-io-capability-edges.yml
+  name: Swell Business Capability Map
 - type: AgenticAccess
   url: agentic-access/swell-io-agentic-access.yml
 - type: DomainSecurity
