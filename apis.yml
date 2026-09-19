@@ -48,7 +48,7 @@ tags:
 - B2C
 - B2B
 - Subscription
-- Marketplaces
+- Marketplace
 - Wholesale
 - Storefront
 - Checkout
@@ -1519,6 +1519,8 @@ apis:
   humanURL: https://developers.swell.is/backend-api/introduction
   baseURL: https://api.swell.store
   tags:
+  - Stocks
+  tags_raw:
   - Stock
   properties:
   - type: OpenAPI
