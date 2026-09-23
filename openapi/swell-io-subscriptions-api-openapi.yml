@@ -175,59 +175,9 @@ paths:
           default: my-store
           description: Your Swell store ID (subdomain).
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
   schemas:
-    SubscriptionUpdate:
+    SubscriptionCreate:
       $ref: '#/components/schemas/Subscription'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
-    SubscriptionList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
     Subscription:
       type: object
       properties:
@@ -282,8 +232,58 @@ components:
         date_updated:
           type: string
           format: date-time
-    SubscriptionCreate:
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    SubscriptionList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    SubscriptionUpdate:
       $ref: '#/components/schemas/Subscription'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
   securitySchemes:
     SwellStoreId:
       type: apiKey

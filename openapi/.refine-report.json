@@ -51,7 +51,8 @@
     "tag 'Gift Cards' spans 2 source specs (swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml): per-path servers applied",
     "tag 'Orders' spans 2 source specs (swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml): per-path servers applied",
     "tag 'Products' spans 2 source specs (swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml): per-path servers applied",
-    "tag 'Subscriptions' spans 2 source specs (swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml): per-path servers applied"
+    "tag 'Subscriptions' spans 2 source specs (swell-backend-api-openapi.yml, swell-frontend-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "swell-io-account-addresses-api-openapi.yml: previously refined output, superseded by openapi/_original/",

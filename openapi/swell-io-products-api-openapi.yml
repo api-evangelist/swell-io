@@ -179,99 +179,23 @@ paths:
           default: my-store
           description: Your Swell store ID (subdomain).
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Expand:
-      name: expand
-      in: query
-      description: Include related objects, e.g. expand=account or expand=variants:10.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of fields to return.
-      schema:
-        type: string
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
-    Sort:
-      name: sort
-      in: query
-      description: Sort expression, e.g. "name asc" or "date_created desc".
-      schema:
-        type: string
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
-    Search:
-      name: search
-      in: query
-      description: Full-text search across model-specific searchable fields.
-      schema:
-        type: string
-    Page_2:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Expand_2:
-      name: expand
-      in: query
-      schema:
-        type: string
-    Limit_2:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 15
-    Category:
-      name: category
-      in: query
-      description: Filter by category ID or slug.
-      schema:
-        type: string
-    Sort_2:
-      name: sort
-      in: query
-      schema:
-        type: string
-    Search_2:
-      name: search
-      in: query
-      schema:
-        type: string
   schemas:
+    ProductUpdate:
+      allOf:
+      - $ref: '#/components/schemas/Product'
+    ProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pages:
+          type: object
     Product:
       type: object
       properties:
@@ -394,22 +318,6 @@ components:
       required:
       - name
       - sku
-    ProductList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        pages:
-          type: object
-    ProductUpdate:
-      allOf:
-      - $ref: '#/components/schemas/Product'
     ProductCreate:
       allOf:
       - $ref: '#/components/schemas/Product'
@@ -420,6 +328,17 @@ components:
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
+    ProductList_2:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product_2'
     Product_2:
       type: object
       properties:
@@ -459,20 +378,101 @@ components:
           type: string
         meta_description:
           type: string
-    ProductList_2:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product_2'
     Money_2:
       type: number
       format: float
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Search:
+      name: search
+      in: query
+      description: Full-text search across model-specific searchable fields.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Sort:
+      name: sort
+      in: query
+      description: Sort expression, e.g. "name asc" or "date_created desc".
+      schema:
+        type: string
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    Expand:
+      name: expand
+      in: query
+      description: Include related objects, e.g. expand=account or expand=variants:10.
+      schema:
+        type: string
+    Limit_2:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 15
+    Search_2:
+      name: search
+      in: query
+      schema:
+        type: string
+    Page_2:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Sort_2:
+      name: sort
+      in: query
+      schema:
+        type: string
+    Category:
+      name: category
+      in: query
+      description: Filter by category ID or slug.
+      schema:
+        type: string
+    Expand_2:
+      name: expand
+      in: query
+      schema:
+        type: string
   securitySchemes:
     SwellStoreId:
       type: apiKey

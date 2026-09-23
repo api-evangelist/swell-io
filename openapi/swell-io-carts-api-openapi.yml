@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Swell Backend Carts API
   version: 2025-01
-  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks.'
   contact:
     name: Swell Developer Support
     url: https://developers.swell.is
@@ -98,14 +98,14 @@ paths:
           description: Deleted.
 components:
   parameters:
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
       schema:
-        type: integer
-        minimum: 1
-        default: 1
+        type: string
+        pattern: ^[a-f0-9]{24}$
     Limit:
       name: limit
       in: query
@@ -115,34 +115,21 @@ components:
         minimum: 1
         maximum: 1000
         default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     Where:
       name: where
       in: query
       description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
         type: object
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
   schemas:
-    CartCreate:
-      $ref: '#/components/schemas/Cart'
-    CartList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cart'
     Cart:
       type: object
       properties:
@@ -185,15 +172,28 @@ components:
         date_updated:
           type: string
           format: date-time
+    CartUpdate:
+      $ref: '#/components/schemas/Cart'
+    CartCreate:
+      $ref: '#/components/schemas/Cart'
     Money:
       type: number
       format: float
       description: Currency amount expressed in store currency.
+    CartList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
-    CartUpdate:
-      $ref: '#/components/schemas/Cart'
   securitySchemes:
     SwellStoreId:
       type: apiKey

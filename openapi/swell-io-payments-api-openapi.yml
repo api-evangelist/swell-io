@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Swell Backend Payments API
   version: 2025-01
-  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks. Authenticated with a store ID and secret key. The official Node and PHP libraries connect over a custom wire protocol on port 8443 for improved performance; HTTPS REST is available at https://api.swell.store.'
+  description: 'Swell Backend API — the server-side REST surface for managing every resource in a Swell commerce store: products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts (customers), invoices, coupons, promotions, gift cards, content, files, data models, events, and webhooks.'
   contact:
     name: Swell Developer Support
     url: https://developers.swell.is
@@ -78,6 +78,23 @@ paths:
           description: Updated.
 components:
   schemas:
+    PaymentList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    PaymentCreate:
+      $ref: '#/components/schemas/Payment'
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
     Payment:
       type: object
       properties:
@@ -122,23 +139,6 @@ components:
         date_updated:
           type: string
           format: date-time
-    PaymentCreate:
-      $ref: '#/components/schemas/Payment'
-    PaymentList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$

@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Swell Frontend Account API
   version: 2025-01
-  description: Swell Frontend API — the client-safe, public-key-authenticated REST surface used from storefronts, single-page apps, and headless commerce experiences. Exposes a curated subset of the Backend API authorized with a public key plus a session token. Powers Swell.js, the React/Vue/Next storefront kits (Origin, Horizon, Verswell), and any custom JAMstack or SSR storefront. Resources include products, categories, carts, accounts, orders, subscriptions, payments, coupons, gift cards, store settings, currencies, localization, menus, and content pages.
+  description: Swell Frontend API — the client-safe, public-key-authenticated REST surface used from storefronts, single-page apps, and headless commerce experiences.
   contact:
     name: Swell Developer Support
     url: https://developers.swell.is/frontend-api/introduction
@@ -163,6 +163,9 @@ paths:
           description: Removed.
 components:
   schemas:
+    Money:
+      type: number
+      format: float
     Account:
       type: object
       properties:
@@ -181,9 +184,6 @@ components:
           type: string
         balance:
           $ref: '#/components/schemas/Money'
-    Money:
-      type: number
-      format: float
   securitySchemes:
     SwellPublicKey:
       type: apiKey

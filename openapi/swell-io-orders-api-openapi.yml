@@ -169,51 +169,26 @@ paths:
           default: my-store
           description: Your Swell store ID (subdomain).
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Expand:
-      name: expand
-      in: query
-      description: Include related objects, e.g. expand=account or expand=variants:10.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
-    Sort:
-      name: sort
-      in: query
-      description: Sort expression, e.g. "name asc" or "date_created desc".
-      schema:
-        type: string
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
   schemas:
+    OrderList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    OrderCreate:
+      $ref: '#/components/schemas/Order'
+    OrderUpdate:
+      $ref: '#/components/schemas/Order'
     Order:
       type: object
       properties:
@@ -281,28 +256,9 @@ components:
         date_updated:
           type: string
           format: date-time
-    OrderList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
-    OrderCreate:
-      $ref: '#/components/schemas/Order'
-    OrderUpdate:
-      $ref: '#/components/schemas/Order'
     Order_2:
       type: object
       properties:
@@ -328,6 +284,50 @@ components:
     Money_2:
       type: number
       format: float
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
+    Sort:
+      name: sort
+      in: query
+      description: Sort expression, e.g. "name asc" or "date_created desc".
+      schema:
+        type: string
+    Expand:
+      name: expand
+      in: query
+      description: Include related objects, e.g. expand=account or expand=variants:10.
+      schema:
+        type: string
   securitySchemes:
     SwellStoreId:
       type: apiKey
