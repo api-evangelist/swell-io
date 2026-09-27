@@ -93,16 +93,9 @@ paths:
         '200':
           description: Deleted.
 components:
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
   schemas:
+    WebhookUpdate:
+      $ref: '#/components/schemas/Webhook'
     Webhook:
       type: object
       properties:
@@ -130,6 +123,11 @@ components:
       required:
       - url
       - events
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    WebhookCreate:
+      $ref: '#/components/schemas/Webhook'
     WebhookList:
       type: object
       properties:
@@ -141,13 +139,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Webhook'
-    WebhookCreate:
-      $ref: '#/components/schemas/Webhook'
-    WebhookUpdate:
-      $ref: '#/components/schemas/Webhook'
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
   securitySchemes:
     SwellStoreId:
       type: apiKey

@@ -82,14 +82,14 @@ paths:
           description: Deleted.
 components:
   parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
       schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
+        type: integer
+        minimum: 1
+        default: 1
     Where:
       name: where
       in: query
@@ -105,14 +105,14 @@ components:
         minimum: 1
         maximum: 1000
         default: 15
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
       schema:
-        type: integer
-        minimum: 1
-        default: 1
+        type: string
+        pattern: ^[a-f0-9]{24}$
   securitySchemes:
     SwellStoreId:
       type: apiKey

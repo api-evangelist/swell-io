@@ -183,19 +183,6 @@ components:
     ProductUpdate:
       allOf:
       - $ref: '#/components/schemas/Product'
-    ProductList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        pages:
-          type: object
     Product:
       type: object
       properties:
@@ -318,17 +305,14 @@ components:
       required:
       - name
       - sku
-    ProductCreate:
-      allOf:
-      - $ref: '#/components/schemas/Product'
     Money:
       type: number
       format: float
       description: Currency amount expressed in store currency.
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
-    ProductList_2:
+    ProductCreate:
+      allOf:
+      - $ref: '#/components/schemas/Product'
+    ProductList:
       type: object
       properties:
         count:
@@ -338,7 +322,12 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Product_2'
+            $ref: '#/components/schemas/Product'
+        pages:
+          type: object
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
     Product_2:
       type: object
       properties:
@@ -381,44 +370,24 @@ components:
     Money_2:
       type: number
       format: float
+    ProductList_2:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product_2'
   parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
     Fields:
       name: fields
       in: query
       description: Comma-separated list of fields to return.
       schema:
         type: string
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    Search:
-      name: search
-      in: query
-      description: Full-text search across model-specific searchable fields.
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     Sort:
       name: sort
       in: query
@@ -431,10 +400,46 @@ components:
       description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
         type: object
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
     Expand:
       name: expand
       in: query
       description: Include related objects, e.g. expand=account or expand=variants:10.
+      schema:
+        type: string
+    Search:
+      name: search
+      in: query
+      description: Full-text search across model-specific searchable fields.
+      schema:
+        type: string
+    Sort_2:
+      name: sort
+      in: query
       schema:
         type: string
     Limit_2:
@@ -445,11 +450,6 @@ components:
         minimum: 1
         maximum: 100
         default: 15
-    Search_2:
-      name: search
-      in: query
-      schema:
-        type: string
     Page_2:
       name: page
       in: query
@@ -457,8 +457,13 @@ components:
         type: integer
         minimum: 1
         default: 1
-    Sort_2:
-      name: sort
+    Expand_2:
+      name: expand
+      in: query
+      schema:
+        type: string
+    Search_2:
+      name: search
       in: query
       schema:
         type: string
@@ -466,11 +471,6 @@ components:
       name: category
       in: query
       description: Filter by category ID or slug.
-      schema:
-        type: string
-    Expand_2:
-      name: expand
-      in: query
       schema:
         type: string
   securitySchemes:

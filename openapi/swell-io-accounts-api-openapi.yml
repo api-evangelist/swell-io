@@ -98,6 +98,28 @@ paths:
           description: Deleted.
 components:
   schemas:
+    AccountUpdate:
+      $ref: '#/components/schemas/Account'
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    AccountList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    AccountCreate:
+      $ref: '#/components/schemas/Account'
     Account:
       type: object
       properties:
@@ -154,37 +176,13 @@ components:
           format: date-time
       required:
       - email
-    AccountUpdate:
-      $ref: '#/components/schemas/Account'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
-    AccountList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
-    AccountCreate:
-      $ref: '#/components/schemas/Account'
   parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
+        type: object
     Limit:
       name: limit
       in: query
@@ -202,12 +200,14 @@ components:
         type: integer
         minimum: 1
         default: 1
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
       schema:
-        type: object
+        type: string
+        pattern: ^[a-f0-9]{24}$
   securitySchemes:
     SwellStoreId:
       type: apiKey

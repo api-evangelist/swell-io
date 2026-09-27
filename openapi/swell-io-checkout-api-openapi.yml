@@ -38,6 +38,9 @@ paths:
                 $ref: '#/components/schemas/Order'
 components:
   schemas:
+    Money:
+      type: number
+      format: float
     Order:
       type: object
       properties:
@@ -60,9 +63,6 @@ components:
         date_created:
           type: string
           format: date-time
-    Money:
-      type: number
-      format: float
   securitySchemes:
     SwellPublicKey:
       type: apiKey

@@ -176,6 +176,17 @@ paths:
           description: Your Swell store ID (subdomain).
 components:
   schemas:
+    SubscriptionList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
     SubscriptionCreate:
       $ref: '#/components/schemas/Subscription'
     Subscription:
@@ -236,31 +247,18 @@ components:
       type: number
       format: float
       description: Currency amount expressed in store currency.
-    SubscriptionList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
-    SubscriptionUpdate:
-      $ref: '#/components/schemas/Subscription'
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
+    SubscriptionUpdate:
+      $ref: '#/components/schemas/Subscription'
   parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
+        type: object
     Limit:
       name: limit
       in: query
@@ -278,12 +276,14 @@ components:
         type: integer
         minimum: 1
         default: 1
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
       schema:
-        type: object
+        type: string
+        pattern: ^[a-f0-9]{24}$
   securitySchemes:
     SwellStoreId:
       type: apiKey

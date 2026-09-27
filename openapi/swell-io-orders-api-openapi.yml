@@ -170,6 +170,8 @@ paths:
           description: Your Swell store ID (subdomain).
 components:
   schemas:
+    OrderCreate:
+      $ref: '#/components/schemas/Order'
     OrderList:
       type: object
       properties:
@@ -185,10 +187,9 @@ components:
       type: number
       format: float
       description: Currency amount expressed in store currency.
-    OrderCreate:
-      $ref: '#/components/schemas/Order'
-    OrderUpdate:
-      $ref: '#/components/schemas/Order'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
     Order:
       type: object
       properties:
@@ -256,9 +257,11 @@ components:
         date_updated:
           type: string
           format: date-time
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
+    OrderUpdate:
+      $ref: '#/components/schemas/Order'
+    Money_2:
+      type: number
+      format: float
     Order_2:
       type: object
       properties:
@@ -281,18 +284,19 @@ components:
         date_created:
           type: string
           format: date-time
-    Money_2:
-      type: number
-      format: float
   parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
+    Sort:
+      name: sort
+      in: query
+      description: Sort expression, e.g. "name asc" or "date_created desc".
       schema:
         type: string
-        pattern: ^[a-f0-9]{24}$
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
     Limit:
       name: limit
       in: query
@@ -310,18 +314,14 @@ components:
         type: integer
         minimum: 1
         default: 1
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
-    Sort:
-      name: sort
-      in: query
-      description: Sort expression, e.g. "name asc" or "date_created desc".
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
       schema:
         type: string
+        pattern: ^[a-f0-9]{24}$
     Expand:
       name: expand
       in: query
