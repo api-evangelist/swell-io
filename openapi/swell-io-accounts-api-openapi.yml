@@ -97,16 +97,41 @@ paths:
         '200':
           description: Deleted.
 components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
   schemas:
-    AccountUpdate:
+    AccountCreate:
       $ref: '#/components/schemas/Account'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
     AccountList:
       type: object
       properties:
@@ -118,8 +143,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Account'
-    AccountCreate:
+    AccountUpdate:
       $ref: '#/components/schemas/Account'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
     Account:
       type: object
       properties:
@@ -176,38 +208,6 @@ components:
           format: date-time
       required:
       - email
-  parameters:
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
   securitySchemes:
     SwellStoreId:
       type: apiKey

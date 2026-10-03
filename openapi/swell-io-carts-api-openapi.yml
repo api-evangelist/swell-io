@@ -97,13 +97,39 @@ paths:
         '200':
           description: Deleted.
 components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Where:
+      name: where
+      in: query
+      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
+      schema:
+        type: object
   schemas:
-    CartCreate:
-      $ref: '#/components/schemas/Cart'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
     CartList:
       type: object
       properties:
@@ -118,6 +144,10 @@ components:
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
     Cart:
       type: object
       properties:
@@ -162,38 +192,8 @@ components:
           format: date-time
     CartUpdate:
       $ref: '#/components/schemas/Cart'
-  parameters:
-    Where:
-      name: where
-      in: query
-      description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
-      schema:
-        type: object
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
+    CartCreate:
+      $ref: '#/components/schemas/Cart'
   securitySchemes:
     SwellStoreId:
       type: apiKey

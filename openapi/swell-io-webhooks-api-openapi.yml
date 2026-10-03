@@ -94,8 +94,17 @@ paths:
           description: Deleted.
 components:
   schemas:
-    WebhookUpdate:
-      $ref: '#/components/schemas/Webhook'
+    WebhookList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
     Webhook:
       type: object
       properties:
@@ -128,17 +137,8 @@ components:
       pattern: ^[a-f0-9]{24}$
     WebhookCreate:
       $ref: '#/components/schemas/Webhook'
-    WebhookList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
+    WebhookUpdate:
+      $ref: '#/components/schemas/Webhook'
   parameters:
     PathId:
       name: id

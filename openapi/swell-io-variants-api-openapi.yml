@@ -82,6 +82,23 @@ paths:
           description: Deleted.
 components:
   parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
+    Limit:
+      name: limit
+      in: query
+      description: Records per page (1-1000). Default 15.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 15
     Page:
       name: page
       in: query
@@ -96,23 +113,6 @@ components:
       description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
         type: object
-    Limit:
-      name: limit
-      in: query
-      description: Records per page (1-1000). Default 15.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 15
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
   securitySchemes:
     SwellStoreId:
       type: apiKey

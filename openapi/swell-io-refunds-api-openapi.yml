@@ -52,6 +52,15 @@ paths:
           description: Refunds.
 components:
   schemas:
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
+    RefundCreate:
+      $ref: '#/components/schemas/Refund'
     Refund:
       type: object
       properties:
@@ -66,15 +75,6 @@ components:
         date_created:
           type: string
           format: date-time
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
-    RefundCreate:
-      $ref: '#/components/schemas/Refund'
   parameters:
     PathId:
       name: id

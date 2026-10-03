@@ -78,15 +78,26 @@ paths:
           description: Updated.
 components:
   schemas:
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
     PaymentCreate:
       $ref: '#/components/schemas/Payment'
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
+    PaymentList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
     Payment:
       type: object
       properties:
@@ -131,17 +142,6 @@ components:
         date_updated:
           type: string
           format: date-time
-    PaymentList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
   parameters:
     PathId:
       name: id
