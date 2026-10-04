@@ -189,12 +189,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 15
-    Expand:
-      name: expand
-      in: query
-      description: Include related objects, e.g. expand=account or expand=variants:10.
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -203,6 +197,14 @@ components:
         type: integer
         minimum: 1
         default: 1
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
     Search:
       name: search
       in: query
@@ -215,14 +217,6 @@ components:
       description: Sort expression, e.g. "name asc" or "date_created desc".
       schema:
         type: string
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
     Fields:
       name: fields
       in: query
@@ -235,6 +229,12 @@ components:
       description: MongoDB-style filter object. Supports operators $eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size.
       schema:
         type: object
+    Expand:
+      name: expand
+      in: query
+      description: Include related objects, e.g. expand=account or expand=variants:10.
+      schema:
+        type: string
     Limit_2:
       name: limit
       in: query
@@ -243,11 +243,6 @@ components:
         minimum: 1
         maximum: 100
         default: 15
-    Expand_2:
-      name: expand
-      in: query
-      schema:
-        type: string
     Page_2:
       name: page
       in: query
@@ -260,18 +255,26 @@ components:
       in: query
       schema:
         type: string
+    Sort_2:
+      name: sort
+      in: query
+      schema:
+        type: string
     Category:
       name: category
       in: query
       description: Filter by category ID or slug.
       schema:
         type: string
-    Sort_2:
-      name: sort
+    Expand_2:
+      name: expand
       in: query
       schema:
         type: string
   schemas:
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
     ProductUpdate:
       allOf:
       - $ref: '#/components/schemas/Product'
@@ -288,16 +291,13 @@ components:
             $ref: '#/components/schemas/Product'
         pages:
           type: object
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
+    ProductCreate:
+      allOf:
+      - $ref: '#/components/schemas/Product'
     Money:
       type: number
       format: float
       description: Currency amount expressed in store currency.
-    ProductCreate:
-      allOf:
-      - $ref: '#/components/schemas/Product'
     Product:
       type: object
       properties:

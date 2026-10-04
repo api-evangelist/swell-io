@@ -130,6 +130,8 @@ components:
       schema:
         type: object
   schemas:
+    AccountUpdate:
+      $ref: '#/components/schemas/Account'
     AccountCreate:
       $ref: '#/components/schemas/Account'
     AccountList:
@@ -143,8 +145,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Account'
-    AccountUpdate:
-      $ref: '#/components/schemas/Account'
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$

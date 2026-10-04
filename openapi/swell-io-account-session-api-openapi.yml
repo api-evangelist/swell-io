@@ -104,6 +104,9 @@ paths:
           description: Password reset.
 components:
   schemas:
+    Money:
+      type: number
+      format: float
     Account:
       type: object
       properties:
@@ -122,9 +125,6 @@ components:
           type: string
         balance:
           $ref: '#/components/schemas/Money'
-    Money:
-      type: number
-      format: float
   securitySchemes:
     SwellPublicKey:
       type: apiKey

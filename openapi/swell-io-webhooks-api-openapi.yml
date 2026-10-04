@@ -94,6 +94,11 @@ paths:
           description: Deleted.
 components:
   schemas:
+    WebhookCreate:
+      $ref: '#/components/schemas/Webhook'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
     WebhookList:
       type: object
       properties:
@@ -105,6 +110,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Webhook'
+    WebhookUpdate:
+      $ref: '#/components/schemas/Webhook'
     Webhook:
       type: object
       properties:
@@ -132,13 +139,6 @@ components:
       required:
       - url
       - events
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
-    WebhookCreate:
-      $ref: '#/components/schemas/Webhook'
-    WebhookUpdate:
-      $ref: '#/components/schemas/Webhook'
   parameters:
     PathId:
       name: id

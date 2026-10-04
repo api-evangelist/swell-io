@@ -51,6 +51,15 @@ paths:
         '200':
           description: Refunds.
 components:
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The object ID of the resource.
+      schema:
+        type: string
+        pattern: ^[a-f0-9]{24}$
   schemas:
     ObjectId:
       type: string
@@ -59,8 +68,6 @@ components:
       type: number
       format: float
       description: Currency amount expressed in store currency.
-    RefundCreate:
-      $ref: '#/components/schemas/Refund'
     Refund:
       type: object
       properties:
@@ -75,15 +82,8 @@ components:
         date_created:
           type: string
           format: date-time
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The object ID of the resource.
-      schema:
-        type: string
-        pattern: ^[a-f0-9]{24}$
+    RefundCreate:
+      $ref: '#/components/schemas/Refund'
   securitySchemes:
     SwellStoreId:
       type: apiKey

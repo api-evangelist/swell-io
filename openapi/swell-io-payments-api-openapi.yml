@@ -80,9 +80,6 @@ components:
   schemas:
     PaymentCreate:
       $ref: '#/components/schemas/Payment'
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
     PaymentList:
       type: object
       properties:
@@ -94,10 +91,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Payment'
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
     Payment:
       type: object
       properties:
@@ -142,6 +138,10 @@ components:
         date_updated:
           type: string
           format: date-time
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
   parameters:
     PathId:
       name: id

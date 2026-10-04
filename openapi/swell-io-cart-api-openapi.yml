@@ -168,9 +168,6 @@ paths:
           description: Recovered cart.
 components:
   schemas:
-    Money:
-      type: number
-      format: float
     Cart:
       type: object
       properties:
@@ -202,6 +199,9 @@ components:
           type: string
         currency:
           type: string
+    Money:
+      type: number
+      format: float
   securitySchemes:
     SwellPublicKey:
       type: apiKey
