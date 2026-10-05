@@ -1,0 +1,103 @@
+slug: swell-io
+provider: Swell
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: Coupons
+  spec_file: swell-io-coupons-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.85
+  evidence: POST /coupons createCoupon Create Coupon; GET /api/coupons/{code} frontendGetCoupon Validate
+    Coupon Code
+  reason: Creation and validation of coupon codes is discount/promotional offer administration, matching
+    Discount & Promotion Management.
+- tag: Webhooks
+  spec_file: swell-io-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: POST /webhooks createWebhook "Create Webhook Subscription"; GET /webhooks "List Webhook Subscriptions"
+  reason: Full CRUD over outbound webhook subscriptions for the commerce platform's event delivery — exactly
+    webhook & event subscription lifecycle management in the developer/API ecosystem capability. Not a
+    commerce business capability itself.
+- tag: Promotions
+  spec_file: swell-io-promotions-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.82
+  evidence: POST /promotions createPromotion Create Promotion
+  reason: CRUD over promotion definitions in a commerce store corresponds directly to discount and promotion
+    management.
+- tag: Accounts
+  spec_file: swell-io-accounts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.8
+  evidence: POST /accounts createAccount; "accounts (customers)"
+  reason: Backend CRUD over the account entity which the spec description explicitly equates with customers,
+    making this customer record/master data management.
+- tag: Account
+  spec_file: swell-io-account-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.78
+  evidence: GET /api/account frontendGetAccount Retrieve Current Account; POST /api/account/addresses
+    Add Account Address
+  reason: In Swell an account is the customer record ("accounts (customers)"); the operations maintain
+    the customer profile, addresses and stored cards, which is customer master data management. Saved-card
+    tokenisation adds slight ambiguity toward payment-method handling.
+- tag: Subscriptions
+  spec_file: swell-io-subscriptions-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.75
+  evidence: POST /subscriptions createSubscription; DELETE /subscriptions/{id} cancelSubscription Cancel
+    Subscription
+  reason: Operations cover creation, in-life update and cancellation of customer subscriptions, i.e. the
+    subscription commercial lifecycle. Spans provisioning, modification and cancellation sub-capabilities,
+    so only the L1 is asserted.
+- tag: Account Addresses
+  spec_file: swell-io-account-addresses-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.72
+  evidence: GET /accounts/{id}/addresses listAccountAddresses List Account Addresses
+  reason: Maintains address attributes on the customer (account) record in a commerce store, i.e. customer
+    master data. Narrow surface (two operations) keeps confidence moderate.
+- tag: Variants
+  spec_file: swell-io-variants-api-openapi.yml
+  capability_id: BC-820.40
+  capability_id_l1: BC-820
+  capability_name: Product Configuration & Variant Management
+  confidence: 0.72
+  evidence: POST /variants createVariant; spec manages "products, variants"
+  reason: CRUD over product variants matches Product Configuration & Variant Management ("configurations,
+    variants, options, bundles"); an alternative reading as product master data keeps confidence below
+    high.
+- tag: Shipments
+  spec_file: swell-io-shipments-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.7
+  evidence: POST /shipments createShipment Create Shipment
+  reason: Creating and maintaining shipments for commerce orders is outbound logistics execution. No fulfilment-specific
+    sub-capability other than logistics operations fits, so confidence is moderate.
