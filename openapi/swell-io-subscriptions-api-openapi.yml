@@ -176,6 +176,28 @@ paths:
           description: Your Swell store ID (subdomain).
 components:
   schemas:
+    SubscriptionCreate:
+      $ref: '#/components/schemas/Subscription'
+    SubscriptionList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    ObjectId:
+      type: string
+      pattern: ^[a-f0-9]{24}$
+    SubscriptionUpdate:
+      $ref: '#/components/schemas/Subscription'
+    Money:
+      type: number
+      format: float
+      description: Currency amount expressed in store currency.
     Subscription:
       type: object
       properties:
@@ -230,28 +252,6 @@ components:
         date_updated:
           type: string
           format: date-time
-    SubscriptionList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
-    SubscriptionUpdate:
-      $ref: '#/components/schemas/Subscription'
-    ObjectId:
-      type: string
-      pattern: ^[a-f0-9]{24}$
-    Money:
-      type: number
-      format: float
-      description: Currency amount expressed in store currency.
-    SubscriptionCreate:
-      $ref: '#/components/schemas/Subscription'
   parameters:
     Limit:
       name: limit
@@ -262,14 +262,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 15
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     PathId:
       name: id
       in: path
@@ -278,6 +270,14 @@ components:
       schema:
         type: string
         pattern: ^[a-f0-9]{24}$
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     Where:
       name: where
       in: query

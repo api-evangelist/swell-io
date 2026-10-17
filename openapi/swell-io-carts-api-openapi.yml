@@ -98,6 +98,19 @@ paths:
           description: Deleted.
 components:
   schemas:
+    CartUpdate:
+      $ref: '#/components/schemas/Cart'
+    CartList:
+      type: object
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
     Cart:
       type: object
       properties:
@@ -143,25 +156,12 @@ components:
     ObjectId:
       type: string
       pattern: ^[a-f0-9]{24}$
-    CartCreate:
-      $ref: '#/components/schemas/Cart'
-    CartList:
-      type: object
-      properties:
-        count:
-          type: integer
-        page:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cart'
-    CartUpdate:
-      $ref: '#/components/schemas/Cart'
     Money:
       type: number
       format: float
       description: Currency amount expressed in store currency.
+    CartCreate:
+      $ref: '#/components/schemas/Cart'
   parameters:
     Limit:
       name: limit
@@ -172,14 +172,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 15
-    Page:
-      name: page
-      in: query
-      description: Result page number, 1-indexed.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     PathId:
       name: id
       in: path
@@ -188,6 +180,14 @@ components:
       schema:
         type: string
         pattern: ^[a-f0-9]{24}$
+    Page:
+      name: page
+      in: query
+      description: Result page number, 1-indexed.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     Where:
       name: where
       in: query
