@@ -1,4 +1,4 @@
-# Swell (swell-io)
+# Swell
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,222 +66,257 @@
 
 Swell is a customizable, API-first headless commerce platform powering modern B2C, B2B, subscription, and marketplace experiences. It exposes a server-side Backend API for managing the full commerce data model (products, variants, carts, orders, payments, refunds, shipments, returns, subscriptions, accounts, invoices, coupons, promotions, gift cards, content, files, events, webhooks) plus a public-key client-side Frontend API for storefronts and an experimental GraphQL endpoint. The platform ships official Node and PHP libraries, a universal JavaScript SDK (Swell.js), headless storefront starters for Next.js (Horizon, verswell-commerce, nextjs-commerce) and Nuxt (Origin), a Swell Apps platform with CLI and Apps SDK for extending the data and logic layers via custom data models, events, notifications, webhooks, and edge functions running in 200+ locations, plus AI coding-agent skills and Claude Code plugins.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/swell-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/swell-io/refs/heads/main/apis.yml)
+**Areas:** Commerce · Headless Commerce · API-First · Consumer · B2B · Subscription · Marketplace · Wholesale · Storefront · Checkout · Payments · Cart
 
-## Tags
+## Swell on APIs.io
 
-- Commerce
-- Headless Commerce
-- API-First
-- B2C
-- B2B
-- Subscriptions
-- Marketplaces
-- Wholesale
-- Storefront
-- Checkout
-- Payments
-- Carts
-- Orders
-- Catalog
-- Internationalization
+Everything profiled for Swell is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/swell-io/](https://apis.io/providers/swell-io/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (34)
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+- [Swell GraphQL API](https://apis.io/apis/swell-io/swell-graphql-api/) — Experimental (alpha) GraphQL endpoint that exposes a curated subset of the storefront commerce model — products, attributes, categories, accounts, sessions,…
+- [Swell Webhooks](https://apis.io/apis/swell-io/swell-webhooks-api/) — Event-driven HTTP callbacks for cart, order, subscription, payment, account, and product lifecycle events. Configurable via the dashboard (Developer →…
+- [Swell Apps Platform](https://apis.io/apis/swell-io/swell-apps-platform/) — Swell Apps extend the platform with custom data models (added fields or new entities), events (triggering functions, webhooks, and notifications), edge…
+- [Swell Account Addresses API](https://apis.io/apis/swell-io/swell-io-account-addresses-api/) — Saved shipping/billing addresses on an account.
+- [Swell Account API](https://apis.io/apis/swell-io/swell-io-account-api/) — Authenticated customer account operations.
+- [Swell Account Cards API](https://apis.io/apis/swell-io/swell-io-account-cards-api/) — Saved payment cards on an account.
+- [Swell Account Credits API](https://apis.io/apis/swell-io/swell-io-account-credits-api/) — Store credit balances and transactions per account.
+- [Swell Account Session API](https://apis.io/apis/swell-io/swell-io-account-session-api/) — Login, logout, and session recovery.
+- [Swell Accounts API](https://apis.io/apis/swell-io/swell-io-accounts-api/) — Customer accounts including billing/shipping, saved cards, and history.
+- [Swell Attributes API](https://apis.io/apis/swell-io/swell-io-attributes-api/) — Product attributes used for filtering and faceted search.
+- [Swell Cart API](https://apis.io/apis/swell-io/swell-io-cart-api/) — Session-scoped shopping cart for the current visitor.
+- [Swell Carts API](https://apis.io/apis/swell-io/swell-io-carts-api/) — Pending purchase requests that can be converted into orders.
+- [Swell Categories API](https://apis.io/apis/swell-io/swell-io-categories-api/) — Category tree and product taxonomy.
+- [Swell Checkout API](https://apis.io/apis/swell-io/swell-io-checkout-api/) — Cart conversion and order placement.
+- [Swell Content API](https://apis.io/apis/swell-io/swell-io-content-api/) — Pages, custom data models, and stored records.
+- [Swell Coupons API](https://apis.io/apis/swell-io/swell-io-coupons-api/) — Coupon definitions with codes, redemptions, and discount rules.
+- [Swell Events API](https://apis.io/apis/swell-io/swell-io-events-api/) — Event records emitted by the platform.
+- [Swell Files API](https://apis.io/apis/swell-io/swell-io-files-api/) — Stored files (images, attachments) served via Swell CDN.
+- [Swell Gift Cards API](https://apis.io/apis/swell-io/swell-io-gift-cards-api/) — Gift cards, debit transactions, and gift card products.
+- [Swell Invoices API](https://apis.io/apis/swell-io/swell-io-invoices-api/) — Invoices generated for subscription billing cycles and B2B orders.
+- [Swell Orders API](https://apis.io/apis/swell-io/swell-io-orders-api/) — Customer orders, line items, financial totals, and lifecycle.
+- [Swell Payments API](https://apis.io/apis/swell-io/swell-io-payments-api/) — Payment transactions, refunds, and gateway settlement.
+- [Swell Products API](https://apis.io/apis/swell-io/swell-io-products-api/) — Product catalog including variants, options, bundles, gift cards, and subscription products.
+- [Swell Promotions API](https://apis.io/apis/swell-io/swell-io-promotions-api/) — Automatic promotion rules applied at cart and checkout.
+- [Swell Purchase Links API](https://apis.io/apis/swell-io/swell-io-purchase-links-api/) — Shareable purchase links that prefill a cart.
+- [Swell Refunds API](https://apis.io/apis/swell-io/swell-io-refunds-api/) — Refund records linked to a payment.
+- [Swell Returns API](https://apis.io/apis/swell-io/swell-io-returns-api/) — Customer return merchandise authorizations.
+- [Swell Shipments API](https://apis.io/apis/swell-io/swell-io-shipments-api/) — Fulfillment shipments, tracking, and split fulfillment.
+- [Swell Stock API](https://apis.io/apis/swell-io/swell-io-stock-api/) — Stock levels and stock adjustments across locations.
+- [Swell Store API](https://apis.io/apis/swell-io/swell-io-store-api/) — Public store settings, currencies, payment settings, and menus.
+- [Swell Subscription Plans API](https://apis.io/apis/swell-io/swell-io-subscription-plans-api/) — Plan templates that define billing schedule and price for recurring products.
+- [Swell Subscriptions API](https://apis.io/apis/swell-io/swell-io-subscriptions-api/) — Recurring billing subscriptions and plans.
+- [Swell Variants API](https://apis.io/apis/swell-io/swell-io-variants-api/) — Variant-level inventory and pricing under a parent product.
+- [Swell Webhooks API](https://apis.io/apis/swell-io/swell-io-webhooks-api/) — Webhook subscriptions for receiving event callbacks.
 
-## APIs
+### Published properties
 
-### Swell Backend API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Server-side REST API authorized with a secret API key and store ID. Covers products, variants, stock, categories, attributes, purchase links, carts, orders, payments, refunds, shipments, returns, subscriptions, subscription plans, accounts, addresses, cards, credits, invoices, coupons, promotions, gift cards, content pages, files, events, and webhooks. Supports MongoDB-style `where` filters with operators ($eq, $ne, $gt, $gte, $lt, $lte, $in, $nin, $regex, $type, $exists, $and, $or, $nor, $all, $elemMatch, $size), `sort`, `limit` (1-1000, default 15), `page`, `search`, `expand`, `fields`, and `include`. Official libraries connect over a custom wire protocol on port 8443 for improved performance and caching; HTTPS REST is available at api.swell.store.
+#### Arazzo workflows (13)
 
-- **Human URL:** [https://developers.swell.is/backend-api/introduction](https://developers.swell.is/backend-api/introduction)
-- **Base URL:** `https://api.swell.store`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [Swell Create Cart and Apply Coupon](https://apis.io/arazzos/swell-io/swell-io-apply-coupon-to-cart-workflow/)
+- [Swell Build Cart and Convert to Order](https://apis.io/arazzos/swell-io/swell-io-build-cart-convert-order-workflow/)
+- [Swell Find and Cancel Active Subscription](https://apis.io/arazzos/swell-io/swell-io-cancel-subscription-workflow/)
+- [Swell Capture and Refund Payment](https://apis.io/arazzos/swell-io/swell-io-capture-refund-payment-workflow/)
+- [Swell Create Category and Product](https://apis.io/arazzos/swell-io/swell-io-categorize-product-workflow/)
+- [Swell Create and Verify Product](https://apis.io/arazzos/swell-io/swell-io-create-product-workflow/)
+- [Swell Create and Verify Subscription](https://apis.io/arazzos/swell-io/swell-io-create-subscription-workflow/)
+- [Swell Find-or-Create Customer and Order](https://apis.io/arazzos/swell-io/swell-io-find-or-create-customer-order-workflow/)
+- [Swell Onboard Customer and Place Order](https://apis.io/arazzos/swell-io/swell-io-onboard-customer-order-workflow/)
+- [Swell Storefront Validate and Apply Coupon](https://apis.io/arazzos/swell-io/swell-io-storefront-apply-coupon-workflow/)
+- [Swell Storefront Add Item and Submit Order](https://apis.io/arazzos/swell-io/swell-io-storefront-checkout-workflow/)
+- [Swell Storefront Register and Log In](https://apis.io/arazzos/swell-io/swell-io-storefront-register-login-workflow/)
+- [Swell Storefront Adjust Cart Item Quantity](https://apis.io/arazzos/swell-io/swell-io-storefront-update-cart-item-workflow/)
 
-- Commerce
-- Backend
-- REST
-- Catalog
-- Orders
-- Payments
-- Subscriptions
+#### GraphQL (1)
 
-#### Properties
+GraphQL schemas.
 
-- [Documentation](https://developers.swell.is/backend-api/introduction)
-- [Authentication](https://developers.swell.is/backend-api/authentication)
-- [API Reference](https://developers.swell.is/backend-api/querying)
-- [API Reference](https://developers.swell.is/backend-api/errors)
-- [OpenAPI](openapi/swell-backend-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/swell-backend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-backend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/swell-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/swell-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/swell-cart-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/swell-subscription-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/swell-account-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/swell-payment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/swell-webhook-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/swell-product-structure.json)
-- [JSON Structure](json-structure/swell-order-structure.json)
-- [JSON Structure](json-structure/swell-subscription-structure.json)
-- [JSON Structure](json-structure/swell-account-structure.json)
-- [Example](examples/swell-product-create-example.json)
-- [Example](examples/swell-order-create-example.json)
-- [Example](examples/swell-subscription-create-example.json)
-- [Example](examples/swell-account-create-example.json)
-- [Example](examples/swell-webhook-event-example.json)
+- [Swell GraphQL API](https://apis.io/graphqls/swell-io/swell-io-graphql/)
 
-### Swell Frontend API
+#### Agentic access (1)
 
-Public-key-authorized REST API designed for storefronts, JAMstack apps, and SSR frameworks. Powers Swell.js and the official Next.js (Horizon, verswell-commerce, nextjs-commerce, nextjs-builder) and Nuxt (Origin) headless starters. Exposes products, categories, attributes, carts (with coupon and gift-card application, recovery, and order submission), authenticated customer accounts (login, recovery, addresses, cards, orders, subscriptions), store settings, payment settings, currencies, menus, and content models. Authenticated with a public key (pk_...) and a session token making it safe to use from any client context.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://developers.swell.is/frontend-api/introduction](https://developers.swell.is/frontend-api/introduction)
-- **Base URL:** `https://{store-id}.swell.store`
+- [Swell Io Agentic Access](https://apis.io/agentic-access/swell-io/swell-io-agentic-access/)
 
-#### Tags
+#### JSON Schema (7)
 
-- Commerce
-- Frontend
-- Storefront
-- REST
-- JAMstack
+The data models the API reads and writes.
 
-#### Properties
+- [Swell Account](https://apis.io/schemas/swell-io/swell-account/)
+- [Swell Cart](https://apis.io/schemas/swell-io/swell-cart/)
+- [Swell Order](https://apis.io/schemas/swell-io/swell-order/)
+- [Swell Payment](https://apis.io/schemas/swell-io/swell-payment/)
+- [Swell Product](https://apis.io/schemas/swell-io/swell-product/)
+- [Swell Subscription](https://apis.io/schemas/swell-io/swell-subscription/)
+- [Swell Webhook Subscription](https://apis.io/schemas/swell-io/swell-webhook/)
 
-- [Documentation](https://developers.swell.is/frontend-api/introduction)
-- [OpenAPI](openapi/swell-frontend-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/swell-frontend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-frontend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/swell-cart-add-item-example.json)
+#### JSON Structure (4)
 
-### Swell GraphQL API
+Data models expressed in JSON Structure.
 
-Experimental (alpha) GraphQL endpoint that exposes a curated subset of the storefront commerce model — products, attributes, categories, accounts, sessions, carts, orders, payments, payment settings, subscriptions, store settings, currencies, and navigation menus. Authorized with a public storefront key passed in the Authorization header. Notable limits: no nested queries, no payment tokenization, no abandoned-cart recovery, no guest cart email updates. A GraphQL playground is available at /playground when logged into the dashboard.
+- [Swell Account Structure](https://apis.io/json-structure/swell-io/swell-account-structure/)
+- [Swell Order Structure](https://apis.io/json-structure/swell-io/swell-order-structure/)
+- [Swell Product Structure](https://apis.io/json-structure/swell-io/swell-product-structure/)
+- [Swell Subscription Structure](https://apis.io/json-structure/swell-io/swell-subscription-structure/)
 
-- **Human URL:** [https://developers.swell.is/frontend-api/frontend-libraries/graphql](https://developers.swell.is/frontend-api/frontend-libraries/graphql)
-- **Base URL:** `https://{store-id}.swell.store/graphql/v2`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Commerce
-- GraphQL
-- Storefront
-- Experimental
+- [Swell Io Context](https://apis.io/jsonld/swell-io/swell-io-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://developers.swell.is/frontend-api/frontend-libraries/graphql)
-- [API Reference](https://{store-id}.swell.store/playground)
-- [Postman Collection](collections/swell-backend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-backend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/swell-frontend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-frontend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The provider's domain terms, defined.
 
-### Swell Webhooks
+- [Swell Commerce Vocabulary](https://apis.io/vocabularies/swell-io/swell-io-vocabulary/)
 
-Event-driven HTTP callbacks for cart, order, subscription, payment, account, and product lifecycle events. Configurable via the dashboard (Developer → Webhooks) or programmatically through the Backend API and Swell Apps. Payloads are JSON POSTs with `id`, `date_created`, `model`, `type`, and `data`. Endpoints must return 2xx; failed deliveries retry hourly for two days, continue hourly after, and auto-disable after three days. Webhooks originate from the documented Swell IP allowlist (52.52.111.237, 54.219.85.17, 54.241.235.166, plus 216.218.185.0/27, 216.218.244.192/27, 74.80.234.0/24).
+#### Examples (6)
 
-- **Human URL:** [https://developers.swell.is/backend-api/webhooks](https://developers.swell.is/backend-api/webhooks)
+Example requests and responses.
 
-#### Tags
+- [Swell Account Create Example](https://apis.io/examples/swell-io/swell-account-create-example/)
+- [Swell Cart Add Item Example](https://apis.io/examples/swell-io/swell-cart-add-item-example/)
+- [Swell Order Create Example](https://apis.io/examples/swell-io/swell-order-create-example/)
+- [Swell Product Create Example](https://apis.io/examples/swell-io/swell-product-create-example/)
+- [Swell Subscription Create Example](https://apis.io/examples/swell-io/swell-subscription-create-example/)
+- [Swell Webhook Event Example](https://apis.io/examples/swell-io/swell-webhook-event-example/)
 
-- Commerce
-- Eventing
-- Webhooks
+#### Collections (35)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developers.swell.is/backend-api/webhooks)
-- [Example](examples/swell-webhook-event-example.json)
-- [Postman Collection](collections/swell-backend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-backend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/swell-frontend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-frontend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Swell Backend API](https://apis.io/collections/swell-io/open-swell-backend-api/)
+- [Swell Frontend API](https://apis.io/collections/swell-io/open-swell-frontend-api/)
+- [Swell Backend Account Addresses API](https://apis.io/collections/swell-io/open-swell-io-account-addresses-api/)
+- [Swell Backend Addresses Account API](https://apis.io/collections/swell-io/open-swell-io-account-api/)
+- [Swell Backend Account Addresses Account Cards API](https://apis.io/collections/swell-io/open-swell-io-account-cards-api/)
+- [Swell Backend Account Addresses Account Credits API](https://apis.io/collections/swell-io/open-swell-io-account-credits-api/)
+- [Swell Backend Account Addresses Account Session API](https://apis.io/collections/swell-io/open-swell-io-account-session-api/)
+- [Swell Backend Account Addresses Accounts API](https://apis.io/collections/swell-io/open-swell-io-accounts-api/)
+- [Swell Backend Account Addresses Attributes API](https://apis.io/collections/swell-io/open-swell-io-attributes-api/)
+- [Swell Backend Account Addresses Cart API](https://apis.io/collections/swell-io/open-swell-io-cart-api/)
+- [Swell Backend Account Addresses Carts API](https://apis.io/collections/swell-io/open-swell-io-carts-api/)
+- [Swell Backend Account Addresses Categories API](https://apis.io/collections/swell-io/open-swell-io-categories-api/)
+- [Swell Backend Account Addresses Checkout API](https://apis.io/collections/swell-io/open-swell-io-checkout-api/)
+- [Swell Backend Account Addresses Content API](https://apis.io/collections/swell-io/open-swell-io-content-api/)
+- [Swell Backend Account Addresses Coupons API](https://apis.io/collections/swell-io/open-swell-io-coupons-api/)
+- [Swell Backend Account Addresses Events API](https://apis.io/collections/swell-io/open-swell-io-events-api/)
+- [Swell Backend Account Addresses Files API](https://apis.io/collections/swell-io/open-swell-io-files-api/)
+- [Swell Backend Account Addresses Gift Cards API](https://apis.io/collections/swell-io/open-swell-io-gift-cards-api/)
+- [Swell Backend Account Addresses Invoices API](https://apis.io/collections/swell-io/open-swell-io-invoices-api/)
+- [Swell Backend Account Addresses Orders API](https://apis.io/collections/swell-io/open-swell-io-orders-api/)
+- [Swell Backend Account Addresses Payments API](https://apis.io/collections/swell-io/open-swell-io-payments-api/)
+- [Swell Backend Account Addresses Products API](https://apis.io/collections/swell-io/open-swell-io-products-api/)
+- [Swell Backend Account Addresses Promotions API](https://apis.io/collections/swell-io/open-swell-io-promotions-api/)
+- [Swell Backend Account Addresses Purchase Links API](https://apis.io/collections/swell-io/open-swell-io-purchase-links-api/)
+- [Swell Backend Account Addresses Refunds API](https://apis.io/collections/swell-io/open-swell-io-refunds-api/)
+- …and 10 more published on APIs.io
 
-### Swell Apps Platform
+#### Governance rules (2)
 
-Swell Apps extend the platform with custom data models (added fields or new entities), events (triggering functions, webhooks, and notifications), edge functions deployed to 200+ locations with no cold start, and admin UI surfaces (settings, content views). Apps are distributed via a swell.json manifest and built with the Swell CLI and Apps SDK; TypeScript bindings are published in the app-types package. Used for first-party integrations (Contentful, Builder.io, honest reviews) and third-party merchant extensions.
+Spectral rulesets for the provider's contracts.
 
-- **Human URL:** [https://developers.swell.is/apps/overview](https://developers.swell.is/apps/overview)
+- [Swell — jsonschema rules](https://apis.io/rules/swell-io/swell-io-jsonschema-spectral-rules/)
+- [Swell — swell rules](https://apis.io/rules/swell-io/swell-rules/)
 
-#### Tags
+#### Security (2)
 
-- Apps
-- Extensions
-- Functions
-- Edge
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Swell Io Authentication](https://apis.io/security/swell-io/swell-io-authentication/)
+- [Swell Io Domain Security](https://apis.io/security/swell-io/swell-io-domain-security/)
 
-- [Documentation](https://developers.swell.is/apps/overview)
-- [SDK](https://github.com/swellstores/apps-sdk)
-- [SDK](https://github.com/swellstores/app-types)
-- [Postman Collection](collections/swell-backend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-backend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/swell-frontend-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swell-frontend-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Homepage](https://www.swell.is/)
-- [Developer Portal](https://www.swell.is/)
+- [Swell Io Plans Pricing](https://apis.io/plans/swell-io/swell-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Swell Io Rate Limits](https://apis.io/rate-limits/swell-io/swell-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Swell Io Finops](https://apis.io/finops/swell-io/swell-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.swell.is/)
 - [Documentation](https://developers.swell.is)
-- [Quickstart](https://developers.swell.is/guides/quickstart-guide)
-- [Getting Started](https://developers.swell.is/guides/core-concepts/platform-overview)
-- [Features](https://www.swell.is/features)
+- [Getting started](https://developers.swell.is/guides/quickstart-guide)
 - [Pricing](https://www.swell.is/pricing)
-- [Sign Up](https://swell.store/signup)
-- [Login](https://swell.store/admin/login)
-- [Console](https://swell.store/admin)
-- [Status Page](https://status.swell.store/)
+- [Support](https://www.swell.is/help)
 - [Changelog](https://www.swell.is/changelog)
 - [Blog](https://www.swell.is/blog)
-- [Support](https://www.swell.is/help)
-- [Contact](https://www.swell.is/contact)
-- [Terms of Service](https://www.swell.is/legal/terms-of-service)
-- [Privacy Policy](https://www.swell.is/legal/privacy-policy)
-- [GitHub Organization](https://github.com/swellstores)
-- [Forum](https://github.com/orgs/swellstores/discussions)
-- [X (Twitter)](https://x.com/swellcommerce)
-- [LinkedIn](https://www.linkedin.com/company/swellcommerce/)
-- [SDK](https://github.com/swellstores/swell-node)
-- [SDK](https://github.com/swellstores/swell-php)
-- [SDK](https://github.com/swellstores/swell-js)
-- [SDK](https://github.com/swellstores/swellpy)
-- [SDK](https://github.com/swellstores/apps-sdk)
-- [SDK](https://github.com/swellstores/app-types)
-- [Resources](https://github.com/swellstores/horizon)
-- [Resources](https://github.com/swellstores/origin-theme)
-- [Resources](https://github.com/swellstores/verswell-commerce)
-- [Resources](https://github.com/swellstores/nextjs-commerce)
-- [Resources](https://github.com/swellstores/nextjs-builder)
-- [Resources](https://github.com/swellstores/storefront-react-ai-template)
-- [Resources](https://github.com/swellstores/swell-claude-plugins)
-- [Resources](https://github.com/swellstores/skills)
-- [Resources](https://github.com/swellstores/easyblocks)
-- [Resources](https://github.com/swellstores/proxima-app)
-- [Resources](https://github.com/swellstores/contentful-app)
-- [Resources](https://github.com/swellstores/honest-reviews-app)
-- [Resources](https://github.com/swellstores/community)
-- [Spectral Rules](rules/swell-rules.yml)
-- [Vocabulary](vocabulary/swell-io-vocabulary.yml)
-- [JSON-LD](json-ld/swell-io-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Plans](plans/swell-io-plans-pricing.yml)
-- [Rate Limits](rate-limits/swell-io-rate-limits.yml)
-- [Fin Ops](finops/swell-io-finops.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Terms of service](https://www.swell.is/legal/terms-of-service)
+- [Privacy policy](https://www.swell.is/legal/privacy-policy)
+- [GitHub](https://github.com/swellstores)
+- [Status](https://status.swell.store/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://kinlane.com
+**Kin Score 56.7** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 62.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 82.1 |
+| Access clarity | 52.6 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | mostly (partial credit) |
+
+**Regulatory alignment 22.3** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/swell-io/](https://apis.io/providers/swell-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Swell: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/swell-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
